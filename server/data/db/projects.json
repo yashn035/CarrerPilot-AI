@@ -1,0 +1,31 @@
+[
+  {
+    "id": "proj-eval-1",
+    "userId": "demo-user-123",
+    "title": "DevRank - Developer Portfolio Engine",
+    "repoUrl": "https://github.com/alexmercer/devrank",
+    "evaluatedAt": "2026-06-09T19:00:00.000Z",
+    "scores": {
+      "architecture": 75,
+      "codeQuality": 80,
+      "scalability": 70,
+      "placementValue": 85,
+      "resumeValue": 80
+    },
+    "report": {
+      "strengths": [
+        "Clear layered architecture",
+        "Good usage of environment variables",
+        "Integrated test suites check"
+      ],
+      "weaknesses": [
+        "Hardcoded secrets in package configurations",
+        "Lacks detailed README instructions"
+      ],
+      "recommendations": [
+        "Migrate config keys to secret manager",
+        "Setup automated Jest validation workflows"
+      ]
+    }
+  }
+]

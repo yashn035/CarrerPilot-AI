@@ -1,0 +1,1060 @@
+{
+  "users": [
+    {
+      "id": "demo-user-123",
+      "email": "demouser@careerpilot.ai",
+      "password": "$2a$10$Kn43zioJydoEVx1bSEGgNuRZe9uGsuvg2DfpzhcTnLW8IHnA2fyP.",
+      "name": "Alex Mercer",
+      "title": "Aspiring Full-Stack Developer",
+      "targetRole": "Frontend Engineer",
+      "xp": 450,
+      "level": 3,
+      "streak": 5,
+      "readinessScore": 68,
+      "streakHistory": [
+        "2026-06-06",
+        "2026-06-07",
+        "2026-06-08",
+        "2026-06-09",
+        "2026-06-10"
+      ],
+      "skills": [
+        {
+          "name": "React",
+          "level": 4,
+          "category": "Frontend"
+        },
+        {
+          "name": "JavaScript",
+          "level": 4,
+          "category": "Frontend"
+        },
+        {
+          "name": "HTML5/CSS3",
+          "level": 5,
+          "category": "Frontend"
+        },
+        {
+          "name": "Node.js",
+          "level": 3,
+          "category": "Backend"
+        },
+        {
+          "name": "Express",
+          "level": 3,
+          "category": "Backend"
+        },
+        {
+          "name": "Git",
+          "level": 4,
+          "category": "Tools"
+        }
+      ],
+      "completedQuests": [
+        "first-login"
+      ],
+      "achievements": [
+        "ats-builder"
+      ],
+      "scores": {
+        "resume": 72,
+        "dsa": 65,
+        "projects": 70,
+        "communication": 60,
+        "interview": 65
+      },
+      "onboarded": true
+    },
+    {
+      "id": "user-jovb43fpl",
+      "email": "demouser2@careerpilot.ai",
+      "password": "$2a$10$Kn43zioJydoEVx1bSEGgNuRZe9uGsuvg2DfpzhcTnLW8IHnA2fyP.",
+      "name": "Demo User",
+      "title": "New CareerPilot Student",
+      "targetRole": "Full-Stack Developer",
+      "xp": 100,
+      "level": 2,
+      "streak": 1,
+      "readinessScore": 29,
+      "streakHistory": [
+        "2026-06-10"
+      ],
+      "skills": [
+        {
+          "name": "React",
+          "level": 3,
+          "category": "Core"
+        },
+        {
+          "name": "Node.js",
+          "level": 3,
+          "category": "Core"
+        },
+        {
+          "name": "Express",
+          "level": 3,
+          "category": "Core"
+        },
+        {
+          "name": "JavaScript",
+          "level": 3,
+          "category": "Core"
+        },
+        {
+          "name": "MongoDB",
+          "level": 3,
+          "category": "Core"
+        },
+        {
+          "name": "SQL",
+          "level": 3,
+          "category": "Core"
+        },
+        {
+          "name": "Git",
+          "level": 3,
+          "category": "Core"
+        },
+        {
+          "name": "Tailwind CSS",
+          "level": 3,
+          "category": "Core"
+        },
+        {
+          "name": "Docker",
+          "level": 3,
+          "category": "Core"
+        }
+      ],
+      "completedQuests": [],
+      "achievements": [],
+      "scores": {
+        "resume": 50,
+        "dsa": 25,
+        "projects": 30,
+        "communication": 20,
+        "interview": 20
+      },
+      "onboarded": true
+    },
+    {
+      "id": "user-a0xukfvak",
+      "email": "yashnalawade035@gmail.com",
+      "password": "$2a$10$tCNkBa3QaCkWeCePQvI..O3REo6CUti9xlQ2pwvhSgguFFBsbolnC",
+      "name": "yash nalawade",
+      "title": "New CareerPilot Student",
+      "targetRole": "Frontend Engineer",
+      "xp": 500,
+      "level": 2,
+      "streak": 1,
+      "readinessScore": 36,
+      "streakHistory": [
+        "2026-06-10"
+      ],
+      "skills": [],
+      "completedQuests": [
+        "ats-analyzer",
+        "solve-dsa",
+        "mock-interview"
+      ],
+      "achievements": [],
+      "scores": {
+        "resume": 72,
+        "dsa": 25,
+        "projects": 30,
+        "communication": 20,
+        "interview": 20
+      },
+      "onboarded": true
+    }
+  ],
+  "resumes": [
+    {
+      "id": "res-1",
+      "userId": "demo-user-123",
+      "version": 1,
+      "title": "Full Stack Developer Resume v1",
+      "updatedAt": "2026-06-09T18:30:00.000Z",
+      "personalInfo": {
+        "name": "Alex Mercer",
+        "email": "alex.mercer@gmail.com",
+        "phone": "+1 (555) 019-2834",
+        "linkedin": "linkedin.com/in/alexmercer",
+        "github": "github.com/alexmercer",
+        "portfolio": "alexmercer.dev"
+      },
+      "education": [
+        {
+          "id": "edu-1",
+          "school": "Tech Institute of Technology",
+          "degree": "B.S. in Computer Science",
+          "location": "San Francisco, CA",
+          "date": "2022 - 2026",
+          "gpa": "3.8/4.0"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-1",
+          "company": "ByteCraft Solutions",
+          "role": "Frontend Developer Intern",
+          "location": "Remote",
+          "date": "Summer 2025",
+          "description": "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
+        }
+      ],
+      "projects": [
+        {
+          "id": "proj-1",
+          "title": "DevRank - Developer Portfolio Engine",
+          "date": "Fall 2025",
+          "technologies": "React, Express, Tailwind CSS",
+          "description": "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
+        }
+      ],
+      "skills": [
+        "React",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Node.js",
+        "Express",
+        "Tailwind CSS",
+        "Git"
+      ],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "Meta Front-End Developer Certificate"
+      ]
+    },
+    {
+      "id": "res-hiqcpvvhq",
+      "userId": "user-a0xukfvak",
+      "version": 2,
+      "title": "Full-Stack Developer Resume",
+      "updatedAt": "2026-06-10T05:24:02.459Z",
+      "personalInfo": {
+        "name": "Alex Mercer",
+        "email": "alex.mercer@gmail.com",
+        "phone": "+1 (555) 019-2834",
+        "linkedin": "linkedin.com/in/alexmercer",
+        "github": "github.com/alexmercer",
+        "portfolio": "alexmercer.dev"
+      },
+      "education": [
+        {
+          "id": "edu-1",
+          "school": "Tech Institute of Technology",
+          "degree": "B.S. in Computer Science",
+          "location": "San Francisco, CA",
+          "date": "2022 - 2026",
+          "gpa": "3.8/4.0"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-1",
+          "company": "ByteCraft Solutions",
+          "role": "Frontend Developer Intern",
+          "location": "Remote",
+          "date": "Summer 2025",
+          "description": "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
+        }
+      ],
+      "projects": [
+        {
+          "id": "proj-1",
+          "title": "DevRank - Developer Portfolio Engine",
+          "date": "Fall 2025",
+          "technologies": "React, Express, Tailwind CSS",
+          "description": "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
+        }
+      ],
+      "skills": [
+        "React",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Node.js",
+        "Express",
+        "Tailwind CSS",
+        "Git"
+      ],
+      "certifications": [
+        "AWS Certified Cloud Practitioner"
+      ]
+    },
+    {
+      "id": "res-g21rgtwbw",
+      "userId": "user-jovb43fpl",
+      "version": 1,
+      "title": "My Placement Resume",
+      "updatedAt": "2026-06-10T04:48:12.798Z",
+      "personalInfo": {
+        "name": "Alex Mercer",
+        "email": "alex.mercer@gmail.com",
+        "phone": "+1 (555) 019-2834",
+        "linkedin": "linkedin.com/in/alexmercer",
+        "github": "github.com/alexmercer",
+        "portfolio": "alexmercer.dev"
+      },
+      "education": [
+        {
+          "id": "edu-1",
+          "school": "Tech Institute of Technology",
+          "degree": "B.S. in Computer Science",
+          "location": "San Francisco, CA",
+          "date": "2022 - 2026",
+          "gpa": "3.8/4.0"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-1",
+          "company": "ByteCraft Solutions",
+          "role": "Frontend Developer Intern",
+          "location": "Remote",
+          "date": "Summer 2025",
+          "description": "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
+        }
+      ],
+      "projects": [
+        {
+          "id": "proj-1",
+          "title": "DevRank - Developer Portfolio Engine",
+          "date": "Fall 2025",
+          "technologies": "React, Express, Tailwind CSS",
+          "description": "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
+        }
+      ],
+      "skills": [
+        "React",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Node.js",
+        "Express",
+        "Tailwind CSS",
+        "Git"
+      ],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "Meta Front-End Developer Certificate"
+      ]
+    },
+    {
+      "id": "res-rpjk1txg5",
+      "userId": "user-jovb43fpl",
+      "version": 1,
+      "title": "My Placement Resume",
+      "updatedAt": "2026-06-10T04:48:22.833Z",
+      "personalInfo": {
+        "name": "Alex Mercer",
+        "email": "alex.mercer@gmail.com",
+        "phone": "+1 (555) 019-2834",
+        "linkedin": "linkedin.com/in/alexmercer",
+        "github": "github.com/alexmercer",
+        "portfolio": "alexmercer.dev"
+      },
+      "education": [
+        {
+          "id": "edu-1",
+          "school": "Tech Institute of Technology",
+          "degree": "B.S. in Computer Science",
+          "location": "San Francisco, CA",
+          "date": "2022 - 2026",
+          "gpa": "3.8/4.0"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-1",
+          "company": "ByteCraft Solutions",
+          "role": "Frontend Developer Intern",
+          "location": "Remote",
+          "date": "Summer 2025",
+          "description": "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
+        }
+      ],
+      "projects": [
+        {
+          "id": "proj-1",
+          "title": "DevRank - Developer Portfolio Engine",
+          "date": "Fall 2025",
+          "technologies": "React, Express, Tailwind CSS",
+          "description": "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
+        }
+      ],
+      "skills": [
+        "React",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Node.js",
+        "Express",
+        "Tailwind CSS",
+        "Git"
+      ],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "Meta Front-End Developer Certificate"
+      ]
+    }
+  ],
+  "atsReports": [
+    {
+      "id": "report-1",
+      "resumeId": "res-1",
+      "score": 72,
+      "grade": "B",
+      "sections": {
+        "contact": 100,
+        "experience": 65,
+        "projects": 70,
+        "skills": 80,
+        "education": 90
+      },
+      "keywords": {
+        "found": [
+          "React",
+          "JavaScript",
+          "Node.js",
+          "Express",
+          "Git",
+          "Tailwind CSS"
+        ],
+        "missing": [
+          "Redux",
+          "TypeScript",
+          "Docker",
+          "REST APIs",
+          "Unit Testing"
+        ]
+      },
+      "grammarIssues": [
+        {
+          "line": "Fixed responsiveness bugs",
+          "issue": "Passive tone. Suggest starting with action verbs like 'Resolved' or 'Engineered'.",
+          "suggestion": "Resolved 15+ complex responsive styling anomalies across core dashboards."
+        }
+      ],
+      "suggestions": [
+        "Include more concrete metrics in experience descriptions (e.g., 'improved performance by 15%').",
+        "Add TypeScript to your projects section to show type-safety proficiency.",
+        "Add Docker and REST APIs as keywords to rank higher for Full Stack roles.",
+        "Rewrite experience bullets to follow the Action + Context + Metric format."
+      ]
+    },
+    {
+      "id": "report-jxzhxfr98",
+      "resumeId": "res-hiqcpvvhq",
+      "userId": "user-a0xukfvak",
+      "analyzedAt": "2026-06-10T05:24:03.682Z",
+      "score": 72,
+      "grade": "B",
+      "sections": {
+        "contact": 95,
+        "experience": 65,
+        "projects": 70,
+        "skills": 75,
+        "education": 90
+      },
+      "keywords": {
+        "found": [
+          "React",
+          "JavaScript",
+          "Node.js",
+          "Express",
+          "HTML5",
+          "CSS3",
+          "Tailwind CSS",
+          "Git"
+        ],
+        "missing": [
+          "TypeScript",
+          "Docker",
+          "REST APIs",
+          "Unit Testing",
+          "Redux",
+          "CI/CD"
+        ]
+      },
+      "grammarIssues": [
+        {
+          "line": "Worked in a team to build UI elements.",
+          "issue": "Contains generic phrasing. Lacks active voice and quantifiable accomplishments.",
+          "suggestion": "Partnered in an agile squad of 5 to author and release 8+ responsive UI elements in React."
+        }
+      ],
+      "suggestions": [
+        "Include key projects demonstrating TypeScript usage to improve matching coefficients.",
+        "Add metrics to your experience bullets (e.g., 'accelerated interface render time by 20%').",
+        "Inject infrastructure terms like Docker, REST APIs, or Jenkins if you have experience with them.",
+        "Rearrange skills catalog to highlight primary frameworks first."
+      ],
+      "recruiterSimulation": "In a 7-second glance, the recruiter notes solid React internship background and a clear GPA. However, they observe a lack of testing frameworks and pipeline experience, which makes you look junior."
+    }
+  ],
+  "submissions": [
+    {
+      "id": "sub-6of0lj11y",
+      "userId": "user-jovb43fpl",
+      "problemId": "two-sum",
+      "code": "function twoSum(nums, target) {\n  // Write your code here\n  \n}",
+      "language": "javascript",
+      "success": false,
+      "chosenApproach": "Hash Map Cache",
+      "blindMode": false,
+      "peeksUsed": 1,
+      "timeSpentSeconds": 38,
+      "recallScore": 0,
+      "runtimePct": 17,
+      "memoryPct": 44,
+      "autopsy": {
+        "killedBy": "Missing index checks or undefined variable lookups killed your logic.",
+        "direction": "Switch to a Hash Map caching strategy to resolve lookups in single passes.",
+        "complexity": "Your complexity is O(N) but correctness is O(0). Fix boundary indexes.",
+        "interviewRisk": "High risk. Recruiter will flag lack of scaling awareness and TLE vulnerability.",
+        "edgeCases": [
+          "Large datasets exceeding 10^5 elements",
+          "Unsorted input permutations"
+        ]
+      },
+      "followUpQuestions": [],
+      "followUpAnswers": [],
+      "submittedAt": "2026-06-10T05:00:49.348Z"
+    }
+  ],
+  "interviews": [
+    {
+      "id": "int-mczeers1l",
+      "userId": "user-a0xukfvak",
+      "type": "Technical",
+      "difficulty": "Medium",
+      "company": "Google",
+      "startedAt": "2026-06-10T05:21:35.084Z",
+      "history": [
+        {
+          "role": "interviewer",
+          "content": "Could you explain the difference between processes and threads, and how they share memory?",
+          "intro": "Welcome to the Google Technical interview room. I'm your AI recruiter today. Let's start with a foundational prompt.",
+          "hint": "Think about stack vs. heap storage and process isolation boundaries."
+        }
+      ],
+      "status": "active"
+    }
+  ],
+  "quests": [
+    {
+      "id": "first-login",
+      "title": "Welcome Pilot",
+      "description": "Successfully log in and setup your profile.",
+      "xp": 100
+    },
+    {
+      "id": "ats-analyzer",
+      "title": "ATS Checkup",
+      "description": "Analyze your resume with the AI Resume Analyzer.",
+      "xp": 150
+    },
+    {
+      "id": "solve-dsa",
+      "title": "Code Warrior",
+      "description": "Solve at least one DSA problem in the Coding Arena.",
+      "xp": 200
+    },
+    {
+      "id": "mock-interview",
+      "title": "Ready for Action",
+      "description": "Complete a full AI Mock Interview session.",
+      "xp": 300
+    },
+    {
+      "id": "run-simulation",
+      "title": "Future Seer",
+      "description": "Run a skill simulation in the Career Simulation Engine.",
+      "xp": 100
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job-1",
+      "company": "Google",
+      "role": "Frontend Engineer",
+      "requiredSkills": [
+        "React",
+        "JavaScript",
+        "TypeScript",
+        "HTML5/CSS3",
+        "Git",
+        "System Design"
+      ],
+      "salaryEstimate": "$120,000 - $160,000"
+    },
+    {
+      "id": "job-2",
+      "company": "Stripe",
+      "role": "Full Stack Engineer",
+      "requiredSkills": [
+        "Ruby",
+        "Node.js",
+        "React",
+        "TypeScript",
+        "Docker",
+        "REST APIs",
+        "PostgreSQL"
+      ],
+      "salaryEstimate": "$130,000 - $175,000"
+    },
+    {
+      "id": "job-3",
+      "company": "Amazon",
+      "role": "Software Development Engineer (SDE I)",
+      "requiredSkills": [
+        "Java",
+        "C++",
+        "DSA",
+        "AWS",
+        "Git",
+        "Unit Testing"
+      ],
+      "salaryEstimate": "$110,000 - $145,000"
+    }
+  ],
+  "xpHistory": [
+    {
+      "userId": "user-jovb43fpl",
+      "amount": 100,
+      "reason": "Completed Onboarding Setup",
+      "timestamp": "2026-06-10T04:12:49.379Z",
+      "levelAfter": 1
+    },
+    {
+      "userId": "user-a0xukfvak",
+      "amount": 100,
+      "reason": "Completed Onboarding Setup",
+      "timestamp": "2026-06-10T04:29:19.341Z",
+      "levelAfter": 1
+    },
+    {
+      "userId": "user-a0xukfvak",
+      "amount": 50,
+      "reason": "Created a Resume",
+      "timestamp": "2026-06-10T04:30:38.763Z",
+      "levelAfter": 1
+    },
+    {
+      "userId": "user-jovb43fpl",
+      "amount": 50,
+      "reason": "Created a Resume",
+      "timestamp": "2026-06-10T04:48:12.798Z",
+      "levelAfter": 1
+    },
+    {
+      "userId": "user-jovb43fpl",
+      "amount": 50,
+      "reason": "Created a Resume",
+      "timestamp": "2026-06-10T04:48:22.833Z",
+      "levelAfter": 1
+    },
+    {
+      "userId": "user-jovb43fpl",
+      "amount": 200,
+      "reason": "Completed Online Assessment simulator oa-lnggxzb",
+      "timestamp": "2026-06-10T05:02:35.146Z",
+      "levelAfter": 2
+    },
+    {
+      "userId": "user-a0xukfvak",
+      "amount": 150,
+      "reason": "Completed Quest: ATS Checkup",
+      "timestamp": "2026-06-10T05:24:03.682Z",
+      "levelAfter": 2
+    },
+    {
+      "userId": "user-a0xukfvak",
+      "amount": 200,
+      "reason": "Completed Quest: Code Warrior",
+      "timestamp": "2026-06-10T05:35:54.552Z",
+      "levelAfter": 2
+    },
+    {
+      "userId": "user-a0xukfvak",
+      "amount": 300,
+      "reason": "Completed Quest: Ready for Action",
+      "timestamp": "2026-06-10T05:35:55.888Z",
+      "levelAfter": 2
+    }
+  ],
+  "dailyProblems": [
+    {
+      "userId": "demo-user-123",
+      "date": "2026-06-10",
+      "problemId": "find-duplicate-in-system",
+      "reason": "Your array traversals were a bottleneck last week, and since you are on a 5-day streak, this challenge will consolidate your O(N) map caches."
+    },
+    {
+      "userId": "user-a0xukfvak",
+      "date": "2026-06-10",
+      "problemId": "find-duplicate-in-system",
+      "reason": "Your array traversals were a bottleneck last week, and since you are on a 1-day streak, this challenge will consolidate your O(N) map caches."
+    },
+    {
+      "userId": "user-jovb43fpl",
+      "date": "2026-06-10",
+      "problemId": "find-duplicate-in-system",
+      "reason": "Your array traversals were a bottleneck last week, and since you are on a 1-day streak, this challenge will consolidate your O(N) map caches."
+    }
+  ],
+  "oaSessions": [
+    {
+      "id": "oa-9zz0bl3",
+      "userId": "user-jovb43fpl",
+      "problems": [
+        {
+          "id": "two-sum",
+          "title": "Two Sum",
+          "difficulty": "Easy",
+          "category": "Arrays",
+          "description": "Given an array of integers `nums` and an integer `target`, return *indices of the two numbers such that they add up to `target`*.\n\nYou may assume that each input would have ***exactly* one solution**, and you may not use the *same* element twice.\n\nYou can return the answer in any order.",
+          "examples": [
+            {
+              "input": "nums = [2,7,11,15], target = 9",
+              "output": "[0,1]",
+              "explanation": "Because nums[0] + nums[1] == 9, we return [0, 1]."
+            },
+            {
+              "input": "nums = [3,2,4], target = 6",
+              "output": "[1,2]"
+            }
+          ],
+          "constraints": [
+            "`2 <= nums.length <= 10^4`",
+            "`-10^9 <= nums[i] <= 10^9`",
+            "`-10^9 <= target <= 10^9`",
+            "**Only one valid answer exists.**"
+          ],
+          "starterCode": {
+            "javascript": "function twoSum(nums, target) {\n  // Write your code here\n  \n}",
+            "python": "class Solution:\n    def twoSum(self, nums: List[int], target: int) -> List[int]:\n        pass",
+            "cpp": "class Solution {\npublic:\n    vector<int> twoSum(vector<int>& nums, int target) {\n        \n    }\n};"
+          }
+        },
+        {
+          "id": "valid-parentheses",
+          "title": "Valid Parentheses",
+          "difficulty": "Easy",
+          "category": "Strings",
+          "description": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.",
+          "examples": [
+            {
+              "input": "s = \"()\"",
+              "output": "true"
+            },
+            {
+              "input": "s = \"()[]{}\"",
+              "output": "true"
+            },
+            {
+              "input": "s = \"(]\"",
+              "output": "false"
+            }
+          ],
+          "constraints": [
+            "`1 <= s.length <= 10^4`",
+            "`s` consists of parentheses only `'()[]{}'`."
+          ],
+          "starterCode": {
+            "javascript": "function isValid(s) {\n  // Write your code here\n  \n}",
+            "python": "class Solution:\n    def isValid(self, s: str) -> bool:\n        pass",
+            "cpp": "class Solution {\npublic:\n    bool isValid(string s) {\n        \n    }\n};"
+          }
+        },
+        {
+          "id": "merge-intervals",
+          "title": "Merge Intervals",
+          "difficulty": "Medium",
+          "category": "Arrays",
+          "description": "Given an array of `intervals` where `intervals[i] = [starti, endi]`, merge all overlapping intervals, and return *an array of the non-overlapping intervals that cover all the intervals in the input*.",
+          "examples": [
+            {
+              "input": "intervals = [[1,3],[2,6],[8,10],[15,18]]",
+              "output": "[[1,6],[8,10],[15,18]]",
+              "explanation": "Since intervals [1,3] and [2,6] overlap, merge them into [1,6]."
+            }
+          ],
+          "constraints": [
+            "`1 <= intervals.length <= 10^4`",
+            "`intervals[i].length == 2`",
+            "`0 <= starti <= endi <= 10^4`"
+          ],
+          "starterCode": {
+            "javascript": "function merge(intervals) {\n  // Write your code here\n  \n}",
+            "python": "class Solution:\n    def merge(self, intervals: List[List[int]]) -> List[List[int]]:\n        pass"
+          }
+        }
+      ],
+      "startedAt": "2026-06-10T05:01:32.189Z",
+      "status": "active",
+      "submissions": []
+    },
+    {
+      "id": "oa-lnggxzb",
+      "userId": "user-jovb43fpl",
+      "problems": [
+        {
+          "id": "two-sum",
+          "title": "Two Sum",
+          "difficulty": "Easy",
+          "category": "Arrays",
+          "description": "Given an array of integers `nums` and an integer `target`, return *indices of the two numbers such that they add up to `target`*.\n\nYou may assume that each input would have ***exactly* one solution**, and you may not use the *same* element twice.\n\nYou can return the answer in any order.",
+          "examples": [
+            {
+              "input": "nums = [2,7,11,15], target = 9",
+              "output": "[0,1]",
+              "explanation": "Because nums[0] + nums[1] == 9, we return [0, 1]."
+            },
+            {
+              "input": "nums = [3,2,4], target = 6",
+              "output": "[1,2]"
+            }
+          ],
+          "constraints": [
+            "`2 <= nums.length <= 10^4`",
+            "`-10^9 <= nums[i] <= 10^9`",
+            "`-10^9 <= target <= 10^9`",
+            "**Only one valid answer exists.**"
+          ],
+          "starterCode": {
+            "javascript": "function twoSum(nums, target) {\n  // Write your code here\n  \n}",
+            "python": "class Solution:\n    def twoSum(self, nums: List[int], target: int) -> List[int]:\n        pass",
+            "cpp": "class Solution {\npublic:\n    vector<int> twoSum(vector<int>& nums, int target) {\n        \n    }\n};"
+          }
+        },
+        {
+          "id": "valid-parentheses",
+          "title": "Valid Parentheses",
+          "difficulty": "Easy",
+          "category": "Strings",
+          "description": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.",
+          "examples": [
+            {
+              "input": "s = \"()\"",
+              "output": "true"
+            },
+            {
+              "input": "s = \"()[]{}\"",
+              "output": "true"
+            },
+            {
+              "input": "s = \"(]\"",
+              "output": "false"
+            }
+          ],
+          "constraints": [
+            "`1 <= s.length <= 10^4`",
+            "`s` consists of parentheses only `'()[]{}'`."
+          ],
+          "starterCode": {
+            "javascript": "function isValid(s) {\n  // Write your code here\n  \n}",
+            "python": "class Solution:\n    def isValid(self, s: str) -> bool:\n        pass",
+            "cpp": "class Solution {\npublic:\n    bool isValid(string s) {\n        \n    }\n};"
+          }
+        },
+        {
+          "id": "merge-intervals",
+          "title": "Merge Intervals",
+          "difficulty": "Medium",
+          "category": "Arrays",
+          "description": "Given an array of `intervals` where `intervals[i] = [starti, endi]`, merge all overlapping intervals, and return *an array of the non-overlapping intervals that cover all the intervals in the input*.",
+          "examples": [
+            {
+              "input": "intervals = [[1,3],[2,6],[8,10],[15,18]]",
+              "output": "[[1,6],[8,10],[15,18]]",
+              "explanation": "Since intervals [1,3] and [2,6] overlap, merge them into [1,6]."
+            }
+          ],
+          "constraints": [
+            "`1 <= intervals.length <= 10^4`",
+            "`intervals[i].length == 2`",
+            "`0 <= starti <= endi <= 10^4`"
+          ],
+          "starterCode": {
+            "javascript": "function merge(intervals) {\n  // Write your code here\n  \n}",
+            "python": "class Solution:\n    def merge(self, intervals: List[List[int]]) -> List[List[int]]:\n        pass"
+          }
+        }
+      ],
+      "startedAt": "2026-06-10T05:02:03.222Z",
+      "status": "completed",
+      "submissions": [
+        {
+          "problemId": "two-sum",
+          "code": "function twoSum(nums, target) {\n  // Write your code here\n  \n}",
+          "language": "javascript",
+          "success": false,
+          "passedCount": 0,
+          "totalCount": 3
+        }
+      ],
+      "endedAt": "2026-06-10T05:02:35.145Z",
+      "score": 0
+    },
+    {
+      "id": "oa-hbp966l",
+      "userId": "user-a0xukfvak",
+      "problems": [
+        {
+          "id": "network-course-schedule-6",
+          "title": "Network Course Schedule 6",
+          "difficulty": "Easy",
+          "category": "Graphs",
+          "description": "Determine if you can finish all courses given prerequisite pairs. (Variant 23) - Optimize execution flows to handle massive concurrent arrays, clusters, and limits.",
+          "examples": [
+            {
+              "input": "nums = 2, [[1, 0]]",
+              "output": "true"
+            }
+          ],
+          "constraints": [
+            "1 <= input.length <= 10^5",
+            "Constraints and boundary limits follow optimal DSA configurations."
+          ],
+          "starterCode": {
+            "javascript": "function canFinishCourses(nums, target) {\n  // Write your code here\n  return null;\n}",
+            "python": "class Solution:\n    def canFinishCourses(self, nums: List[int], target: int) -> Any:\n        pass",
+            "java": "class Solution {\n    public Object canFinishCourses(int[] nums, int target) {\n        return null;\n    }\n}",
+            "cpp": "class Solution {\npublic:\n    auto canFinishCourses(vector<int>& nums, int target) {\n        \n    }\n};"
+          }
+        },
+        {
+          "id": "coin-change-registry-8",
+          "title": "Coin Change Registry 8",
+          "difficulty": "Medium",
+          "category": "Dynamic Programming",
+          "description": "Return the fewest number of coins needed to make up target amount A. (Variant 30) - Optimize execution flows to handle massive concurrent arrays, clusters, and limits.",
+          "examples": [
+            {
+              "input": "nums = [1, 2, 5], 11",
+              "output": "3"
+            }
+          ],
+          "constraints": [
+            "1 <= input.length <= 10^5",
+            "Constraints and boundary limits follow optimal DSA configurations."
+          ],
+          "starterCode": {
+            "javascript": "function coinChange(nums, target) {\n  // Write your code here\n  return null;\n}",
+            "python": "class Solution:\n    def coinChange(self, nums: List[int], target: int) -> Any:\n        pass",
+            "java": "class Solution {\n    public Object coinChange(int[] nums, int target) {\n        return null;\n    }\n}",
+            "cpp": "class Solution {\npublic:\n    auto coinChange(vector<int>& nums, int target) {\n        \n    }\n};"
+          }
+        },
+        {
+          "id": "gas-station-circuit-9",
+          "title": "Gas Station Circuit 9",
+          "difficulty": "Hard",
+          "category": "Greedy",
+          "description": "Find the starting gas station index to complete a circuit around the stations. (Variant 35) - Optimize execution flows to handle massive concurrent arrays, clusters, and limits.",
+          "examples": [
+            {
+              "input": "nums = [1, 2, 3, 4, 5], [3, 4, 5, 1, 2]",
+              "output": "3"
+            }
+          ],
+          "constraints": [
+            "1 <= input.length <= 10^5",
+            "Constraints and boundary limits follow optimal DSA configurations."
+          ],
+          "starterCode": {
+            "javascript": "function canCompleteCircuit(nums, target) {\n  // Write your code here\n  return null;\n}",
+            "python": "class Solution:\n    def canCompleteCircuit(self, nums: List[int], target: int) -> Any:\n        pass",
+            "java": "class Solution {\n    public Object canCompleteCircuit(int[] nums, int target) {\n        return null;\n    }\n}",
+            "cpp": "class Solution {\npublic:\n    auto canCompleteCircuit(vector<int>& nums, int target) {\n        \n    }\n};"
+          }
+        }
+      ],
+      "startedAt": "2026-06-10T05:32:16.847Z",
+      "status": "active",
+      "submissions": []
+    },
+    {
+      "id": "oa-1k0hknj",
+      "userId": "user-a0xukfvak",
+      "problems": [
+        {
+          "id": "evaluate-notation-stack",
+          "title": "Evaluate Notation Stack",
+          "difficulty": "Easy",
+          "category": "Stack",
+          "description": "Evaluate the value of an arithmetic expression in Reverse Polish Notation. (Variant 3) - Optimize execution flows to handle massive concurrent arrays, clusters, and limits.",
+          "examples": [
+            {
+              "input": "nums = ['2', '1', '+', '3', '*']",
+              "output": "9"
+            }
+          ],
+          "constraints": [
+            "1 <= input.length <= 10^5",
+            "Constraints and boundary limits follow optimal DSA configurations."
+          ],
+          "starterCode": {
+            "javascript": "function evalRPN(nums, target) {\n  // Write your code here\n  return null;\n}",
+            "python": "class Solution:\n    def evalRPN(self, nums: List[int], target: int) -> Any:\n        pass",
+            "java": "class Solution {\n    public Object evalRPN(int[] nums, int target) {\n        return null;\n    }\n}",
+            "cpp": "class Solution {\npublic:\n    auto evalRPN(vector<int>& nums, int target) {\n        \n    }\n};"
+          }
+        },
+        {
+          "id": "merge-interval-blocks-10",
+          "title": "Merge Interval Blocks 10",
+          "difficulty": "Medium",
+          "category": "Arrays",
+          "description": "Given a collection of overlapping resource intervals, merge all overlapping blocks. (Variant 40) - Optimize execution flows to handle massive concurrent arrays, clusters, and limits.",
+          "examples": [
+            {
+              "input": "nums = [[1, 3], [2, 6], [8, 10], [15, 18]]",
+              "output": "[[1, 6], [8, 10], [15, 18]]"
+            }
+          ],
+          "constraints": [
+            "1 <= input.length <= 10^5",
+            "Constraints and boundary limits follow optimal DSA configurations."
+          ],
+          "starterCode": {
+            "javascript": "function mergeIntervals(nums, target) {\n  // Write your code here\n  return null;\n}",
+            "python": "class Solution:\n    def mergeIntervals(self, nums: List[int], target: int) -> Any:\n        pass",
+            "java": "class Solution {\n    public Object mergeIntervals(int[] nums, int target) {\n        return null;\n    }\n}",
+            "cpp": "class Solution {\npublic:\n    auto mergeIntervals(vector<int>& nums, int target) {\n        \n    }\n};"
+          }
+        },
+        {
+          "id": "validate-search-tree-bounds-16",
+          "title": "Validate Search Tree Bounds 16",
+          "difficulty": "Hard",
+          "category": "Trees",
+          "description": "Determine if a binary tree is a valid Binary Search Tree (BST). (Variant 63) - Optimize execution flows to handle massive concurrent arrays, clusters, and limits.",
+          "examples": [
+            {
+              "input": "nums = [2, 1, 3]",
+              "output": "true"
+            }
+          ],
+          "constraints": [
+            "1 <= input.length <= 10^5",
+            "Constraints and boundary limits follow optimal DSA configurations."
+          ],
+          "starterCode": {
+            "javascript": "function isValidBST(nums, target) {\n  // Write your code here\n  return null;\n}",
+            "python": "class Solution:\n    def isValidBST(self, nums: List[int], target: int) -> Any:\n        pass",
+            "java": "class Solution {\n    public Object isValidBST(int[] nums, int target) {\n        return null;\n    }\n}",
+            "cpp": "class Solution {\npublic:\n    auto isValidBST(vector<int>& nums, int target) {\n        \n    }\n};"
+          }
+        }
+      ],
+      "startedAt": "2026-06-10T05:36:18.969Z",
+      "status": "active",
+      "submissions": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "first-login",
+    "title": "Welcome Pilot",
+    "description": "Successfully log in and setup your profile.",
+    "xp": 100
+  },
+  {
+    "id": "ats-analyzer",
+    "title": "ATS Checkup",
+    "description": "Analyze your resume with the AI Resume Analyzer.",
+    "xp": 150
+  },
+  {
+    "id": "solve-dsa",
+    "title": "Code Warrior",
+    "description": "Solve at least one DSA problem in the Coding Arena.",
+    "xp": 200
+  },
+  {
+    "id": "mock-interview",
+    "title": "Ready for Action",
+    "description": "Complete a full AI Mock Interview session.",
+    "xp": 300
+  },
+  {
+    "id": "run-simulation",
+    "title": "Future Seer",
+    "description": "Run a skill simulation in the Career Simulation Engine.",
+    "xp": 100
+  }
+]

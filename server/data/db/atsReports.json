@@ -1,0 +1,107 @@
+[
+  {
+    "id": "report-yiu1a0jye",
+    "resumeId": "res-1",
+    "userId": "demo-user-123",
+    "analyzedAt": "2026-06-10T11:21:28.850Z",
+    "score": 65,
+    "grade": "C",
+    "sections": {
+      "contact": 95,
+      "experience": 65,
+      "projects": 70,
+      "skills": 75,
+      "education": 90
+    },
+    "keywords": {
+      "found": [
+        "React",
+        "JavaScript",
+        "Node.js",
+        "Express",
+        "HTML5",
+        "CSS3",
+        "Tailwind CSS",
+        "Git"
+      ],
+      "missing": [
+        "TypeScript",
+        "Docker",
+        "REST APIs",
+        "Unit Testing",
+        "Redux",
+        "CI/CD"
+      ]
+    },
+    "grammarIssues": [
+      {
+        "line": "Worked in a team to build UI elements.",
+        "issue": "Contains generic phrasing. Lacks active voice and quantifiable accomplishments.",
+        "suggestion": "Partnered in an agile squad of 5 to author and release 8+ responsive UI elements in React."
+      }
+    ],
+    "suggestions": [
+      "Include key projects demonstrating TypeScript usage to improve matching coefficients.",
+      "Add metrics to your experience bullets (e.g., 'accelerated interface render time by 20%').",
+      "Inject infrastructure terms like Docker, REST APIs, or Jenkins if you have experience with them.",
+      "Rearrange skills catalog to highlight primary frameworks first."
+    ],
+    "recruiterSimulation": "In a 7-second glance, the recruiter notes solid React internship background and a clear GPA. However, they observe a lack of testing frameworks and pipeline experience, which makes you look junior."
+  },
+  {
+    "id": "report-wn3cx7qix",
+    "resumeId": "res-hiqcpvvhq",
+    "userId": "user-a0xukfvak",
+    "analyzedAt": "2026-06-15T14:37:04.106Z",
+    "score": 79,
+    "grade": "B",
+    "sections": {
+      "Keyword Matching": 100,
+      "Skills Relevance": 100,
+      "Resume Format": 100,
+      "Experience & Projects": 61,
+      "Education & Certifications": 25
+    },
+    "keywords": {
+      "found": [
+        "JavaScript (ES6+)",
+        "Python",
+        "Java",
+        "C++",
+        "SQL",
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "Tailwind CSS",
+        "HTML5",
+        "CSS3",
+        "MongoDB",
+        "MySQL",
+        "AWS",
+        "Git",
+        "GitHub",
+        "Docker",
+        "REST APIs"
+      ],
+      "missing": []
+    },
+    "grammarIssues": [
+      {
+        "line": "Rendered dynamic language distribution charts using Recharts, reducing client-side latencies by 35%.",
+        "issue": "Weak passive voice starter or weak verb.",
+        "suggestion": "Engineered rendered dynamic language distribution charts using Recharts, reducing client-side latencies by 35%."
+      },
+      {
+        "line": "Maintained clean code standards and documented REST endpoints, securing 100+ GitHub stars.",
+        "issue": "Weak passive voice starter or weak verb.",
+        "suggestion": "Engineered maintained clean code standards and documented REST endpoints, securing 100+ GitHub stars."
+      }
+    ],
+    "suggestions": [
+      "In line \"Rendered dynamic language distribution charts using Recharts, reducing client-side latencies by 35%.\": Rewrite using active verb. E.g. \"Engineered rendered dynamic language distribution charts using Recharts, reducing client-side latencies by 35%.\"",
+      "In line \"Maintained clean code standards and documented REST endpoints, securing 100+ GitHub stars.\": Rewrite using active verb. E.g. \"Engineered maintained clean code standards and documented REST endpoints, securing 100+ GitHub stars.\""
+    ],
+    "recruiterSimulation": "Clean visual flow, standard headings are legible. Spot checks show strong tech density but lacking metric percentages.",
+    "skillGapRoadmap": []
+  }
+]

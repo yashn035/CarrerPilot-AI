@@ -1,0 +1,44 @@
+[
+  {
+    "id": "intsess-dd5ki0ldz",
+    "userId": "user-a0xukfvak",
+    "profileId": "prof-pelmhy0rg",
+    "type": "Technical",
+    "difficulty": "Medium",
+    "company": "Google",
+    "status": "active",
+    "startedAt": "2026-06-15T14:50:52.484Z",
+    "history": [
+      {
+        "role": "interviewer",
+        "content": "To start, could you tell me about a significant technical challenge you faced while developing the platform at StaxTech, and how you approached solving it? Please walk me through your thought process and the solution you implemented.",
+        "intro": "Hi there! I'm [Your Name], a software engineer at Google, and I'll be your interviewer today. Thanks for joining. I've had a chance to look over your resume, and your experience at StaxTech building a full-stack platform sounds really interesting.",
+        "hint": "Think about a specific problem related to scalability, performance, data management, or integration that you personally tackled.",
+        "timestamp": "2026-06-15T14:50:55.965Z"
+      }
+    ],
+    "evaluatedAnswers": [],
+    "createdAt": "2026-06-15T14:50:52.484Z"
+  },
+  {
+    "id": "intsess-fcj00mr6q",
+    "userId": "demo-user-123",
+    "profileId": "prof-xh24h1ir3",
+    "type": "Technical",
+    "difficulty": "Medium",
+    "company": "Google",
+    "status": "active",
+    "startedAt": "2026-06-15T14:52:23.798Z",
+    "history": [
+      {
+        "role": "interviewer",
+        "content": "Could you start by telling me a bit more about DevRank? What problem were you trying to solve, and what were some of the key technical decisions you made when building it, especially considering you used React and Express?",
+        "intro": "Hi [Candidate's Name], nice to meet you! I'm [Your Name], a Staff Software Engineer here at Google. Thanks for joining us today. I've had a chance to look over your resume, and your work on DevRank sounds particularly interesting.",
+        "hint": "Focus on the 'why' behind DevRank and then dive into a technical decision you've made and its implications.",
+        "timestamp": "2026-06-15T14:52:26.732Z"
+      }
+    ],
+    "evaluatedAnswers": [],
+    "createdAt": "2026-06-15T14:52:23.798Z"
+  }
+]

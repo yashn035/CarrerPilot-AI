@@ -1,0 +1,45 @@
+[
+  {
+    "id": "job-1",
+    "company": "Google",
+    "role": "Frontend Engineer",
+    "requiredSkills": [
+      "React",
+      "JavaScript",
+      "TypeScript",
+      "HTML5/CSS3",
+      "Git",
+      "System Design"
+    ],
+    "salaryEstimate": "$120,000 - $160,000"
+  },
+  {
+    "id": "job-2",
+    "company": "Stripe",
+    "role": "Full Stack Engineer",
+    "requiredSkills": [
+      "Ruby",
+      "Node.js",
+      "React",
+      "TypeScript",
+      "Docker",
+      "REST APIs",
+      "PostgreSQL"
+    ],
+    "salaryEstimate": "$130,000 - $175,000"
+  },
+  {
+    "id": "job-3",
+    "company": "Amazon",
+    "role": "Software Development Engineer (SDE I)",
+    "requiredSkills": [
+      "Java",
+      "C++",
+      "DSA",
+      "AWS",
+      "Git",
+      "Unit Testing"
+    ],
+    "salaryEstimate": "$110,000 - $145,000"
+  }
+]

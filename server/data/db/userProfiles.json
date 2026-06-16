@@ -1,0 +1,69 @@
+[
+  {
+    "id": "prof-pelmhy0rg",
+    "userId": "user-a0xukfvak",
+    "name": "YASHNALAWADE",
+    "skills": [
+      "JAVASCRIPT",
+      "REACT",
+      "NODE",
+      "PYTHON",
+      "JAVA",
+      "SQL",
+      "MONGODB",
+      "TYPESCRIPT"
+    ],
+    "projects": [
+      "WebDeveloperIntern|StaxTech–link April2024–August2024",
+      "PROJECTS",
+      "• Builtafull-stackplatformmanagingtheentirelifecycleof300+studentprojectsfromideagenerationtofinal"
+    ],
+    "experience": [
+      "MotivatedITundergraduatewithinternshipexperienceinfull-stackwebdevelopmentusing",
+      "authentication.Strongteamplayerwithhackathonandleadershipexperience.",
+      "EXPERIENCE"
+    ],
+    "education": "Undergraduate Study",
+    "strengths": [
+      "Communication Skills"
+    ],
+    "weak_areas": [
+      "System Architecture Details"
+    ],
+    "fileName": "Pasted text",
+    "createdAt": "2026-06-15T14:50:12.683Z"
+  },
+  {
+    "id": "prof-xh24h1ir3",
+    "userId": "demo-user-123",
+    "name": "Alex Mercer",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express",
+      "System Design",
+      "REST APIs"
+    ],
+    "projects": [
+      "DevRank - Open-Source Developer Statistics Dashboard using React and Express"
+    ],
+    "experience": [
+      "Full-Stack Engineering Intern at ByteCraft Solutions (2025 - Present)"
+    ],
+    "education": "B.S. in Computer Science, Tech University",
+    "strengths": [
+      "Full-stack Web Development",
+      "API Design & Implementation",
+      "System Architecture Principles"
+    ],
+    "weak_areas": [
+      "Cloud Platform Experience (AWS/Azure/GCP)",
+      "Automated Testing Frameworks",
+      "DevOps/CI/CD Practices"
+    ],
+    "fileName": "Pasted text",
+    "createdAt": "2026-06-15T14:52:07.199Z"
+  }
+]

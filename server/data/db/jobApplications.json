@@ -1,0 +1,38 @@
+[
+  {
+    "id": "app-1",
+    "userId": "demo-user-123",
+    "company": "Google",
+    "role": "Frontend Engineer",
+    "stage": "Interview",
+    "salary": "$140,000",
+    "location": "Mountain View, CA (Hybrid)",
+    "notes": "Prepared System Design. Coding session scheduled on 15th June.",
+    "reminderDate": "2026-06-15",
+    "updatedAt": "2026-06-10T12:00:00.000Z"
+  },
+  {
+    "id": "app-2",
+    "userId": "demo-user-123",
+    "company": "Stripe",
+    "role": "Full Stack Engineer",
+    "stage": "Applied",
+    "salary": "$150,000",
+    "location": "San Francisco, CA (Remote)",
+    "notes": "Submitted application through referral. Awaiting response.",
+    "reminderDate": "",
+    "updatedAt": "2026-06-09T18:00:00.000Z"
+  },
+  {
+    "id": "app-080n0oups",
+    "userId": "demo-user-123",
+    "company": "Tesla",
+    "role": "Software Engineer Intern",
+    "stage": "Applied",
+    "salary": "",
+    "location": "",
+    "notes": "",
+    "reminderDate": "",
+    "updatedAt": "2026-06-14T15:22:28.870Z"
+  }
+]

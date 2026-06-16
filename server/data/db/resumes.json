@@ -1,0 +1,274 @@
+[
+  {
+    "id": "res-1",
+    "userId": "demo-user-123",
+    "version": 6,
+    "title": "ATS-Friendly Professional Resume",
+    "updatedAt": "2026-06-12T02:55:00.000Z",
+    "layout": "ats",
+    "template": "classic",
+    "personalInfo": {
+      "name": "Yash Nalawade",
+      "email": "yashnalawade035@gmail.com",
+      "phone": "+91 9867102370",
+      "linkedin": "linkedin.com/in/yashnalawade",
+      "github": "github.com/yashnalawade",
+      "portfolio": "yashnalawade.dev",
+      "summary": "Results-driven Computer Engineering student and Full-Stack Developer with hands-on experience building scalable web applications and AI tools. Proficient in React, Node.js, Python, and Machine Learning algorithms. Passionate about engineering software solutions that align with modern Applicant Tracking Systems (ATS)."
+    },
+    "education": [
+      {
+        "id": "edu-1",
+        "school": "Tech Institute of Technology",
+        "degree": "B.S. in Computer Science",
+        "location": "San Francisco, CA",
+        "date": "2022 - 2026",
+        "gpa": "3.8/4.0"
+      }
+    ],
+    "experience": [
+      {
+        "id": "exp-1",
+        "company": "ByteCraft Solutions",
+        "role": "Frontend Developer Intern",
+        "location": "Remote",
+        "date": "Summer 2025",
+        "description": "Engineered responsive UI components using React, reducing page load latency by 40% across 15+ pages.\nCollaborated with engineering teams to integrate REST APIs, enhancing dynamic data rendering and session persistence.\nResolved cross-browser compatibility issues, increasing mobile engagement metrics by 25%."
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "title": "CareerPilot AI – AI Career Platform",
+        "date": "September 2025 - Present",
+        "technologies": "React, Node.js, MongoDB, Express",
+        "description": "Designed and built an AI career intelligence platform using React, Node.js, Express, and MongoDB.\nImplemented real-time ATS scoring algorithms that match job descriptions against candidate metrics.\nIntegrated LLM APIs for automated bullet-point rewrite suggestions and recruiter simulations."
+      },
+      {
+        "id": "proj-2",
+        "title": "DevRank – Developer Portfolio Engine",
+        "date": "January 2025 - April 2025",
+        "technologies": "React, GraphQL, Recharts",
+        "description": "Created an open-source analytics dashboard that visualizes developer stats using GitHub's GraphQL API.\nRendered dynamic language distribution charts using Recharts, reducing client-side latencies by 35%.\nMaintained clean code standards and documented REST endpoints, securing 100+ GitHub stars."
+      }
+    ],
+    "skills": [
+      "JavaScript (ES6+)",
+      "Python",
+      "Java",
+      "C++",
+      "SQL",
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "Tailwind CSS",
+      "HTML5",
+      "CSS3",
+      "MongoDB",
+      "MySQL",
+      "AWS",
+      "Git",
+      "GitHub",
+      "Docker",
+      "REST APIs"
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner (2025)",
+      "Meta Front-End Developer Professional Certificate (2025)"
+    ]
+  },
+  {
+    "id": "res-hiqcpvvhq",
+    "userId": "user-a0xukfvak",
+    "version": 17,
+    "title": "Full-Stack Developer Resume",
+    "updatedAt": "2026-06-15T14:36:52.155Z",
+    "layout": "ats",
+    "template": "classic",
+    "personalInfo": {
+      "name": "YASH NALAWADE",
+      "email": "yashnalawade035@gmail.com",
+      "phone": "9867102370",
+      "linkedin": "linkedin.com/in/yashnalawade",
+      "github": "github.com/yashnalawade",
+      "portfolio": "yashnalawade.dev",
+      "summary": "Results-driven Computer Engineering student and Full-Stack Developer with hands-on experience building scalable web applications and AI tools. Proficient in React, Node.js, Python, and Machine Learning algorithms. Passionate about engineering software solutions that align with modern Applicant Tracking Systems (ATS)."
+    },
+    "education": [
+      {
+        "id": "edu-1",
+        "school": "Tech Institute of Technology",
+        "degree": "B.S. in Computer Science",
+        "location": "San Francisco, CA",
+        "date": "2022 - 2026",
+        "gpa": "3.8/4.0"
+      }
+    ],
+    "experience": [
+      {
+        "id": "exp-1",
+        "company": "ByteCraft Solutions",
+        "role": "Frontend Developer Intern",
+        "location": "Remote",
+        "date": "Summer 2025",
+        "description": "Engineered responsive UI components using React, reducing page load latency by 40% across 15+ pages.\nCollaborated with engineering teams to integrate REST APIs, enhancing dynamic data rendering and session persistence.\nResolved cross-browser compatibility issues, increasing mobile engagement metrics by 25%."
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "title": "CareerPilot AI – AI Career Platform",
+        "date": "September 2025 - Present",
+        "technologies": "React, Node.js, MongoDB, Express",
+        "description": "Designed and built an AI career intelligence platform using React, Node.js, Express, and MongoDB.\nImplemented real-time ATS scoring algorithms that match job descriptions against candidate metrics.\nIntegrated LLM APIs for automated bullet-point rewrite suggestions and recruiter simulations."
+      },
+      {
+        "id": "proj-2",
+        "title": "DevRank – Developer Portfolio Engine",
+        "date": "January 2025 - April 2025",
+        "technologies": "React, GraphQL, Recharts",
+        "description": "Created an open-source analytics dashboard that visualizes developer stats using GitHub's GraphQL API.\nRendered dynamic language distribution charts using Recharts, reducing client-side latencies by 35%.\nMaintained clean code standards and documented REST endpoints, securing 100+ GitHub stars."
+      }
+    ],
+    "skills": [
+      "JavaScript (ES6+)",
+      "Python",
+      "Java",
+      "C++",
+      "SQL",
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "Tailwind CSS",
+      "HTML5",
+      "CSS3",
+      "MongoDB",
+      "MySQL",
+      "AWS",
+      "Git",
+      "GitHub",
+      "Docker",
+      "REST APIs"
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner (2025)",
+      "Meta Front-End Developer Professional Certificate (2025)"
+    ]
+  },
+  {
+    "id": "res-g21rgtwbw",
+    "userId": "user-jovb43fpl",
+    "version": 1,
+    "title": "My Placement Resume",
+    "updatedAt": "2026-06-10T04:48:12.798Z",
+    "personalInfo": {
+      "name": "Alex Mercer",
+      "email": "alex.mercer@gmail.com",
+      "phone": "+1 (555) 019-2834",
+      "linkedin": "linkedin.com/in/alexmercer",
+      "github": "github.com/alexmercer",
+      "portfolio": "alexmercer.dev"
+    },
+    "education": [
+      {
+        "id": "edu-1",
+        "school": "Tech Institute of Technology",
+        "degree": "B.S. in Computer Science",
+        "location": "San Francisco, CA",
+        "date": "2022 - 2026",
+        "gpa": "3.8/4.0"
+      }
+    ],
+    "experience": [
+      {
+        "id": "exp-1",
+        "company": "ByteCraft Solutions",
+        "role": "Frontend Developer Intern",
+        "location": "Remote",
+        "date": "Summer 2025",
+        "description": "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "title": "DevRank - Developer Portfolio Engine",
+        "date": "Fall 2025",
+        "technologies": "React, Express, Tailwind CSS",
+        "description": "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
+      }
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Node.js",
+      "Express",
+      "Tailwind CSS",
+      "Git"
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner",
+      "Meta Front-End Developer Certificate"
+    ]
+  },
+  {
+    "id": "res-rpjk1txg5",
+    "userId": "user-jovb43fpl",
+    "version": 1,
+    "title": "My Placement Resume",
+    "updatedAt": "2026-06-10T04:48:22.833Z",
+    "personalInfo": {
+      "name": "Alex Mercer",
+      "email": "alex.mercer@gmail.com",
+      "phone": "+1 (555) 019-2834",
+      "linkedin": "linkedin.com/in/alexmercer",
+      "github": "github.com/alexmercer",
+      "portfolio": "alexmercer.dev"
+    },
+    "education": [
+      {
+        "id": "edu-1",
+        "school": "Tech Institute of Technology",
+        "degree": "B.S. in Computer Science",
+        "location": "San Francisco, CA",
+        "date": "2022 - 2026",
+        "gpa": "3.8/4.0"
+      }
+    ],
+    "experience": [
+      {
+        "id": "exp-1",
+        "company": "ByteCraft Solutions",
+        "role": "Frontend Developer Intern",
+        "location": "Remote",
+        "date": "Summer 2025",
+        "description": "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "title": "DevRank - Developer Portfolio Engine",
+        "date": "Fall 2025",
+        "technologies": "React, Express, Tailwind CSS",
+        "description": "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
+      }
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Node.js",
+      "Express",
+      "Tailwind CSS",
+      "Git"
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner",
+      "Meta Front-End Developer Certificate"
+    ]
+  }
+]

@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background-primary text-text-primary font-sans antialiased selection:bg-accent-primary/30 selection:text-white;
+    background-color: #0A0A0F;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold text-text-primary tracking-tight;
+  }
+
+  code, pre {
+    @apply font-mono text-sm;
+  }
+}
+
+/* Custom Scrollbar for Dark Layout */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1A1A26;
+  border: 1px solid #2A2A3A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6C63FF20;
+  border-color: #6C63FF40;
+}
+
+/* Premium Card & Neon Glow Styles */
+.glow-card {
+  position: relative;
+  background: #111118;
+  border: 1px solid #2A2A3A;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-card:hover {
+  border-color: rgba(108, 99, 255, 0.3);
+  box-shadow: 0 0 20px rgba(108, 99, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.glow-card-green:hover {
+  border-color: rgba(0, 212, 170, 0.3);
+  box-shadow: 0 0 20px rgba(0, 212, 170, 0.08);
+  transform: translateY(-2px);
+}
+
+.glow-card-gold:hover {
+  border-color: rgba(255, 184, 0, 0.3);
+  box-shadow: 0 0 20px rgba(255, 184, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Glassmorphic Background Elements */
+.glass-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(108, 99, 255, 0.12), transparent 60%);
+}
+
+.glass-glow-secondary {
+  background: radial-gradient(circle at 50% 50%, rgba(0, 212, 170, 0.08), transparent 60%);
+}
+
+/* Animation utilities */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Live Resume A4 Preview Styles */
+.resume-a4-preview {
+  width: 210mm;
+  min-height: 297mm; /* Standard A4 ratio */
+  max-height: 297mm; /* Enforce single-page layout */
+  overflow: hidden; /* Prevent visual overflow */
+  background: #ffffff;
+  color: #1a1a1a;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transform-origin: top center;
+}
+
+/* Custom circular gauge animations */
+.gauge-ring-path {
+  transition: stroke-dashoffset 0.6s ease-out;
+}

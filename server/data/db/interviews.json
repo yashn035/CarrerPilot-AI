@@ -1,0 +1,117 @@
+[
+  {
+    "id": "int-mczeers1l",
+    "userId": "user-a0xukfvak",
+    "type": "Technical",
+    "difficulty": "Medium",
+    "company": "Google",
+    "startedAt": "2026-06-10T05:21:35.084Z",
+    "history": [
+      {
+        "role": "interviewer",
+        "content": "Could you explain the difference between processes and threads, and how they share memory?",
+        "intro": "Welcome to the Google Technical interview room. I'm your AI recruiter today. Let's start with a foundational prompt.",
+        "hint": "Think about stack vs. heap storage and process isolation boundaries."
+      }
+    ],
+    "status": "active"
+  },
+  {
+    "id": "int-amtjajek4",
+    "userId": "user-a0xukfvak",
+    "type": "Technical",
+    "difficulty": "Medium",
+    "company": "Google",
+    "startedAt": "2026-06-15T14:25:04.781Z",
+    "history": [
+      {
+        "role": "interviewer",
+        "content": "For our first problem, could you please implement a queue using two stacks? You should support `enqueue`, `dequeue`, `peek`, and `empty` operations.",
+        "intro": "Hi there! I'm [Your Name], and I'll be your interviewer today. We'll spend some time discussing your approach to a technical problem. Please feel free to ask clarifying questions at any point. We're looking to understand your thought process as much as the final solution.",
+        "hint": "Consider how you can use the LIFO property of a stack to simulate the FIFO property of a queue."
+      },
+      {
+        "role": "candidate",
+        "content": "hey"
+      },
+      {
+        "role": "interviewer",
+        "content": "Based on your response: \"hey...\", how would you scale this architecture or handle concurrency issues under heavy load?",
+        "intro": "Thanks for explaining that.",
+        "hint": "Think about load balancing, DB replication, or threading models."
+      }
+    ],
+    "status": "active"
+  },
+  {
+    "id": "int-0bkpwa42q",
+    "userId": "user-a0xukfvak",
+    "type": "Technical",
+    "difficulty": "Medium",
+    "company": "Google",
+    "startedAt": "2026-06-15T14:39:42.103Z",
+    "history": [
+      {
+        "role": "interviewer",
+        "content": "Okay, for our problem today: Given an unsorted array of integers `nums` and an integer `k`, return the `k`th largest element in the array. Note that it is the `k`th largest element in the sorted order, not the `k`th distinct element. For example, if `nums = [3,2,1,5,6,4]` and `k = 2`, the output should be `5`.",
+        "intro": "Hi there! I'm [Interviewer's Name], a software engineer at Google, and I'll be conducting your technical interview today. We'll spend about 45 minutes on a coding problem, and then save some time for your questions at the end. Don't hesitate to ask clarifying questions about the problem statement. Ready to jump in?",
+        "hint": "Consider how you might maintain a collection of the largest elements seen so far without fully sorting the entire array."
+      },
+      {
+        "role": "candidate",
+        "content": "hello hr"
+      },
+      {
+        "role": "interviewer",
+        "content": "What's your initial thought process or a high-level approach to solve this problem?",
+        "intro": "Thanks for the greeting! Let's dive into the problem. Could you start by explaining how you would approach finding the k-th largest element?",
+        "hint": "Consider how sorting might play a role, or if there's a way to avoid full sorting."
+      },
+      {
+        "role": "candidate",
+        "content": "high"
+      },
+      {
+        "role": "interviewer",
+        "content": "What's the first thing that comes to mind when you think about finding the k-th largest element in an unsorted array?",
+        "intro": "Could you please elaborate on your high-level approach or thought process for solving this problem?",
+        "hint": "Think about how you might sort the array, or perhaps process it in a way that doesn't require a full sort."
+      }
+    ],
+    "status": "active"
+  },
+  {
+    "id": "int-zxuogayvx",
+    "userId": "user-a0xukfvak",
+    "type": "Technical",
+    "difficulty": "Medium",
+    "company": "Stripe",
+    "startedAt": "2026-06-15T14:42:41.366Z",
+    "history": [
+      {
+        "role": "interviewer",
+        "content": "How would you go about designing a URL shortening service, similar to Bitly or TinyURL? Please walk me through your high-level design and key considerations.",
+        "intro": "Hi there! I'm Alex, an engineer at Stripe. Thanks for joining us today. We'll be doing a technical interview focused on system design and problem-solving. Let's start with a design problem.",
+        "hint": "Consider the core functionalities: shortening a URL and redirecting a shortened URL. What are the main components and data flows?"
+      }
+    ],
+    "status": "active"
+  },
+  {
+    "id": "int-4td6e04af",
+    "userId": "user-a0xukfvak",
+    "type": "Technical",
+    "difficulty": "Medium",
+    "company": "Google",
+    "startedAt": "2026-06-15T14:42:47.792Z",
+    "history": [
+      {
+        "role": "interviewer",
+        "content": "Okay, for our problem today: Given an unsorted array of integers `nums` and an integer `k`, return the `k`th largest element in the array. Note that it is the `k`th largest element in the sorted order, not the `k`th distinct element. For example, if `nums = [3,2,1,5,6,4]` and `k = 2`, the output should be `5`.",
+        "intro": "Hi there! I'm [Interviewer's Name], a software engineer at Google, and I'll be conducting your technical interview today. We'll spend about 45 minutes on a coding problem, and then save some time for your questions at the end. Don't hesitate to ask clarifying questions about the problem statement. Ready to jump in?",
+        "hint": "Consider how you might maintain a collection of the largest elements seen so far without fully sorting the entire array."
+      }
+    ],
+    "status": "active"
+  }
+]
