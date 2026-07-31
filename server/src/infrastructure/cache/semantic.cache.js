@@ -1,5 +1,6 @@
 import { pipeline } from '@xenova/transformers';
-import { HierarchicalNSW } from 'hnswlib-node';
+import pkg from 'hnswlib-node';
+const { HierarchicalNSW } = pkg;
 import Redis from 'ioredis';
 import { cacheHits, costSavings } from '../../middlewares/metrics.js';
 
