@@ -1,6 +1,17 @@
 import crypto from 'crypto';
 import cache from '../cache/redis.js';
 import logger from '../../shared/logger/logger.js';
+import { getCachedResponse, storeResponse, warmupCache } from '../cache/semantic.cache.js';
+import { cacheHits, costSavings } from '../../middlewares/metrics.js';
+import { routeAIRequest } from './llm.router.js';
+
+let cacheWarmed = false;
+async function ensureCacheWarm() {
+  if (!cacheWarmed && process.env.SEMANTIC_CACHE_ENABLED === 'true') {
+    await warmupCache();
+    cacheWarmed = true;
+  }
+}
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
@@ -36,90 +47,52 @@ export async function callAI(systemPrompt, userPrompt, useCache = true) {
     return null;
   }
 
-  // 1. Create cache key from hash of prompts
-  const payloadHash = crypto
-    .createHash('sha256')
-    .update(`${systemPrompt}|||${userPrompt}`)
-    .digest('hex');
-  const cacheKey = `ai:cache:${payloadHash}`;
-
-  // 2. Lookup Cache
-  if (useCache) {
-    try {
-      const cachedResult = await cache.get(cacheKey);
-      if (cachedResult) {
-        logger.info("AI Cache Hit for prompt hash.", { hash: payloadHash });
-        return cachedResult;
-      }
-    } catch (err) {
-      logger.warn("AI Cache lookup failed, proceeding to query API.", { error: err.message });
-    }
-  }
-
-  // 3. Rate Limit / Request Guard
+  // Rate Limit / Request Guard
   const rateLimitKey = "ai:ratelimit:global";
-  const rateCheck = await cache.slidingWindowRateLimit(rateLimitKey, 15, 60); // Max 15 requests per minute
+  const rateCheck = await cache.slidingWindowRateLimit(rateLimitKey, 10, 60); // Max 10 requests per minute
   if (!rateCheck.allowed) {
     logger.warn("AI Global API rate limit exceeded.", { resetMs: rateCheck.resetMs });
     throw new Error("AI requests rate limit reached. Please try again in a moment.");
   }
 
-  // 4. API Request Execution
+  // 1. Check Semantic Cache
+  if (useCache && process.env.SEMANTIC_CACHE_ENABLED === 'true') {
+    await ensureCacheWarm();
+    try {
+      const fullPrompt = `${systemPrompt}\n\nUser request:\n${userPrompt}`;
+      const cached = await getCachedResponse(fullPrompt);
+      if (cached) {
+        cacheHits.inc();
+        costSavings.inc(0.0005);
+        logger.info(`[AI] Cache HIT (similarity: ${cached.similarity.toFixed(3)})`);
+        return cached.response;
+      }
+    } catch (err) {
+      logger.warn("Semantic Cache lookup failed, proceeding to query API.", { error: err.message });
+    }
+  }
+  
+  logger.info("[AI] Cache MISS. Routing to LLM Router...");
+
+  // 2. Use the router
   try {
-    logger.info("Dispatching query to Gemini API model...", { hash: payloadHash });
-    
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-    
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        contents: [
-          {
-            role: 'user',
-            parts: [
-              { text: `${systemPrompt}\n\nUser request:\n${userPrompt}` }
-            ]
-          }
-        ],
-        generationConfig: {
-          temperature: 0.7,
-          topK: 40,
-          topP: 0.95,
-          maxOutputTokens: 2048,
-        }
-      })
-    });
+    const { provider, response } = await routeAIRequest(userPrompt, systemPrompt);
+    logger.info(`[AI] Responded via ${provider}.`);
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      logger.error("Gemini API request failed:", { status: response.status, details: errorText });
-      return null;
-    }
-
-    const data = await response.json();
-    const textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-    if (!textResponse) {
-      logger.warn("Gemini returned empty parts candidate response.");
-      return null;
-    }
-
-    // 5. Save Cache
-    if (useCache) {
+    // 3. Store in Semantic Cache
+    if (useCache && process.env.SEMANTIC_CACHE_ENABLED === 'true') {
       try {
-        // Cache API outputs for 12 hours
-        await cache.set(cacheKey, textResponse, 12 * 60 * 60);
+        const fullPrompt = `${systemPrompt}\n\nUser request:\n${userPrompt}`;
+        await storeResponse(fullPrompt, response);
       } catch (err) {
-        logger.warn("AI Cache write failed:", { error: err.message });
+        logger.warn("Semantic Cache write failed:", { error: err.message });
       }
     }
 
-    return textResponse;
-  } catch (err) {
-    logger.error("Error executing call to Gemini API:", err);
+    return response;
+  } catch (error) {
+    logger.error('[AI] All providers failed:', error.message);
+    // Fallback to local heuristic if available, or just throw/return null
     return null;
   }
 }

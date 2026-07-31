@@ -13,6 +13,7 @@ import adminRouter from '../domains/admin/admin.routes.js';
 import dashboardRouter from '../domains/dashboard/dashboard.routes.js';
 import aiMentorRouter from '../domains/ai-mentor/ai-mentor.routes.js';
 import mockInterviewRouter from '../domains/mock-interview/mock-interview.routes.js';
+import assessmentRoutes from '../domains/assessment/assessment.routes.js';
 
 // Coding Controller Imports for OA and Company tracks
 import {
@@ -45,6 +46,7 @@ router.use('/dashboard', dashboardRouter);
 router.use('/ai-mentor', aiMentorRouter);
 router.use('/mentor', aiMentorRouter);
 router.use('/mock-interview', mockInterviewRouter);
+router.use('/assessment', assessmentRoutes);
 
 // 2. Mount OA (Online Assessment) Simulator paths
 const oaRouter = Router();

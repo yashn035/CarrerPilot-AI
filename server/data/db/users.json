@@ -2,176 +2,25 @@
   {
     "id": "demo-user-123",
     "email": "demouser@careerpilot.ai",
-    "password": "$2a$10$Kn43zioJydoEVx1bSEGgNuRZe9uGsuvg2DfpzhcTnLW8IHnA2fyP.",
     "name": "Alex Mercer",
-    "title": "Aspiring Full-Stack Developer",
     "targetRole": "Frontend Engineer",
-    "xp": 100,
-    "level": 4,
-    "streak": 3,
-    "readinessScore": 65,
-    "streakHistory": [
-      "2026-06-06",
-      "2026-06-07",
-      "2026-06-08",
-      "2026-06-09",
-      "2026-06-10",
-      "2026-06-13",
-      "2026-06-14",
-      "2026-06-15"
-    ],
-    "skills": [
-      {
-        "name": "React",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "JavaScript",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "HTML5/CSS3",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "Node.js",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "Express",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "Git",
-        "level": 3,
-        "category": "Core"
-      }
-    ],
-    "completedQuests": [
-      "first-login",
-      "ats-analyzer"
-    ],
-    "achievements": [
-      "ats-builder"
-    ],
-    "scores": {
-      "resume": 30,
-      "dsa": 25,
-      "projects": 30,
-      "communication": 20,
-      "interview": 20
-    },
-    "onboarded": true
-  },
-  {
-    "id": "user-jovb43fpl",
-    "email": "demouser2@careerpilot.ai",
-    "password": "$2a$10$Kn43zioJydoEVx1bSEGgNuRZe9uGsuvg2DfpzhcTnLW8IHnA2fyP.",
-    "name": "Demo User",
-    "title": "New CareerPilot Student",
-    "targetRole": "Full-Stack Developer",
-    "xp": 100,
-    "level": 2,
-    "streak": 1,
-    "readinessScore": 29,
-    "streakHistory": [
-      "2026-06-10"
-    ],
-    "skills": [
-      {
-        "name": "React",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "Node.js",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "Express",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "JavaScript",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "MongoDB",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "SQL",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "Git",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "Tailwind CSS",
-        "level": 3,
-        "category": "Core"
-      },
-      {
-        "name": "Docker",
-        "level": 3,
-        "category": "Core"
-      }
-    ],
-    "completedQuests": [],
-    "achievements": [],
-    "scores": {
-      "resume": 50,
-      "dsa": 25,
-      "projects": 30,
-      "communication": 20,
-      "interview": 20
-    },
-    "onboarded": true
-  },
-  {
-    "id": "user-a0xukfvak",
-    "email": "yashnalawade035@gmail.com",
-    "password": "$2a$10$tCNkBa3QaCkWeCePQvI..O3REo6CUti9xlQ2pwvhSgguFFBsbolnC",
-    "name": "yash nalawade",
-    "title": "New CareerPilot Student",
-    "targetRole": "Frontend Engineer",
-    "xp": 885,
+    "xp": 500,
     "level": 3,
-    "streak": 2,
-    "readinessScore": 40,
-    "streakHistory": [
-      "2026-06-10",
-      "2026-06-11"
+    "streak": 5,
+    "skills": [
+      {
+        "name": "React",
+        "level": 4,
+        "category": "Frontend"
+      }
     ],
-    "skills": [],
-    "completedQuests": [
-      "ats-analyzer",
-      "solve-dsa",
-      "mock-interview"
-    ],
-    "achievements": [],
     "scores": {
-      "resume": 30,
-      "dsa": 25,
-      "projects": 30,
-      "communication": 20,
-      "interview": 20
+      "resume": 72,
+      "dsa": 65,
+      "projects": 70,
+      "communication": 60,
+      "interview": 65
     },
-    "onboarded": true,
-    "college": "",
-    "branch": "",
-    "graduationYear": "2026"
+    "readinessScore": 67
   }
 ]

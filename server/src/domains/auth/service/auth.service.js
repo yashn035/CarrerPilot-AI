@@ -120,7 +120,7 @@ export async function loginUser({ email, password }) {
  * @param {Object} onboardingDetails 
  * @returns {Promise<Object>}
  */
-export async function onboardUser(userId, { name, targetRole, skills, experienceLevel, college, branch, graduationYear }) {
+export async function onboardUser(userId, { name, title, targetRole, skills, experienceLevel, college, branch, graduationYear }) {
   const db = await getDb();
   const user = db.users.find(u => u.id === userId);
 
@@ -129,6 +129,7 @@ export async function onboardUser(userId, { name, targetRole, skills, experience
   }
 
   user.name = name || user.name;
+  user.title = title !== undefined ? title : (user.title || "");
   user.targetRole = targetRole || user.targetRole;
   user.college = college || user.college || "";
   user.branch = branch || user.branch || "";

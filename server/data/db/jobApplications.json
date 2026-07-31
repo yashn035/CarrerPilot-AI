@@ -22,17 +22,5 @@
     "notes": "Submitted application through referral. Awaiting response.",
     "reminderDate": "",
     "updatedAt": "2026-06-09T18:00:00.000Z"
-  },
-  {
-    "id": "app-080n0oups",
-    "userId": "demo-user-123",
-    "company": "Tesla",
-    "role": "Software Engineer Intern",
-    "stage": "Applied",
-    "salary": "",
-    "location": "",
-    "notes": "",
-    "reminderDate": "",
-    "updatedAt": "2026-06-14T15:22:28.870Z"
   }
 ]

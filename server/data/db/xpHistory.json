@@ -5,5 +5,187 @@
     "reason": "Completed Onboarding Setup",
     "timestamp": "2026-06-15T14:38:31.622Z",
     "levelAfter": 3
+  },
+  {
+    "userId": "user-a0xukfvak",
+    "amount": 100,
+    "reason": "Completed Onboarding Setup",
+    "timestamp": "2026-06-16T05:44:54.871Z",
+    "levelAfter": 4
+  },
+  {
+    "userId": "user-a0xukfvak",
+    "amount": 100,
+    "reason": "Completed Onboarding Setup",
+    "timestamp": "2026-06-16T05:44:57.358Z",
+    "levelAfter": 4
+  },
+  {
+    "userId": "user-a0xukfvak",
+    "amount": 10,
+    "reason": "AI Mentor Engagement (mentor)",
+    "timestamp": "2026-06-16T05:49:31.713Z",
+    "levelAfter": 4
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 50,
+    "reason": "Daily Quest: Optimize 1 bullet point or scan resume",
+    "timestamp": "2026-06-16T05:50:12.106Z",
+    "levelAfter": 4
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 50,
+    "reason": "Daily Quest: Optimize 1 bullet point or scan resume",
+    "timestamp": "2026-06-16T05:50:38.399Z",
+    "levelAfter": 4
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 50,
+    "reason": "Daily Quest: Optimize 1 bullet point or scan resume",
+    "timestamp": "2026-06-16T05:51:01.107Z",
+    "levelAfter": 3
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 50,
+    "reason": "Daily Quest: Optimize 1 bullet point or scan resume",
+    "timestamp": "2026-06-16T05:51:18.190Z",
+    "levelAfter": 3
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 100,
+    "reason": "Completed Onboarding Setup",
+    "timestamp": "2026-06-16T05:53:00.122Z",
+    "levelAfter": 3
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 10,
+    "reason": "AI Mentor Engagement (dsa)",
+    "timestamp": "2026-06-16T05:56:25.979Z",
+    "levelAfter": 3
+  },
+  {
+    "userId": "user-frre7rrp3",
+    "amount": 100,
+    "reason": "Completed Onboarding Setup",
+    "timestamp": "2026-06-16T05:58:55.657Z",
+    "levelAfter": 1
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 10,
+    "reason": "AI Mentor Engagement (dsa)",
+    "timestamp": "2026-06-16T05:59:48.123Z",
+    "levelAfter": 3
+  },
+  {
+    "userId": "user-frre7rrp3",
+    "amount": 50,
+    "reason": "Created a Resume",
+    "timestamp": "2026-06-16T05:59:56.873Z",
+    "levelAfter": 1
+  },
+  {
+    "userId": "user-frre7rrp3",
+    "amount": 50,
+    "reason": "Created a Resume",
+    "timestamp": "2026-06-16T05:59:57.042Z",
+    "levelAfter": 1
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 10,
+    "reason": "AI Mentor Engagement (dsa)",
+    "timestamp": "2026-06-16T06:01:53.283Z",
+    "levelAfter": 3
+  },
+  {
+    "userId": "user-frre7rrp3",
+    "amount": 50,
+    "reason": "Uploaded & analyzed resume",
+    "timestamp": "2026-06-16T06:03:21.066Z",
+    "levelAfter": 1
+  },
+  {
+    "userId": "user-frre7rrp3",
+    "amount": 50,
+    "reason": "Uploaded & analyzed resume",
+    "timestamp": "2026-06-16T06:04:10.771Z",
+    "levelAfter": 2
+  },
+  {
+    "userId": "user-0q8a8dwcl",
+    "amount": 100,
+    "reason": "Completed Onboarding Setup",
+    "timestamp": "2026-06-16T06:20:04.847Z",
+    "levelAfter": 1
+  },
+  {
+    "userId": "user-frre7rrp3",
+    "amount": 150,
+    "reason": "Completed Quest: ATS Checkup",
+    "timestamp": "2026-06-16T06:22:48.531Z",
+    "levelAfter": 2
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 50,
+    "reason": "Daily Quest: Optimize 1 bullet point or scan resume",
+    "timestamp": "2026-06-17T13:41:57.427Z",
+    "levelAfter": 3
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 50,
+    "reason": "Daily Quest: Optimize 1 bullet point or scan resume",
+    "timestamp": "2026-06-17T13:47:43.083Z",
+    "levelAfter": 3
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 50,
+    "reason": "Daily Quest: Optimize 1 bullet point or scan resume",
+    "timestamp": "2026-06-17T13:56:13.123Z",
+    "levelAfter": 3
+  },
+  {
+    "userId": "user-ercu5f2r3",
+    "amount": 100,
+    "reason": "Completed Onboarding Setup",
+    "timestamp": "2026-06-17T14:06:32.156Z",
+    "levelAfter": 1
+  },
+  {
+    "userId": "user-ercu5f2r3",
+    "amount": 50,
+    "reason": "Created a Resume",
+    "timestamp": "2026-06-17T14:06:41.628Z",
+    "levelAfter": 1
+  },
+  {
+    "userId": "user-ercu5f2r3",
+    "amount": 50,
+    "reason": "Uploaded & analyzed resume",
+    "timestamp": "2026-06-17T14:07:47.124Z",
+    "levelAfter": 1
+  },
+  {
+    "userId": "user-ercu5f2r3",
+    "amount": 150,
+    "reason": "Completed Quest: ATS Checkup",
+    "timestamp": "2026-06-17T14:08:38.505Z",
+    "levelAfter": 2
+  },
+  {
+    "userId": "demo-user-123",
+    "amount": 50,
+    "reason": "Daily Quest: Optimize 1 bullet point or scan resume",
+    "timestamp": "2026-07-27T18:17:57.131Z",
+    "levelAfter": 3
   }
 ]

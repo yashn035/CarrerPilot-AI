@@ -65,5 +65,54 @@
     ],
     "fileName": "Pasted text",
     "createdAt": "2026-06-15T14:52:07.199Z"
+  },
+  {
+    "id": "prof-riw1qi8c2",
+    "userId": "user-ercu5f2r3",
+    "name": "YASH NALAWADE",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Java",
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "Pandas",
+      "NumPy",
+      "Generative AI (Gemini API)",
+      "RESTful APIs",
+      "MySQL",
+      "MongoDB",
+      "Git",
+      "GitHub",
+      "VS Code",
+      "CI/CD Basics",
+      "Object-Oriented Programming (OOP)",
+      "Database Management Systems (DBMS)",
+      "Agile",
+      "Scrum"
+    ],
+    "projects": [
+      "CareerPilot AI: Developed a full-stack career guidance platform with AI-driven modules for resume scoring, skill gap analysis, and personalized learning recommendations. Engineered an automated candidate-job matching system and secure backend using Node.js, MongoDB Atlas, and JWT-based Role-Based Access Control (RBAC). Designed high-performance dashboards using React.js and Tailwind CSS, leveraging Recharts and Framer Motion for interactive data analytics.",
+      "Projexia: Developed a full-stack project management platform to streamline student project workflow (idea submission, documentation, progress tracking, final evaluation). Designed a real-time task tracking system with progress dashboards and implemented secure role-based authentication and authorization for Students, Faculty, and Admins."
+    ],
+    "experience": [
+      "Web Developer Intern | StaxTech (April 2024 - August 2024): Designed and developed 10+ responsive UI components in React.js. Optimized mobile responsiveness for 3 core product pages, improving mobile user engagement by 30%, and managed feature branches via Git following Agile workflows. Collaborated with cross-functional teams to integrate RESTful APIs, improving data flow and application reliability.",
+      "Technosait India | Intern Software Development Engineer (May 2026 - Aug 2026): Worked on software development projects and technical tasks. Collaborated with team members to develop, test, and maintain web applications and software solutions. Applied programming, debugging, and problem-solving skills to support project development and delivery. Followed software development best practices and contributed to ongoing projects, gaining hands-on experience in software engineering and professional development environments."
+    ],
+    "education": "B.E Information Technology, Vasantdada Patil Pratishthan's College of Engineering",
+    "strengths": [
+      "Full-stack Web Development (React.js, Node.js, MongoDB)",
+      "API Design & Secure Authentication (RESTful APIs, JWT, RBAC)",
+      "Responsive UI/UX Development (React.js, Tailwind CSS, Framer Motion)"
+    ],
+    "weak_areas": [
+      "Advanced Cloud Platform Experience (beyond basics)",
+      "Automated Testing Frameworks (Unit, Integration, E2E)",
+      "Containerization and Orchestration (Docker, Kubernetes)"
+    ],
+    "fileName": "Yash_Resume_Updated.pdf",
+    "createdAt": "2026-06-17T14:07:26.197Z"
   }
 ]

@@ -7,7 +7,8 @@ export default function MockOASimulator({
     oaTimeLeft, oaActiveIdx, setOaActiveIdx,
     oaAnswers, setOaAnswers,
     oaFocusLost, setOaFocusLost,
-    handleStartOa, handleEndOa, handleOaCodeSubmit
+    handleStartOa, handleEndOa, handleOaCodeSubmit,
+    oaLang, setOaLang, oaConsoleOutputs
 }) {
     return (
         <div className="flex-grow overflow-y-auto p-4 md:p-8 space-y-8 max-w-5xl mx-auto w-full pb-24">
@@ -113,11 +114,23 @@ export default function MockOASimulator({
                             <p className="text-xs text-text-secondary leading-relaxed font-sans">
                                 {oaSession.problems[oaActiveIdx].description}
                             </p>
+                            <div className="flex justify-between items-center bg-[#0E0F14] border border-border-subtle p-3 rounded-card text-xs">
+                                <span className="font-semibold text-text-secondary">Programming Language:</span>
+                                <select
+                                    value={oaLang || 'javascript'}
+                                    onChange={(e) => setOaLang(e.target.value)}
+                                    className="bg-background-elevated border border-border-subtle rounded px-2.5 py-1 text-xs font-semibold focus:outline-none focus:border-accent-secondary text-text-primary outline-none"
+                                >
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="python">Python</option>
+                                    <option value="java">Java</option>
+                                </select>
+                            </div>
                             <div className="border border-border-subtle h-64 rounded overflow-hidden">
                                 <Editor
                                     height="100%"
                                     theme="vs-dark"
-                                    language="javascript"
+                                    language={oaLang || 'javascript'}
                                     value={oaAnswers[oaSession.problems[oaActiveIdx].id]}
                                     onChange={(val) => {
                                         setOaAnswers({ ...oaAnswers, [oaSession.problems[oaActiveIdx].id]: val });
@@ -133,6 +146,49 @@ export default function MockOASimulator({
                                     Verify Code Solution
                                 </button>
                             </div>
+                            {(() => {
+                                const activeProblem = oaSession.problems[oaActiveIdx];
+                                const consoleOut = activeProblem && oaConsoleOutputs ? oaConsoleOutputs[activeProblem.id] : null;
+                                if (!consoleOut) return null;
+                                return (
+                                    <div className="mt-4 p-4 bg-[#0E0F14]/60 border border-border-subtle rounded-card text-xs font-mono">
+                                        <div className="flex items-center justify-between pb-2 border-b border-border-subtle/50 mb-2">
+                                            <span className="font-bold text-text-secondary uppercase tracking-widest text-[9px]">Verification Console</span>
+                                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                                                consoleOut.status === 'compiling' ? 'text-accent-gold bg-accent-gold/10' :
+                                                consoleOut.status === 'success' ? 'text-accent-secondary bg-accent-secondary/10' :
+                                                'text-accent-danger bg-accent-danger/10'
+                                            }`}>
+                                                {consoleOut.status === 'compiling' ? 'RUNNING TESTS...' :
+                                                 consoleOut.status === 'success' ? 'PASSED' : 'FAILED'}
+                                            </span>
+                                        </div>
+                                        {consoleOut.status === 'compiling' && (
+                                            <div className="text-text-secondary flex items-center gap-2">
+                                                <RefreshCw className="w-4 h-4 animate-spin text-accent-gold" />
+                                                <span>Running verification testcases on secure Piston runner...</span>
+                                            </div>
+                                        )}
+                                        {consoleOut.status === 'success' && (
+                                            <div className="text-accent-secondary">
+                                                ✔ All testcases passed successfully! ({consoleOut.passedCount}/{consoleOut.totalCount} test cases)
+                                            </div>
+                                        )}
+                                        {consoleOut.status === 'fail' && (
+                                            <div className="space-y-1.5">
+                                                <div className="text-accent-danger font-semibold">
+                                                    ✖ Verification failed: Passed {consoleOut.passedCount || 0}/{consoleOut.totalCount || 1} tests.
+                                                </div>
+                                                {consoleOut.error && (
+                                                    <pre className="bg-background-elevated p-2 rounded text-text-muted text-[11px] overflow-x-auto whitespace-pre-wrap max-h-40 border border-border-subtle">
+                                                        {consoleOut.error}
+                                                    </pre>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })()}
                         </div>
                     </div>
 

@@ -150,6 +150,27 @@ export default function JobTracker() {
     }
   };
 
+  const handleDrop = async (e, targetStage) => {
+    e.preventDefault();
+    const appId = e.dataTransfer.getData('text/plain');
+    const app = applications.find(a => a.id === appId);
+    if (!app || app.stage === targetStage) return;
+
+    try {
+      const res = await fetch(`/api/jobs/applications/${app.id}`, {
+        method: 'PUT',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ stage: targetStage })
+      });
+      if (res.ok) {
+        addToast(`Moved to ${targetStage}`, "info");
+        fetchApplications();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   // Compile Recharts Data based on stages
   const chartData = stages.map(stG => ({
     name: stG,
@@ -252,7 +273,12 @@ export default function JobTracker() {
             ];
 
             return (
-              <div key={stgName} className="bg-[#111118] border border-border-subtle rounded-card overflow-hidden flex flex-col min-h-[400px]">
+              <div 
+                key={stgName} 
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => handleDrop(e, stgName)}
+                className="bg-[#111118] border border-border-subtle rounded-card overflow-hidden flex flex-col min-h-[400px]"
+              >
                 {/* Column header */}
                 <div className={`p-3 border-t-4 ${borderColors[colIdx]} border-b border-border-subtle bg-background-elevated/20 flex justify-between items-center shrink-0`}>
                   <span className="text-xs font-bold uppercase tracking-wider text-text-primary">{stgName}</span>
@@ -262,7 +288,12 @@ export default function JobTracker() {
                 {/* Column contents */}
                 <div className="p-3.5 space-y-3 flex-grow overflow-y-auto max-h-[450px]">
                   {list.map(app => (
-                    <div key={app.id} className="p-4 bg-background-surface hover:bg-[#151520] border border-border-subtle rounded-card space-y-3 transition-all relative group shadow-sm">
+                    <div 
+                      key={app.id} 
+                      draggable={true}
+                      onDragStart={(e) => e.dataTransfer.setData('text/plain', app.id)}
+                      className="p-4 bg-background-surface hover:bg-[#151520] border border-border-subtle rounded-card space-y-3 transition-all relative group shadow-sm cursor-grab active:cursor-grabbing"
+                    >
                       <div className="space-y-1 pr-6">
                         <h4 className="text-xs font-bold text-text-primary leading-snug">{app.company}</h4>
                         <p className="text-[11px] font-medium text-text-secondary">{app.role}</p>

@@ -1,28 +1,23 @@
-const requestTimestamps = new Map();
+import cache from '../infrastructure/cache/redis.js';
 
 // Default limit: 100 requests per 15 minutes per IP
 export function rateLimiter(limit = 100, windowMs = 15 * 60 * 1000) {
-  return (req, res, next) => {
+  return async (req, res, next) => {
     const ip = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
-    const now = Date.now();
+    const key = `ratelimit:${ip}:${req.path}`;
+    const windowSeconds = Math.ceil(windowMs / 1000);
     
-    if (!requestTimestamps.has(ip)) {
-      requestTimestamps.set(ip, []);
+    try {
+      const result = await cache.slidingWindowRateLimit(key, limit, windowSeconds);
+      if (!result.allowed) {
+        return res.status(429).json({
+          message: "Too many requests from this IP, please try again later."
+        });
+      }
+      next();
+    } catch (err) {
+      // Graceful fallback to continue if rate limiting cache fails
+      next();
     }
-    
-    let timestamps = requestTimestamps.get(ip);
-    
-    // Clean up timestamps outside window
-    timestamps = timestamps.filter(time => now - time < windowMs);
-    requestTimestamps.set(ip, timestamps);
-    
-    if (timestamps.length >= limit) {
-      return res.status(429).json({
-        message: "Too many requests from this IP, please try again later."
-      });
-    }
-    
-    timestamps.push(now);
-    next();
   };
 }

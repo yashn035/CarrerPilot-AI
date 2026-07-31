@@ -1,1 +1,49 @@
-[]
+[
+  {
+    "userId": "demo-user-123",
+    "targetRole": "Frontend Engineer",
+    "targetCompanies": [
+      "Google",
+      "Amazon",
+      "Stripe"
+    ],
+    "weaknesses": [
+      "Dynamic Programming"
+    ],
+    "strengths": [
+      "React"
+    ],
+    "topicsDiscussed": [
+      "arrays"
+    ],
+    "lastAtsScore": 72,
+    "lastInterviewScore": 65,
+    "dailyMissions": [
+      {
+        "id": "mission-dsa",
+        "title": "Solve 1 Array or String problem in Coding Arena",
+        "type": "dsa",
+        "completed": false,
+        "claimed": false,
+        "xpReward": 50
+      },
+      {
+        "id": "mission-resume",
+        "title": "Optimize 1 bullet point or scan resume",
+        "type": "resume",
+        "completed": true,
+        "claimed": true,
+        "xpReward": 50
+      },
+      {
+        "id": "mission-mock",
+        "title": "Run 1 Mock Interview in interview mode",
+        "type": "interview",
+        "completed": true,
+        "claimed": false,
+        "xpReward": 50
+      }
+    ],
+    "updatedAt": "2026-07-27T18:17:57.107Z"
+  }
+]

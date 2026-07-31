@@ -1,1 +1,203 @@
-[]
+[
+  {
+    "id": "session-vg1lokdqe",
+    "userId": "user-a0xukfvak",
+    "mode": "interview",
+    "status": "active",
+    "createdAt": "2026-06-16T05:46:47.858Z",
+    "updatedAt": "2026-06-16T05:46:47.858Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Welcome to your mock interview simulation! I'll act as your interviewer. Let's start: **Can you explain prototype inheritance in JavaScript?**",
+        "mode": "interview",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-06-16T05:46:47.858Z"
+      }
+    ]
+  },
+  {
+    "id": "session-zspeux12l",
+    "userId": "user-a0xukfvak",
+    "mode": "mentor",
+    "status": "active",
+    "createdAt": "2026-06-16T05:46:49.586Z",
+    "updatedAt": "2026-06-16T05:46:49.586Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Hello! I am your Career Mentor. Ask me any technical or placement preparation questions.",
+        "mode": "mentor",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-06-16T05:46:49.586Z"
+      }
+    ]
+  },
+  {
+    "id": "session-7e7ycxyqd",
+    "userId": "user-a0xukfvak",
+    "mode": "reviewer",
+    "status": "active",
+    "createdAt": "2026-06-16T05:46:51.013Z",
+    "updatedAt": "2026-06-16T05:46:51.013Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Reviewer Mode active. Send over a resume description or code block to receive a full critique.",
+        "mode": "reviewer",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-06-16T05:46:51.013Z"
+      }
+    ]
+  },
+  {
+    "id": "session-lya4fz095",
+    "userId": "user-a0xukfvak",
+    "mode": "planner",
+    "status": "active",
+    "createdAt": "2026-06-16T05:46:51.755Z",
+    "updatedAt": "2026-06-16T05:46:51.755Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Planner Mode active. Tell me about your target timeline or standard tracks, and I will output a step-by-step prep roadmap.",
+        "mode": "planner",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-06-16T05:46:51.755Z"
+      }
+    ]
+  },
+  {
+    "id": "session-vvo7fyl9w",
+    "userId": "user-a0xukfvak",
+    "mode": "interview",
+    "status": "active",
+    "createdAt": "2026-06-16T05:46:53.927Z",
+    "updatedAt": "2026-06-16T05:46:53.927Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Welcome to your mock interview simulation! I'll act as your interviewer. Let's start: **Can you explain prototype inheritance in JavaScript?**",
+        "mode": "interview",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-06-16T05:46:53.927Z"
+      }
+    ]
+  },
+  {
+    "id": "session-4giaam6br",
+    "userId": "user-a0xukfvak",
+    "mode": "mentor",
+    "status": "active",
+    "createdAt": "2026-06-16T05:46:57.220Z",
+    "updatedAt": "2026-06-16T05:46:57.220Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Hello! I am your Career Mentor. Ask me any technical or placement preparation questions.",
+        "mode": "mentor",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-06-16T05:46:57.220Z"
+      }
+    ]
+  },
+  {
+    "id": "session-wcl3q9wpk",
+    "userId": "demo-user-123",
+    "mode": "dsa",
+    "status": "active",
+    "createdAt": "2026-06-16T05:56:14.104Z",
+    "updatedAt": "2026-06-16T05:56:14.104Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Hello! I am your Career Mentor. Ask me any technical or placement preparation questions.",
+        "mode": "dsa",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-06-16T05:56:14.104Z"
+      }
+    ]
+  },
+  {
+    "id": "session-vcsqhpbx0",
+    "userId": "demo-user-123",
+    "mode": "mentor",
+    "status": "active",
+    "createdAt": "2026-06-16T05:59:17.532Z",
+    "updatedAt": "2026-06-16T05:59:47.596Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "DSA Mentor active. Send me an algorithmic query or code snippet to review and optimize.",
+        "mode": "dsa",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-06-16T05:59:17.543Z"
+      },
+      {
+        "role": "user",
+        "content": "Explain closures in JavascriptExplain closures in Javascript",
+        "mode": "dsa",
+        "timestamp": "2026-06-16T05:59:47.379Z"
+      },
+      {
+        "role": "mentor",
+        "content": "Hello! As your AI Career Mentor, I can help you prepare for **Frontend Engineer** positions. You can ask me to:\n\n* Start a mock technical interview (**Interview Mode**)\n* Audit your coding logic or resume formatting (**Reviewer Mode**)\n* Outline a study curriculum (**Planner Mode**)\n\nWhat would you like to focus on today?",
+        "mode": "mentor",
+        "score": null,
+        "feedback": "Standard guidance resolved.",
+        "nextAction": "Select one of the quick options or type a response.",
+        "timestamp": "2026-06-16T05:59:47.541Z"
+      }
+    ]
+  },
+  {
+    "id": "session-1qt75eqam",
+    "userId": "demo-user-123",
+    "mode": "mentor",
+    "status": "active",
+    "createdAt": "2026-06-16T06:01:24.242Z",
+    "updatedAt": "2026-06-16T06:01:53.201Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "DSA Mentor active. Send me an algorithmic query or code snippet to review and optimize.",
+        "mode": "dsa",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-06-16T06:01:24.242Z"
+      },
+      {
+        "role": "user",
+        "content": "Explain closures in Javascript",
+        "mode": "dsa",
+        "timestamp": "2026-06-16T06:01:52.963Z"
+      },
+      {
+        "role": "mentor",
+        "content": "Hello! As your AI Career Mentor, I can help you prepare for **Frontend Engineer** positions. You can ask me to:\n\n* Start a mock technical interview (**Interview Mode**)\n* Audit your coding logic or resume formatting (**Reviewer Mode**)\n* Outline a study curriculum (**Planner Mode**)\n\nWhat would you like to focus on today?",
+        "mode": "mentor",
+        "score": null,
+        "feedback": "Standard guidance resolved.",
+        "nextAction": "Select one of the quick options or type a response.",
+        "timestamp": "2026-06-16T06:01:53.172Z"
+      }
+    ]
+  }
+]

@@ -14,15 +14,21 @@ export async function ensureIndexes(mongooseConnection) {
   }
 
   try {
-    logger.info("Applying indexing strategies on MongoDB Datastore collection...");
+    logger.info("Applying indexing strategies on normalized MongoDB collections...");
     
-    const Datastore = mongooseConnection.model('Datastore');
+    // Import models dynamically to ensure compile checks are complete
+    await import('./models.js');
     
-    // Apply indices to the nested fields to optimize search querying
-    await Datastore.collection.createIndex({ "data.users.email": 1 }, { background: true });
-    await Datastore.collection.createIndex({ "data.users.level": -1 }, { background: true });
-    await Datastore.collection.createIndex({ "data.submissions.userId": 1, "data.submissions.problemId": 1 }, { background: true });
-    await Datastore.collection.createIndex({ "data.interviews.userId": 1, "data.interviews.createdAt": -1 }, { background: true });
+    const User = mongooseConnection.model('User');
+    const Submission = mongooseConnection.model('Submission');
+    const Interview = mongooseConnection.model('Interview');
+    const Resume = mongooseConnection.model('Resume');
+    
+    // Apply indices to the normalized collections to optimize search querying
+    await User.collection.createIndex({ level: -1 }, { background: true });
+    await Submission.collection.createIndex({ userId: 1, problemId: 1 }, { background: true });
+    await Interview.collection.createIndex({ userId: 1, createdAt: -1 }, { background: true });
+    await Resume.collection.createIndex({ userId: 1 }, { background: true });
     
     logger.info("Database index optimization checks successfully applied.");
     return true;

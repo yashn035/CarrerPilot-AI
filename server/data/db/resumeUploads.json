@@ -1,0 +1,67 @@
+[
+  {
+    "id": "upload-8ca6496g2",
+    "userId": "user-frre7rrp3",
+    "fileName": "Yash_2.pdf",
+    "extractedText": "Structured Profile for %PDF-1.5. Skills: SQL",
+    "atsScore": 30,
+    "report": {
+      "ats_score": 30,
+      "keyword_match": [
+        "SQL"
+      ],
+      "missing_keywords": [],
+      "bullet_feedback": [
+        "Ensure experience descriptions follow strong metric structures."
+      ],
+      "format_score": 75,
+      "recommendation": "Clean visual flow, standard headings legibly parsed. Try adding numeric impacts to experiences."
+    },
+    "createdAt": "2026-06-16T06:03:21.066Z"
+  },
+  {
+    "id": "upload-thqbitg5v",
+    "userId": "user-frre7rrp3",
+    "fileName": "Yash_Resume (4).pdf",
+    "extractedText": "Structured Profile for %PDF-1.5. Skills: ",
+    "atsScore": 23,
+    "report": {
+      "ats_score": 23,
+      "keyword_match": [],
+      "missing_keywords": [],
+      "bullet_feedback": [
+        "Ensure experience descriptions follow strong metric structures."
+      ],
+      "format_score": 65,
+      "recommendation": "Clean visual flow, standard headings legibly parsed. Try adding numeric impacts to experiences."
+    },
+    "createdAt": "2026-06-16T06:04:10.771Z"
+  },
+  {
+    "id": "upload-7zak99mgo",
+    "userId": "user-ercu5f2r3",
+    "fileName": "Yash_Resume_Updated.pdf",
+    "extractedText": "Structured Profile for YASH NALAWADE. Skills: JAVASCRIPT, REACT, NODE, PYTHON, JAVA, SQL, MONGODB, EXPRESS",
+    "atsScore": 69,
+    "report": {
+      "ats_score": 69,
+      "keyword_match": [
+        "JAVASCRIPT",
+        "REACT",
+        "NODE",
+        "PYTHON",
+        "JAVA",
+        "SQL",
+        "MONGODB",
+        "EXPRESS"
+      ],
+      "missing_keywords": [],
+      "bullet_feedback": [
+        "Ensure experience descriptions follow strong metric structures."
+      ],
+      "format_score": 85,
+      "recommendation": "Clean visual flow, standard headings legibly parsed. Try adding numeric impacts to experiences."
+    },
+    "createdAt": "2026-06-17T14:07:47.124Z"
+  }
+]

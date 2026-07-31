@@ -168,6 +168,52 @@ export default function SkillGap() {
             </div>
           </div>
 
+          {/* Skill status levels card */}
+          <div className="bg-background-surface border border-border-subtle rounded-card p-6 space-y-4">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary">Your Skill Levels Breakdown</h3>
+            
+            <div className="space-y-4">
+              {/* Strong */}
+              <div>
+                <span className="text-[10px] font-bold text-accent-secondary uppercase tracking-wider block mb-1.5">✅ Strong (Lvl 4+)</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {user?.skills?.filter(s => s.level >= 4).map(s => s.name).map(s => (
+                    <span key={s} className="text-[10px] font-semibold px-2 py-0.5 rounded bg-accent-secondary/10 border border-accent-secondary/20 text-accent-secondary font-mono">
+                      {s}
+                    </span>
+                  ))}
+                  {(user?.skills?.filter(s => s.level >= 4).length || 0) === 0 && <span className="text-xs text-text-muted italic">None detected</span>}
+                </div>
+              </div>
+
+              {/* Moderate */}
+              <div className="pt-3 border-t border-border-subtle/30">
+                <span className="text-[10px] font-bold text-accent-gold uppercase tracking-wider block mb-1.5">⚠ Moderate (Lvl 3)</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {user?.skills?.filter(s => s.level === 3).map(s => s.name).map(s => (
+                    <span key={s} className="text-[10px] font-semibold px-2 py-0.5 rounded bg-accent-gold/10 border border-accent-gold/20 text-accent-gold font-mono">
+                      {s}
+                    </span>
+                  ))}
+                  {(user?.skills?.filter(s => s.level === 3).length || 0) === 0 && <span className="text-xs text-text-muted italic">None detected</span>}
+                </div>
+              </div>
+
+              {/* Weak */}
+              <div className="pt-3 border-t border-border-subtle/30">
+                <span className="text-[10px] font-bold text-accent-danger uppercase tracking-wider block mb-1.5">❌ Weak (Lvl &le; 2)</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {user?.skills?.filter(s => s.level <= 2).map(s => s.name).map(s => (
+                    <span key={s} className="text-[10px] font-semibold px-2 py-0.5 rounded bg-accent-danger/10 border border-accent-danger/20 text-accent-danger font-mono">
+                      {s}
+                    </span>
+                  ))}
+                  {(user?.skills?.filter(s => s.level <= 2).length || 0) === 0 && <span className="text-xs text-text-muted italic">None detected</span>}
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* Right 2 columns: Radar chart compare & step courses */}

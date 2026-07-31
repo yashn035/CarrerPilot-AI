@@ -19,6 +19,7 @@ export default function ResumeBuilder() {
   const [jobDescription, setJobDescription] = useState('');
   const [analyzing, setAnalyzing] = useState(false);
   const [report, setReport] = useState(null);
+  const [optimizerReport, setOptimizerReport] = useState(null);
   const [showHeatmap, setShowHeatmap] = useState(false);
   
   // Bullet Rewrite State
@@ -247,6 +248,26 @@ export default function ResumeBuilder() {
         const data = await res.json();
         setReport(data.report);
         addToast("ATS analysis compiled successfully!", "success");
+
+        // Job Optimizer trigger
+        if (jobDescription && jobDescription.trim()) {
+          try {
+            const optRes = await fetch(`/api/resumes/${resume.id}/optimize-job`, {
+              method: 'POST',
+              headers: getAuthHeaders(),
+              body: JSON.stringify({ jobDescription })
+            });
+            if (optRes.ok) {
+              const optData = await optRes.json();
+              setOptimizerReport(optData);
+            }
+          } catch (optErr) {
+            console.error("Job Optimizer failed:", optErr);
+          }
+        } else {
+          setOptimizerReport(null);
+        }
+
         await fetchProfile(); // Sync readiness scores
         setActiveFormTab('AI Insights'); // Activate insights tab
         if (data.leveledUp) addToast("Level Up!", "gold");
@@ -1044,6 +1065,43 @@ export default function ResumeBuilder() {
                     </ul>
                   </div>
 
+                  {/* Job Optimizer Recommendations */}
+                  {optimizerReport && (
+                    <div className="space-y-4 pt-4 border-t border-border-subtle">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-accent-gold" />
+                        <span className="text-[10px] font-bold text-accent-gold uppercase tracking-widest">Job Optimizer Suggestions</span>
+                      </div>
+                      
+                      {optimizerReport.explanation && (
+                        <p className="text-[11px] text-text-secondary leading-relaxed italic bg-[#1A1A26] border border-border-subtle p-3 rounded">
+                          "{optimizerReport.explanation}"
+                        </p>
+                      )}
+
+                      {optimizerReport.rewrittenBullets && optimizerReport.rewrittenBullets.length > 0 && (
+                        <div className="space-y-3">
+                          <span className="text-[9px] text-text-muted uppercase font-mono block">Optimized Bullet Points</span>
+                          {optimizerReport.rewrittenBullets.map((item, idx) => (
+                            <div key={idx} className="p-3 bg-[#111118] border border-border-subtle rounded space-y-2 text-xs">
+                              <div className="text-text-muted font-bold">Original: <span className="font-normal font-sans text-text-secondary">"{item.original}"</span></div>
+                              <div className="text-accent-secondary font-bold">Optimized: <span className="font-normal font-sans text-text-primary">"{item.optimized}"</span></div>
+                              <button
+                                onClick={() => {
+                                  navigator.clipboard.writeText(item.optimized);
+                                  addToast("Copied optimized bullet to clipboard!", "info");
+                                }}
+                                className="bg-[#1A1A26] hover:bg-[#252535] border border-border-subtle text-text-primary px-3 py-1 rounded text-[10px] font-semibold flex items-center gap-1.5 transition-all mt-1"
+                              >
+                                Copy Optimized Suggestion
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                 </div>
               ) : (
                 <div className="text-center py-6 text-xs text-text-muted italic">
@@ -1488,6 +1546,7 @@ export default function ResumeBuilder() {
           </div>
         </div>
 
+      </div>
       </div>
       ) : (
         /* Upload Mode Parent Container */

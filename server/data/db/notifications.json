@@ -1,5 +1,59 @@
 [
   {
+    "id": "notif-0nfy9ogqs",
+    "userId": "user-ercu5f2r3",
+    "title": "Resume ATS Scan",
+    "message": "ATS Resume optimization completed. Current score: 76/100. Grade Tier: B.",
+    "time": "Just now",
+    "createdAt": "2026-06-17T14:08:38.783Z",
+    "read": false
+  },
+  {
+    "id": "notif-p6pjf3d3d",
+    "userId": "user-ercu5f2r3",
+    "title": "Resume ATS Scan",
+    "message": "ATS Resume optimization completed. Current score: 69/100. Grade Tier: C.",
+    "time": "Just now",
+    "createdAt": "2026-06-17T14:07:47.936Z",
+    "read": false
+  },
+  {
+    "id": "notif-y8mvg05nm",
+    "userId": "user-frre7rrp3",
+    "title": "Resume ATS Scan",
+    "message": "ATS Resume optimization completed. Current score: 76/100. Grade Tier: B.",
+    "time": "Just now",
+    "createdAt": "2026-06-16T06:22:48.816Z",
+    "read": false
+  },
+  {
+    "id": "notif-mreymqfsy",
+    "userId": "user-frre7rrp3",
+    "title": "Resume ATS Scan",
+    "message": "ATS Resume optimization completed. Current score: 23/100. Grade Tier: C.",
+    "time": "Just now",
+    "createdAt": "2026-06-16T06:04:11.184Z",
+    "read": false
+  },
+  {
+    "id": "notif-5mdjgnq16",
+    "userId": "user-frre7rrp3",
+    "title": "Resume ATS Scan",
+    "message": "ATS Resume optimization completed. Current score: 30/100. Grade Tier: C.",
+    "time": "Just now",
+    "createdAt": "2026-06-16T06:03:21.140Z",
+    "read": false
+  },
+  {
+    "id": "notif-qdhaqdarq",
+    "userId": "user-a0xukfvak",
+    "title": "Resume ATS Scan",
+    "message": "ATS Resume optimization completed. Current score: 79/100. Grade Tier: B.",
+    "time": "Just now",
+    "createdAt": "2026-06-16T05:44:29.147Z",
+    "read": false
+  },
+  {
     "id": "notif-1mt7f82qu",
     "userId": "user-a0xukfvak",
     "title": "Resume ATS Scan",

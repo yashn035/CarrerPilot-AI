@@ -32,6 +32,29 @@ export default function App() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showGlobalSearch, setShowGlobalSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    if (user) {
+      const fetchNotifications = async () => {
+        try {
+          const res = await fetch('/api/dashboard/stats', {
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+          });
+          if (res.ok) {
+            const data = await res.json();
+            setNotifications(data.activityTimeline || []);
+          }
+        } catch (err) {
+          console.error("Failed to fetch notifications:", err);
+        }
+      };
+      fetchNotifications();
+      
+      const interval = setInterval(fetchNotifications, 8000);
+      return () => clearInterval(interval);
+    }
+  }, [user, activeTab]);
 
   // Fire level-up confetti
   useEffect(() => {
@@ -89,12 +112,7 @@ export default function App() {
   const activeItem = navigationItems.find(item => item.id === activeTab) || navigationItems[0];
   const ActiveComponent = activeItem.component;
 
-  // Mock Notifications database
-  const notifications = [
-    { id: 1, title: 'Quest Unlocked: welcome Pilot', time: '1 hour ago', unread: true },
-    { id: 2, title: 'AI Resume Analyzer recommendation computed', time: '2 hours ago', unread: false },
-    { id: 3, title: 'Your streak has increased to 5 days!', time: 'Yesterday', unread: false }
-  ];
+
 
   // Filtered search items
   const filteredNavItems = navigationItems.filter(item => 
@@ -210,9 +228,10 @@ export default function App() {
                   </div>
                   <div className="space-y-2.5 max-h-56 overflow-y-auto">
                     {notifications.map(n => (
-                      <div key={n.id} className="text-[11px] p-2 bg-background-elevated rounded border border-border-subtle flex flex-col justify-between">
+                      <div key={n.id} className="text-[11px] p-2 bg-background-elevated rounded border border-border-subtle flex flex-col gap-1 justify-between text-left">
                         <span className="text-text-primary font-semibold leading-normal">{n.title}</span>
-                        <span className="text-[9px] text-text-muted mt-1">{n.time}</span>
+                        {n.message && <span className="text-[10px] text-text-secondary leading-snug">{n.message}</span>}
+                        <span className="text-[9px] text-text-muted mt-0.5 font-mono">{n.time}</span>
                       </div>
                     ))}
                   </div>

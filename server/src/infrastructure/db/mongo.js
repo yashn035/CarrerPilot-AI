@@ -7,6 +7,30 @@ import {
   DB_PATH, 
   PROBLEMS_BANK_PATH 
 } from './paths.js';
+import {
+  UserModel, ResumeModel, AtsReportModel, SubmissionModel, InterviewModel,
+  QuestModel, JobModel, XpHistoryModel, DailyProblemModel, OaSessionModel,
+  JobApplicationModel, ProjectModel, NotificationModel, AiMentorMemoryModel,
+  AiMentorSessionModel
+} from './models.js';
+
+const MODEL_MAPPING = {
+  users: UserModel,
+  resumes: ResumeModel,
+  atsReports: AtsReportModel,
+  submissions: SubmissionModel,
+  interviews: InterviewModel,
+  quests: QuestModel,
+  jobs: JobModel,
+  xpHistory: XpHistoryModel,
+  dailyProblems: DailyProblemModel,
+  oaSessions: OaSessionModel,
+  jobApplications: JobApplicationModel,
+  projects: ProjectModel,
+  notifications: NotificationModel,
+  aiMentorMemory: AiMentorMemoryModel,
+  aiMentorSessions: AiMentorSessionModel
+};
 
 const COLLECTIONS = [
   'users',
@@ -81,6 +105,25 @@ async function connectMongo() {
       await ensureIndexes(mongoose);
     } catch (indexErr) {
       logger.error("Failed to run index checks:", indexErr);
+    }
+
+    // Seed empty collections with DEFAULT_DATA
+    try {
+      const userCount = await UserModel.countDocuments();
+      if (userCount === 0) {
+        logger.info("MongoDB collections empty. Seeding initial normalized data...");
+        await Promise.all(
+          Object.entries(MODEL_MAPPING).map(async ([key, model]) => {
+            const dataArray = DEFAULT_DATA[key] || [];
+            if (dataArray.length > 0) {
+              await model.insertMany(dataArray);
+            }
+          })
+        );
+        logger.info("Successfully seeded all normalized collections in MongoDB Atlas.");
+      }
+    } catch (seedErr) {
+      logger.error("Failed to seed MongoDB collections:", seedErr);
     }
     
     return true;
@@ -387,7 +430,26 @@ const DEFAULT_DATA = {
   notifications: [
     { id: "notif-1", userId: "demo-user-123", title: "Welcome Pilot", message: "Successfully log in and setup your profile.", time: "1 hour ago", read: false },
     { id: "notif-2", userId: "demo-user-123", title: "ATS Checkup complete", message: "AI Resume Analyzer recommendation computed.", time: "2 hours ago", read: true }
-  ]
+  ],
+  aiMentorMemory: [
+    {
+      userId: "demo-user-123",
+      targetRole: "Frontend Engineer",
+      targetCompanies: ["Google", "Amazon", "Stripe"],
+      weaknesses: ["Dynamic Programming", "Recursion", "System Design"],
+      strengths: ["React", "JavaScript", "CSS3"],
+      topicsDiscussed: ["arrays", "react", "caching"],
+      lastAtsScore: 72,
+      lastInterviewScore: 65,
+      dailyMissions: [
+        { id: "mission-dsa", title: "Solve 1 Array or String problem in Coding Arena", type: "dsa", completed: false, claimed: false, xpReward: 50 },
+        { id: "mission-resume", title: "Optimize 1 bullet point or scan resume", type: "resume", completed: false, claimed: false, xpReward: 50 },
+        { id: "mission-mock", title: "Run 1 Mock Interview in interview mode", type: "interview", completed: false, claimed: false, xpReward: 50 }
+      ],
+      updatedAt: "2026-06-16T11:00:00.000Z"
+    }
+  ],
+  aiMentorSessions: []
 };
 
 export async function initDb() {
@@ -453,13 +515,17 @@ export async function getDb() {
   const mongoConnected = await connectMongo();
   if (mongoConnected) {
     try {
-      let doc = await DatastoreModel.findOne({ key: 'main' });
-      if (!doc) {
-        doc = await DatastoreModel.create({ key: 'main', data: DEFAULT_DATA });
-      }
-      dbData = doc.data;
+      dbData = {};
+      const entries = Object.entries(MODEL_MAPPING);
+      const results = await Promise.all(
+        entries.map(([_, model]) => model.find({}).lean())
+      );
+      entries.forEach(([key, _], idx) => {
+        dbData[key] = results[idx];
+      });
     } catch (err) {
-      logger.error("Error reading from MongoDB Datastore, falling back to local files:", err);
+      logger.error("Error reading from MongoDB normalized collections, falling back to local files:", err);
+      dbData = null;
     }
   }
 
@@ -495,9 +561,39 @@ export async function saveDb(data) {
   const mongoConnected = await connectMongo();
   if (mongoConnected) {
     try {
-      await DatastoreModel.updateOne({ key: 'main' }, { data: strippedData });
+      await Promise.all(
+        Object.entries(MODEL_MAPPING).map(async ([key, model]) => {
+          const collectionData = strippedData[key] || [];
+          
+          let identifierField = 'id';
+          if (key === 'aiMentorMemory' || key === 'dailyProblems') {
+            identifierField = 'userId';
+          } else if (key === 'xpHistory') {
+            await model.deleteMany({});
+            if (collectionData.length > 0) {
+              await model.insertMany(collectionData);
+            }
+            return;
+          }
+
+          const bulkOps = collectionData.map(item => ({
+            updateOne: {
+              filter: { [identifierField]: item[identifierField] },
+              update: { $set: item },
+              upsert: true
+            }
+          }));
+
+          if (bulkOps.length > 0) {
+            await model.bulkWrite(bulkOps);
+          }
+
+          const currentIds = collectionData.map(item => item[identifierField]);
+          await model.deleteMany({ [identifierField]: { $nin: currentIds } });
+        })
+      );
     } catch (err) {
-      logger.error("Error saving datastore updates to MongoDB:", err);
+      logger.error("Error saving normalized collections to MongoDB:", err);
     }
   }
 

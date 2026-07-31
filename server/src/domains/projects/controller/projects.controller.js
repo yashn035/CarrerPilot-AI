@@ -25,8 +25,7 @@ export async function handleGeneratePortfolio(req, res) {
   }
   try {
     const html = await projectsService.generatePortfolio(req.userId, resumeId);
-    res.setHeader('Content-Type', 'text/html');
-    return res.send(html);
+    return res.json({ html });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

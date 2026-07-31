@@ -38,6 +38,23 @@ const ErrorCard = ({ message = 'Failed to load data.', onRetry }) => (
 export default function Dashboard() {
   const { user, claimQuest, getAuthHeaders, setActiveTab, addToast } = useUser();
 
+  const userSkills = user?.skills || [];
+  const dynamicWeak = userSkills.filter(s => s.level <= 2).map(s => s.name);
+  const dynamicModerate = userSkills.filter(s => s.level === 3).map(s => s.name);
+  const dynamicStrong = userSkills.filter(s => s.level >= 4).map(s => s.name);
+
+  const displayWeak = userSkills.length > 0
+    ? (dynamicWeak.length > 0 ? dynamicWeak : ['None detected'])
+    : ['Dynamic Programming', 'System Design', 'Behavioral Interviews'];
+
+  const displayModerate = userSkills.length > 0
+    ? (dynamicModerate.length > 0 ? dynamicModerate : ['None detected'])
+    : ['Graphs', 'React Performance'];
+
+  const displayStrong = userSkills.length > 0
+    ? (dynamicStrong.length > 0 ? dynamicStrong : ['None detected'])
+    : ['Arrays', 'Strings', 'HashMaps'];
+
   // ── Daily Prescription ──
   const [dailyPrescription, setDailyPrescription] = useState(null);
   const [loadingDaily, setLoadingDaily]   = useState(true);
@@ -675,7 +692,7 @@ export default function Dashboard() {
               <div className="space-y-2">
                 <span className="text-[10px] font-bold text-accent-danger uppercase tracking-wider block">❌ Weak Areas</span>
                 <div className="space-y-1.5 pl-1.5">
-                  {['Dynamic Programming', 'System Design', 'Behavioral Interviews'].map(skill => (
+                  {displayWeak.map(skill => (
                     <div key={skill} className="text-xs font-semibold text-text-secondary flex items-center gap-2">
                       <div className="w-1 h-1 rounded-full bg-accent-danger" />
                       {skill}
@@ -688,7 +705,7 @@ export default function Dashboard() {
               <div className="space-y-2 pt-2 border-t border-border-subtle/30">
                 <span className="text-[10px] font-bold text-accent-gold uppercase tracking-wider block">⚠ Moderate</span>
                 <div className="space-y-1.5 pl-1.5">
-                  {['Graphs', 'React Performance'].map(skill => (
+                  {displayModerate.map(skill => (
                     <div key={skill} className="text-xs font-semibold text-text-secondary flex items-center gap-2">
                       <div className="w-1 h-1 rounded-full bg-accent-gold" />
                       {skill}
@@ -701,7 +718,7 @@ export default function Dashboard() {
               <div className="space-y-2 pt-2 border-t border-border-subtle/30">
                 <span className="text-[10px] font-bold text-accent-secondary uppercase tracking-wider block">✅ Strong</span>
                 <div className="space-y-1.5 pl-1.5">
-                  {['Arrays', 'Strings', 'HashMaps'].map(skill => (
+                  {displayStrong.map(skill => (
                     <div key={skill} className="text-xs font-semibold text-text-secondary flex items-center gap-2">
                       <div className="w-1 h-1 rounded-full bg-accent-secondary" />
                       {skill}

@@ -48,9 +48,54 @@ export async function handleEndSession(req, res) {
   }
 }
 
+export async function handleGetRoadmap(req, res) {
+  const { company } = req.query;
+  try {
+    const roadmap = await aiMentorService.generateRoadmap(req.userId, company);
+    return res.json(roadmap);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+}
+
+export async function handleGetReadiness(req, res) {
+  try {
+    const readiness = await aiMentorService.predictPlacementReadiness(req.userId);
+    return res.json(readiness);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+}
+
+export async function handleGetMissions(req, res) {
+  try {
+    const missions = await aiMentorService.getDailyMissions(req.userId);
+    return res.json(missions);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+}
+
+export async function handleClaimMission(req, res) {
+  const { missionId } = req.body;
+  if (!missionId) {
+    return res.status(400).json({ message: "Mission ID is required" });
+  }
+  try {
+    const result = await aiMentorService.claimDailyMission(req.userId, missionId);
+    return res.json(result);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+}
+
 export default {
   handleStartSession,
   handleChat,
   handleGetHistory,
-  handleEndSession
+  handleEndSession,
+  handleGetRoadmap,
+  handleGetReadiness,
+  handleGetMissions,
+  handleClaimMission
 };

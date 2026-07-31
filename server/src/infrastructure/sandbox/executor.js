@@ -1,4 +1,7 @@
 import logger from '../../shared/logger/logger.js';
+import { executeJS } from './isolated.executor.js';
+
+const USE_LOCAL_SANDBOX = process.env.USE_LOCAL_SANDBOX !== 'false';
 
 // Helper: Compile JS Code with test case verification wrapper
 function compileJsTestRunner(userCode, functionName, testCases) {
@@ -376,6 +379,36 @@ export async function runSandboxCode(code, language, problemId, testCases) {
     if (functionMap[problemId].py) config.py = functionMap[problemId].py;
     if (functionMap[problemId].pyClass) config.pyClass = functionMap[problemId].pyClass;
   }
+
+  // --- LOCAL SANDBOX INTERCEPT ---
+  if (language === 'javascript' && USE_LOCAL_SANDBOX) {
+    try {
+      logger.info("Executing user solution in local isolated-vm sandbox...");
+      const result = await executeJS(code, testCases);
+      if (result.error) {
+        // Fallback to piston
+        logger.warn("[Sandbox] Local execution threw error, maybe parsing issue. Falling back to Piston.");
+      } else {
+        return {
+          success: result.success,
+          passedCount: result.results.filter(r => r.passed).length,
+          totalCount: result.results.length,
+          results: result.results.map(r => ({
+            passed: r.passed,
+            stdout: r.error || JSON.stringify(r.actual),
+            stderr: r.error || '',
+            expected: JSON.stringify(r.expected),
+            actual: r.error ? "Error: " + r.error : JSON.stringify(r.actual)
+          })),
+          output: result.output,
+          error: result.error
+        };
+      }
+    } catch (err) {
+      logger.warn('[Sandbox] Local execution failed, falling back to Piston:', err.message);
+    }
+  }
+  // -------------------------------
 
   let runnerCode = '';
   let pistonLang = language;

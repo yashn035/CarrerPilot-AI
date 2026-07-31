@@ -331,7 +331,7 @@ export async function rewriteResumeBullet(userId, bullet) {
       const hasNumberHallucination = ['option1', 'option2', 'option3'].some(key => {
         const optText = parsed[key] || '';
         const optNumbers = optText.match(/\d+/g) || [];
-        return optNumbers.some(n => !userNumbers.includes(n));
+        return userNumbers.length > 0 && optNumbers.some(n => !userNumbers.includes(n));
       });
 
       if (!hasNumberHallucination && parsed.option1 && parsed.option2 && parsed.option3) {

@@ -23,6 +23,7 @@ export default function Settings() {
         headers: getAuthHeaders(),
         body: JSON.stringify({
           name,
+          title,
           targetRole: role,
           skills: (user?.skills || []).map(s => s.name),
           experienceLevel: user?.experienceLevel || 'Student',
