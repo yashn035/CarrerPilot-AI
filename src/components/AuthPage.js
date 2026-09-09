@@ -3,12 +3,14 @@ import { useUser } from '../context/UserContext';
 import { Terminal, Shield, Award, Sparkles, LogIn, UserPlus } from 'lucide-react';
 
 export default function AuthPage() {
-  const { login, register } = useUser();
+  const { login, verifyOTPLogin, register } = useUser();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
+  const [otpStep, setOtpStep] = useState(false);
+  const [otp, setOtp] = useState('');
 
   const handleForgotPassword = () => {
     const emailPrompt = prompt("Enter your registered email address to recover password:", email);
@@ -17,22 +19,26 @@ export default function AuthPage() {
     }
   };
 
-  const handleGoogleLogin = async () => {
+  const handleGoogleLogin = () => {
     setLoading(true);
-    alert("Redirecting to secure Google Accounts synchronization cockpit...");
-    setTimeout(async () => {
-      await login('demouser@careerpilot.ai', 'password123');
-      setLoading(false);
-    }, 1500);
+    window.location.href = '/api/auth/google';
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (isLogin) {
-      await login(email, password);
+    
+    if (otpStep) {
+      await verifyOTPLogin(email, otp);
     } else {
-      await register(name, email, password);
+      if (isLogin) {
+        const res = await login(email, password);
+        if (res.requiresOTP) {
+          setOtpStep(true);
+        }
+      } else {
+        await register(name, email, password);
+      }
     }
     setLoading(false);
   };
@@ -68,54 +74,72 @@ export default function AuthPage() {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {!isLogin && (
+            {otpStep ? (
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">Full Name</label>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">Enter 6-Digit OTP</label>
                 <input
                   type="text"
                   required
-                  placeholder="Alex Mercer"
-                  className="w-full bg-background-elevated border border-border-subtle rounded-input px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-primary focus:ring-1 focus:ring-accent-primary transition-all"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  autoFocus
+                  maxLength={6}
+                  placeholder="123456"
+                  className="w-full bg-background-elevated border border-border-subtle rounded-input px-4 py-2.5 text-sm text-text-primary text-center tracking-widest placeholder:text-text-muted focus:outline-none focus:border-accent-primary focus:ring-1 focus:ring-accent-primary transition-all"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
                 />
               </div>
-            )}
-
-            <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">Email Address</label>
-              <input
-                type="email"
-                required
-                placeholder="pilot@careerpilot.ai"
-                className="w-full bg-background-elevated border border-border-subtle rounded-input px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-primary focus:ring-1 focus:ring-accent-primary transition-all"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <div className="flex justify-between items-center mb-1.5">
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary">Password</label>
-                {isLogin && (
-                  <button
-                    type="button"
-                    onClick={handleForgotPassword}
-                    className="text-[11px] text-accent-primary hover:underline font-semibold"
-                  >
-                    Forgot Password?
-                  </button>
+            ) : (
+              <>
+                {!isLogin && (
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">Full Name</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Alex Mercer"
+                      className="w-full bg-background-elevated border border-border-subtle rounded-input px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-primary focus:ring-1 focus:ring-accent-primary transition-all"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
                 )}
-              </div>
-              <input
-                type="password"
-                required
-                placeholder="••••••••"
-                className="w-full bg-background-elevated border border-border-subtle rounded-input px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-primary focus:ring-1 focus:ring-accent-primary transition-all"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">Email Address</label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="pilot@careerpilot.ai"
+                    className="w-full bg-background-elevated border border-border-subtle rounded-input px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-primary focus:ring-1 focus:ring-accent-primary transition-all"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <div className="flex justify-between items-center mb-1.5">
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-text-secondary">Password</label>
+                    {isLogin && (
+                      <button
+                        type="button"
+                        onClick={handleForgotPassword}
+                        className="text-[11px] text-accent-primary hover:underline font-semibold"
+                      >
+                        Forgot Password?
+                      </button>
+                    )}
+                  </div>
+                  <input
+                    type="password"
+                    required
+                    placeholder="••••••••"
+                    className="w-full bg-background-elevated border border-border-subtle rounded-input px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-primary focus:ring-1 focus:ring-accent-primary transition-all"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              </>
+            )}
 
             <button
               type="submit"
@@ -124,6 +148,10 @@ export default function AuthPage() {
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : otpStep ? (
+                <>
+                  <Shield className="w-4 h-4" /> Verify OTP
+                </>
               ) : isLogin ? (
                 <>
                   <LogIn className="w-4 h-4" /> Enter Cockpit
@@ -135,16 +163,16 @@ export default function AuthPage() {
               )}
             </button>
 
-            {isLogin && (
+            {!otpStep && (
               <button
                 type="button"
                 onClick={handleGoogleLogin}
                 className="w-full bg-[#1C1C28] hover:bg-[#252535] border border-border-subtle hover:border-text-muted text-text-primary py-2.5 rounded-btn font-semibold text-sm flex items-center justify-center gap-2.5 transform active:scale-[0.98] transition-all mt-3"
               >
-                <svg className="w-4.5 h-4.5" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114A5.857 5.857 0 0 1 8.1 12.67a5.857 5.857 0 0 1 5.89-5.843c1.55 0 2.96.6 4.02 1.57l3.1-3.1A9.972 9.972 0 0 0 13.99 2 9.99 9.99 0 0 0 4 12c0 5.52 4.47 10 9.99 10 5.76 0 10.01-4.04 10.01-10 0-.68-.06-1.33-.16-1.715H12.24Z"/>
                 </svg>
-                Sign In with Google
+                {isLogin ? 'Sign In with Google' : 'Sign Up with Google'}
               </button>
             )}
           </form>

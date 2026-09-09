@@ -3,7 +3,7 @@ import { authenticateToken } from '../middlewares/auth.js';
 
 // Domain Router Imports
 import authRouter from '../domains/auth/auth.routes.js';
-import resumeRouter from '../domains/resumes/resume.routes.js';
+
 import codingRouter from '../domains/coding/coding.routes.js';
 import interviewRouter from '../domains/interviews/interview.routes.js';
 import profileRouter from '../domains/profile/profile.routes.js';
@@ -14,6 +14,8 @@ import dashboardRouter from '../domains/dashboard/dashboard.routes.js';
 import aiMentorRouter from '../domains/ai-mentor/ai-mentor.routes.js';
 import mockInterviewRouter from '../domains/mock-interview/mock-interview.routes.js';
 import assessmentRoutes from '../domains/assessment/assessment.routes.js';
+import resumeRouter from '../domains/resumes/routes/resume.routes.js';
+import groqRouter from '../domains/resumes/routes/groq.routes.js';
 
 // Coding Controller Imports for OA and Company tracks
 import {
@@ -27,15 +29,13 @@ import {
   handleGetCompanyAiGuide
 } from '../domains/coding/controller/coding.controller.js';
 
-// Project Controller Imports
-import { handleGeneratePortfolio } from '../domains/projects/controller/projects.controller.js';
+
 
 const router = Router();
 
 // 1. Mount Modular Domain Sub-routers
 router.use('/auth', authRouter);
-router.use('/resumes', resumeRouter);
-router.use('/resume', resumeRouter);
+
 router.use('/coding', codingRouter);
 router.use('/interviews', interviewRouter);
 router.use('/profile', profileRouter);
@@ -47,6 +47,10 @@ router.use('/ai-mentor', aiMentorRouter);
 router.use('/mentor', aiMentorRouter);
 router.use('/mock-interview', mockInterviewRouter);
 router.use('/assessment', assessmentRoutes);
+
+// New Resume Builder Domain Routes
+router.use('/resumes/groq', groqRouter);
+router.use('/resumes', resumeRouter);
 
 // 2. Mount OA (Online Assessment) Simulator paths
 const oaRouter = Router();
@@ -66,7 +70,6 @@ companyTracksRouter.get('/:company/analytics', handleGetCompanyAnalytics);
 companyTracksRouter.get('/:company/ai-guide', handleGetCompanyAiGuide);
 router.use('/company-tracks', companyTracksRouter);
 
-// 4. Mount Legacy Portfolio Generation path
-router.post('/portfolio/generate', authenticateToken, handleGeneratePortfolio);
+
 
 export default router;

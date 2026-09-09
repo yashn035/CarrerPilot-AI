@@ -2,6 +2,7 @@ import CircuitBreaker from 'opossum';
 import { callGemini } from './providers/gemini.js';
 import { callClaude } from './providers/claude.js';
 import { callOpenAI } from './providers/openai.js';
+import { SemanticCache } from '../cache/semantic.cache.js';
 
 // Provider configuration with priority order and circuit‑breaker options
 const PROVIDERS = [
@@ -84,3 +85,28 @@ export function getCircuitStates() {
   }
   return states;
 }
+
+export const LLMRouter = {
+  route: async (prompt, routeType = 'fast', useCache = false, systemPrompt = '') => {
+    // 1. Check Semantic Cache
+    if (useCache) {
+      const cached = SemanticCache.get(prompt);
+      if (cached) {
+        return { text: cached, cached: true };
+      }
+    }
+
+    // 2. Call Providers
+    const result = await routeAIRequest(prompt, systemPrompt);
+    
+    // Normalize response text based on the result structure (mock or real)
+    const text = typeof result.response === 'string' ? result.response : (result.response?.text || result.response);
+
+    // 3. Store in Cache
+    if (useCache) {
+      SemanticCache.set(prompt, text);
+    }
+
+    return { text, provider: result.provider, cached: false };
+  }
+};

@@ -18,15 +18,4 @@ export async function handleEvaluateRepo(req, res) {
   }
 }
 
-export async function handleGeneratePortfolio(req, res) {
-  const { resumeId } = req.body;
-  if (!resumeId) {
-    return res.status(400).json({ message: "Resume ID is required" });
-  }
-  try {
-    const html = await projectsService.generatePortfolio(req.userId, resumeId);
-    return res.json({ html });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-}
+

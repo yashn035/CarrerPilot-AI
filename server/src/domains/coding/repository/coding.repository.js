@@ -25,7 +25,7 @@ export async function getProblemsList() {
 
 export async function getProblemById(id) {
   const db = await getDb();
-  return db.codingProblems.find(p => p.id === id);
+  return (db.codingProblems || []).find(p => p.id === id || p.titleSlug === id);
 }
 
 export async function getSubmissions(userId) {

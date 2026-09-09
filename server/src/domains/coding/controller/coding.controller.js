@@ -1,161 +1,79 @@
 import * as codingService from '../service/coding.service.js';
+import logger from '../../../shared/logger/logger.js';
 
 export async function handleGetProblems(req, res) {
   try {
-    const problems = await codingService.getProblems(req.query);
-    return res.json(problems);
+    const filters = req.query || {};
+    const problems = await codingService.getProblems(filters);
+    return res.status(200).json(problems);
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    logger.error('Error fetching problems:', err);
+    return res.status(500).json({ message: err.message || 'Failed to fetch problems' });
   }
 }
 
 export async function handleGetProblemById(req, res) {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const problem = await codingService.getProblemById(id);
-    return res.json(problem);
+    return res.status(200).json(problem);
   } catch (err) {
-    const statusCode = err.message === 'Problem not found' ? 404 : 500;
-    return res.status(statusCode).json({ message: err.message });
+    return res.status(404).json({ message: err.message || 'Problem not found' });
   }
 }
 
-export async function handleGetApproaches(req, res) {
-  const { id } = req.params;
+export async function handleRunCode(req, res) {
   try {
-    const approaches = await codingService.getProblemApproaches(id);
-    return res.json(approaches);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-}
+    const userId = req.user?.id || 'demo-user-123';
+    const { id } = req.params;
+    const { code, language } = req.body;
 
-export async function handleGetDailyPrescription(req, res) {
-  try {
-    const result = await codingService.getDailyPrescriptionFromService(req.userId);
-    return res.json(result);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-}
+    if (!code || !language) {
+      return res.status(400).json({ message: 'Code and language parameters are required' });
+    }
 
-export async function handleReplaceDaily(req, res) {
-  try {
-    const result = await codingService.replaceDailyProblem(req.userId);
-    return res.json(result);
+    const result = await codingService.runCode(userId, id, code, language);
+    return res.status(200).json(result);
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    logger.error('Error running code:', err);
+    return res.status(500).json({ message: err.message || 'Code execution failed' });
   }
 }
 
 export async function handleSubmitSolution(req, res) {
   try {
-    const payload = { ...req.body };
-    if (req.params.id && !payload.problemId) {
-      payload.problemId = req.params.id;
+    const userId = req.user?.id || 'demo-user-123';
+    const id = req.params.id || req.body.problemId;
+    const { code, language } = req.body;
+
+    if (!id || !code || !language) {
+      return res.status(400).json({ message: 'problemId, code, and language are required' });
     }
-    const result = await codingService.submitProblemSolution(req.userId, payload);
-    return res.json(result);
+
+    const result = await codingService.submitCode(userId, id, code, language);
+    return res.status(200).json(result);
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    logger.error('Error submitting code:', err);
+    return res.status(500).json({ message: err.message || 'Submission failed' });
   }
 }
 
-export async function handleGetHistory(req, res) {
+export async function handleGetUserProgress(req, res) {
   try {
-    const history = await codingService.getSolvingHistory(req.userId);
-    return res.json(history);
+    const userId = req.user?.id || 'demo-user-123';
+    const progress = await codingService.getUserProgressSummary(userId);
+    return res.status(200).json(progress);
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    logger.error('Error fetching progress:', err);
+    return res.status(500).json({ message: err.message || 'Failed to fetch progress' });
   }
 }
 
-export async function handleSaveFollowUps(req, res) {
-  const targetId = req.params.id || req.body.submissionId;
-  const { answers } = req.body;
-  try {
-    const result = await codingService.saveFollowUpAnswers(req.userId, targetId, answers);
-    return res.json(result);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-}
-
-// OA Handlers
-export async function handleStartOa(req, res) {
-  try {
-    const session = await codingService.startOaSession(req.userId);
-    return res.json(session);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-}
-
-export async function handleSubmitOaProblem(req, res) {
-  try {
-    const runResult = await codingService.submitOaProblem(req.userId, req.body);
-    return res.json({ runResult });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-}
-
-export async function handleEndOa(req, res) {
-  const { sessionId } = req.body;
-  try {
-    const result = await codingService.endOaSession(req.userId, sessionId);
-    return res.json(result);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-}
-
-// Company Tracks Handlers
 export async function handleGetCompanyTracks(req, res) {
   try {
-    const list = codingService.getCompanyTracksList();
-    return res.json(list);
+    const tracks = codingService.getCompanyTracks();
+    return res.status(200).json(tracks);
   } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-}
-
-export async function handleGetCompanyMeta(req, res) {
-  try {
-    const companyName = decodeURIComponent(req.params.company);
-    const meta = codingService.getCompanyMeta(companyName);
-    return res.json(meta);
-  } catch (err) {
-    return res.status(404).json({ message: err.message });
-  }
-}
-
-export async function handleGetCompanyQuestions(req, res) {
-  try {
-    const companyName = decodeURIComponent(req.params.company);
-    const questions = codingService.getCompanyQuestions(companyName, req.query);
-    return res.json(questions);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-}
-
-export async function handleGetCompanyAnalytics(req, res) {
-  try {
-    const companyName = decodeURIComponent(req.params.company);
-    const analytics = await codingService.getCompanyAnalytics(req.userId, companyName);
-    return res.json(analytics);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-}
-
-export async function handleGetCompanyAiGuide(req, res) {
-  try {
-    const companyName = decodeURIComponent(req.params.company);
-    const guideText = await codingService.getCompanyAiGuide(companyName);
-    return res.json({ guide: guideText });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message || 'Failed to fetch company tracks' });
   }
 }

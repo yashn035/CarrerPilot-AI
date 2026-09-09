@@ -199,5 +199,138 @@
         "timestamp": "2026-06-16T06:01:53.172Z"
       }
     ]
+  },
+  {
+    "id": "session-n773cnx2h",
+    "userId": "demo-user-123",
+    "mode": "dsa",
+    "status": "active",
+    "createdAt": "2026-08-02T16:23:17.601Z",
+    "updatedAt": "2026-08-02T16:23:17.601Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "DSA Mentor active. Send me an algorithmic query or code snippet to review and optimize.",
+        "mode": "dsa",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-08-02T16:23:17.601Z"
+      }
+    ]
+  },
+  {
+    "id": "session-7uwwbqlvk",
+    "userId": "demo-user-123",
+    "mode": "career",
+    "status": "active",
+    "createdAt": "2026-08-02T16:37:39.530Z",
+    "updatedAt": "2026-08-02T16:37:39.530Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Career Coach active. Ask me about job switches, negotiation strategies, or general growth.",
+        "mode": "career",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-08-02T16:37:39.530Z"
+      }
+    ]
+  },
+  {
+    "id": "session-2owgowsdv",
+    "userId": "demo-user-123",
+    "mode": "system_design",
+    "status": "active",
+    "createdAt": "2026-08-02T16:37:40.491Z",
+    "updatedAt": "2026-08-02T16:37:40.491Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "System Design Mentor active. Tell me what service you want to design (e.g. Rate Limiter, TinyURL).",
+        "mode": "system_design",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-08-02T16:37:40.491Z"
+      }
+    ]
+  },
+  {
+    "id": "session-ygqldxhn5",
+    "userId": "demo-user-123",
+    "mode": "interview",
+    "status": "active",
+    "createdAt": "2026-08-02T16:37:41.733Z",
+    "updatedAt": "2026-08-02T16:37:41.733Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Welcome to your mock interview simulation! I'll act as your interviewer. Let's start: **Can you explain prototype inheritance in JavaScript?**",
+        "mode": "interview",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-08-02T16:37:41.733Z"
+      }
+    ]
+  },
+  {
+    "id": "session-gcbw3ct5e",
+    "userId": "demo-user-123",
+    "mode": "resume",
+    "status": "active",
+    "createdAt": "2026-08-02T16:37:42.663Z",
+    "updatedAt": "2026-08-02T16:37:42.663Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Resume Mode active. Paste your bullet points or ask for an ATS keyword audit.",
+        "mode": "resume",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-08-02T16:37:42.663Z"
+      }
+    ]
+  },
+  {
+    "id": "session-6ekar8l00",
+    "userId": "demo-user-123",
+    "mode": "dsa",
+    "status": "active",
+    "createdAt": "2026-08-02T16:37:43.604Z",
+    "updatedAt": "2026-08-02T16:37:43.604Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "DSA Mentor active. Send me an algorithmic query or code snippet to review and optimize.",
+        "mode": "dsa",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-08-02T16:37:43.604Z"
+      }
+    ]
+  },
+  {
+    "id": "session-9262znu8n",
+    "userId": "demo-user-123",
+    "mode": "placement",
+    "status": "active",
+    "createdAt": "2026-08-02T16:37:44.425Z",
+    "updatedAt": "2026-08-02T16:37:44.425Z",
+    "messages": [
+      {
+        "role": "mentor",
+        "content": "Hello! I am your Placement Mentor. Select your target company to generate a structured 4-week roadmap.",
+        "mode": "placement",
+        "score": null,
+        "feedback": "Session initialized",
+        "nextAction": "Provide candidate response",
+        "timestamp": "2026-08-02T16:37:44.425Z"
+      }
+    ]
   }
 ]

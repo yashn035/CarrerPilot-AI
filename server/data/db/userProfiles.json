@@ -114,5 +114,22 @@
     ],
     "fileName": "Yash_Resume_Updated.pdf",
     "createdAt": "2026-06-17T14:07:26.197Z"
+  },
+  {
+    "id": "prof-m7o0yy1bo",
+    "userId": "user-7phmdqywx",
+    "name": "%PDF-1.5",
+    "skills": [],
+    "projects": [],
+    "experience": [],
+    "education": "Undergraduate Study",
+    "strengths": [
+      "Communication Skills"
+    ],
+    "weak_areas": [
+      "System Architecture Details"
+    ],
+    "fileName": "yash.pdf",
+    "createdAt": "2026-08-02T15:27:30.525Z"
   }
 ]

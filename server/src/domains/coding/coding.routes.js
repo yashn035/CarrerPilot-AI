@@ -3,30 +3,38 @@ import { authenticateToken } from '../../middlewares/auth.js';
 import {
   handleGetProblems,
   handleGetProblemById,
-  handleGetApproaches,
-  handleGetDailyPrescription,
-  handleReplaceDaily,
+  handleRunCode,
   handleSubmitSolution,
-  handleGetHistory,
-  handleSaveFollowUps
+  handleGetUserProgress,
+  handleGetCompanyTracks
 } from './controller/coding.controller.js';
+import {
+  handleStartOa,
+  handleSubmitOaAnswer,
+  handleRecordWarning,
+  handleEndOa
+} from './controller/oa.controller.js';
 
 const router = Router();
 
 router.use(authenticateToken);
 
+// Problem Browser & General Coding Arena Endpoints
 router.get('/', handleGetProblems);
-router.get('/daily', handleGetDailyPrescription);
-router.post('/daily/replace', handleReplaceDaily);
-router.get('/history', handleGetHistory);
+router.get('/problems', handleGetProblems);
+router.get('/progress', handleGetUserProgress);
+router.get('/company-tracks', handleGetCompanyTracks);
 
-// Frontend-facing submit/followup aliases
+// OA Simulator Endpoints
+router.post('/oa/start', handleStartOa);
+router.post('/oa/answer', handleSubmitOaAnswer);
+router.post('/oa/warning', handleRecordWarning);
+router.post('/oa/end', handleEndOa);
+
+// Code Execution & Single Problem Endpoints
 router.post('/submit', handleSubmitSolution);
-router.post('/submissions/:id/followups', handleSaveFollowUps);
-
 router.get('/:id', handleGetProblemById);
-router.get('/:id/approaches', handleGetApproaches);
+router.post('/:id/run', handleRunCode);
 router.post('/:id/submit', handleSubmitSolution);
-router.post('/:id/followups', handleSaveFollowUps);
 
 export default router;

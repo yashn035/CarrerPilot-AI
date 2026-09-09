@@ -8,16 +8,15 @@ import {
   PROBLEMS_BANK_PATH 
 } from './paths.js';
 import {
-  UserModel, ResumeModel, AtsReportModel, SubmissionModel, InterviewModel,
+  UserModel, SubmissionModel, InterviewModel,
   QuestModel, JobModel, XpHistoryModel, DailyProblemModel, OaSessionModel,
   JobApplicationModel, ProjectModel, NotificationModel, AiMentorMemoryModel,
-  AiMentorSessionModel
+  AiMentorSessionModel, ResumeProjectModel
 } from './models.js';
 
 const MODEL_MAPPING = {
   users: UserModel,
-  resumes: ResumeModel,
-  atsReports: AtsReportModel,
+
   submissions: SubmissionModel,
   interviews: InterviewModel,
   quests: QuestModel,
@@ -29,13 +28,13 @@ const MODEL_MAPPING = {
   projects: ProjectModel,
   notifications: NotificationModel,
   aiMentorMemory: AiMentorMemoryModel,
-  aiMentorSessions: AiMentorSessionModel
+  aiMentorSessions: AiMentorSessionModel,
+  resumeProjects: ResumeProjectModel
 };
 
 const COLLECTIONS = [
   'users',
-  'resumes',
-  'atsReports',
+
   'submissions',
   'interviews',
   'quests',
@@ -52,7 +51,7 @@ const COLLECTIONS = [
   'interviewSessions',
   'interviewQuestions',
   'interviewResults',
-  'resumeUploads'
+  'resumeProjects'
 ];
 
 const datastoreSchema = new mongoose.Schema({
@@ -160,7 +159,7 @@ const DEFAULT_DATA = {
       completedQuests: ["first-login"],
       achievements: ["ats-builder"],
       scores: {
-        resume: 72,
+
         dsa: 65,
         projects: 70,
         communication: 60,
@@ -169,82 +168,7 @@ const DEFAULT_DATA = {
       onboarded: true
     }
   ],
-  resumes: [
-    {
-      id: "res-1",
-      userId: "demo-user-123",
-      version: 1,
-      title: "Full Stack Developer Resume v1",
-      updatedAt: "2026-06-09T18:30:00.000Z",
-      personalInfo: {
-        name: "Alex Mercer",
-        email: "alex.mercer@gmail.com",
-        phone: "+1 (555) 019-2834",
-        linkedin: "linkedin.com/in/alexmercer",
-        github: "github.com/alexmercer",
-        portfolio: "alexmercer.dev"
-      },
-      education: [
-        {
-          id: "edu-1",
-          school: "Tech Institute of Technology",
-          degree: "B.S. in Computer Science",
-          location: "San Francisco, CA",
-          date: "2022 - 2026",
-          gpa: "3.8/4.0"
-        }
-      ],
-      experience: [
-        {
-          id: "exp-1",
-          company: "ByteCraft Solutions",
-          role: "Frontend Developer Intern",
-          location: "Remote",
-          date: "Summer 2025",
-          description: "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
-        }
-      ],
-      projects: [
-        {
-          id: "proj-1",
-          title: "DevRank - Developer Portfolio Engine",
-          date: "Fall 2025",
-          technologies: "React, Express, Tailwind CSS",
-          description: "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
-        }
-      ],
-      skills: ["React", "JavaScript", "HTML5", "CSS3", "Node.js", "Express", "Tailwind CSS", "Git"],
-      certifications: ["AWS Certified Cloud Practitioner", "Meta Front-End Developer Certificate"]
-    }
-  ],
-  atsReports: [
-    {
-      id: "report-1",
-      resumeId: "res-1",
-      score: 72,
-      grade: "B",
-      sections: {
-        contact: 100,
-        experience: 65,
-        projects: 70,
-        skills: 80,
-        education: 90
-      },
-      keywords: {
-        found: ["React", "JavaScript", "Node.js", "Express", "Git", "Tailwind CSS"],
-        missing: ["Redux", "TypeScript", "Docker", "REST APIs", "Unit Testing"]
-      },
-      grammarIssues: [
-        { line: "Fixed responsiveness bugs", issue: "Passive tone. Suggest starting with action verbs like 'Resolved' or 'Engineered'.", suggestion: "Resolved 15+ complex responsive styling anomalies across core dashboards." }
-      ],
-      suggestions: [
-        "Include more concrete metrics in experience descriptions (e.g., 'improved performance by 15%').",
-        "Add TypeScript to your projects section to show type-safety proficiency.",
-        "Add Docker and REST APIs as keywords to rank higher for Full Stack roles.",
-        "Rewrite experience bullets to follow the Action + Context + Metric format."
-      ]
-    }
-  ],
+
   codingProblems: [
     {
       id: "two-sum",
@@ -499,15 +423,29 @@ export async function initDb() {
 let cachedProblems = null;
 
 export async function getProblemsBank() {
-  if (cachedProblems) return cachedProblems;
+  if (mongoose.connection.readyState === 1) {
+    try {
+      const ProblemModel = mongoose.models.Problem || mongoose.model('Problem');
+      const docs = await ProblemModel.find({}).lean();
+      if (docs && docs.length > 0) {
+        return docs.map(d => ({ ...d, id: d.id || d.titleSlug }));
+      }
+    } catch (e) {
+      logger.error("Error querying Problem model from MongoDB Atlas:", e.message);
+    }
+  }
+
   try {
     const data = await fs.readFile(PROBLEMS_BANK_PATH, 'utf-8');
-    cachedProblems = JSON.parse(data);
-    return cachedProblems;
+    const parsed = JSON.parse(data);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      cachedProblems = parsed.map(p => ({ ...p, id: p.id || p.titleSlug }));
+      return cachedProblems;
+    }
   } catch (err) {
     logger.error("Failed to read problems bank from disk, using defaults:", err);
-    return DEFAULT_DATA.codingProblems || [];
   }
+  return DEFAULT_DATA.codingProblems || [];
 }
 
 export async function getDb() {

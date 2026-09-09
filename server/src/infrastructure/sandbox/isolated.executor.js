@@ -1,4 +1,10 @@
-import ivm from 'isolated-vm';
+let ivm = null;
+try {
+  const mod = await import('isolated-vm');
+  ivm = mod.default || mod;
+} catch (e) {
+  console.log('[Sandbox] isolated-vm not found or failed to load. Will fallback to Piston.');
+}
 
 const TIMEOUT = parseInt(process.env.SANDBOX_TIMEOUT) || 5000; // 5 seconds
 const MEMORY_LIMIT = parseInt(process.env.SANDBOX_MEMORY) || 128; // MB
@@ -10,6 +16,10 @@ const MEMORY_LIMIT = parseInt(process.env.SANDBOX_MEMORY) || 128; // MB
  * @returns {Promise<Object>} - { success, results, output, error }
  */
 export async function executeJS(code, testCases = []) {
+  if (!ivm) {
+    return { success: false, results: [], output: '', error: 'isolated-vm not available' };
+  }
+
   const isolate = new ivm.Isolate({ memoryLimit: MEMORY_LIMIT });
   const context = await isolate.createContext();
 

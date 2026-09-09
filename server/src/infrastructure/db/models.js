@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true, index: true },
   email: { type: String, required: true, unique: true, index: true },
   password: { type: String, required: true },
+  googleId: { type: String, default: null },
   name: { type: String, required: true },
   title: { type: String, default: 'New CareerPilot Student' },
   targetRole: { type: String, default: 'Full-Stack Developer' },
@@ -275,6 +276,19 @@ const AiMentorSessionSchema = new mongoose.Schema({
   }]
 });
 
+// 16. Resume Project Schema
+const ResumeProjectSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true, index: true },
+  userId: { type: String, required: true, index: true },
+  name: { type: String, default: 'Untitled Resume' },
+  creationMethod: { type: String, default: 'BUILDER' }, // "TEMPLATE", "BUILDER", "CODE"
+  templateId: { type: String, default: null },
+  resumeData: { type: Object, default: {} },
+  latexSource: { type: String, default: '' },
+  pdfUrl: { type: String, default: '' },
+  updatedAt: { type: String }
+}, { timestamps: true });
+
 // Export Mongoose Models
 export const UserModel = mongoose.models.User || mongoose.model('User', UserSchema);
 export const ResumeModel = mongoose.models.Resume || mongoose.model('Resume', ResumeSchema);
@@ -291,3 +305,4 @@ export const ProjectModel = mongoose.models.Project || mongoose.model('Project',
 export const NotificationModel = mongoose.models.Notification || mongoose.model('Notification', NotificationSchema);
 export const AiMentorMemoryModel = mongoose.models.AiMentorMemory || mongoose.model('AiMentorMemory', AiMentorMemorySchema);
 export const AiMentorSessionModel = mongoose.models.AiMentorSession || mongoose.model('AiMentorSession', AiMentorSessionSchema);
+export const ResumeProjectModel = mongoose.models.ResumeProject || mongoose.model('ResumeProject', ResumeProjectSchema);

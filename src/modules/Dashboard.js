@@ -593,12 +593,7 @@ export default function Dashboard() {
           <div className="bg-background-surface border border-border-subtle rounded-card p-6 space-y-4">
             <div className="flex justify-between items-center pb-2 border-b border-border-subtle/50">
               <h3 className="text-sm font-bold uppercase tracking-wider text-text-secondary">Project Tracker</h3>
-              <button 
-                onClick={() => setActiveTab('ResumeBuilder')}
-                className="text-accent-primary hover:text-accent-primary/80 text-[10px] font-bold uppercase tracking-wider flex items-center gap-0.5"
-              >
-                Evaluate Project
-              </button>
+
             </div>
             
             <div className="space-y-3">

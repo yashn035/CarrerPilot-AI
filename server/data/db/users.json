@@ -2,17 +2,59 @@
   {
     "id": "demo-user-123",
     "email": "demouser@careerpilot.ai",
+    "password": "$2a$10$Kn43zioJydoEVx1bSEGgNuRZe9uGsuvg2DfpzhcTnLW8IHnA2fyP.",
     "name": "Alex Mercer",
+    "title": "Aspiring Full-Stack Developer",
     "targetRole": "Frontend Engineer",
-    "xp": 500,
+    "xp": 450,
     "level": 3,
-    "streak": 5,
+    "streak": 1,
+    "readinessScore": 68,
+    "streakHistory": [
+      "2026-06-06",
+      "2026-06-07",
+      "2026-06-08",
+      "2026-06-09",
+      "2026-06-10",
+      "2026-08-02"
+    ],
     "skills": [
       {
         "name": "React",
         "level": 4,
         "category": "Frontend"
+      },
+      {
+        "name": "JavaScript",
+        "level": 4,
+        "category": "Frontend"
+      },
+      {
+        "name": "HTML5/CSS3",
+        "level": 5,
+        "category": "Frontend"
+      },
+      {
+        "name": "Node.js",
+        "level": 3,
+        "category": "Backend"
+      },
+      {
+        "name": "Express",
+        "level": 3,
+        "category": "Backend"
+      },
+      {
+        "name": "Git",
+        "level": 4,
+        "category": "Tools"
       }
+    ],
+    "completedQuests": [
+      "first-login"
+    ],
+    "achievements": [
+      "ats-builder"
     ],
     "scores": {
       "resume": 72,
@@ -21,6 +63,90 @@
       "communication": 60,
       "interview": 65
     },
-    "readinessScore": 67
+    "onboarded": true
+  },
+  {
+    "id": "user-7phmdqywx",
+    "email": "yashnalawade035@gmail.com",
+    "password": "$2a$10$YrpMPxxa6Orrp4aEzG4NGuhjZECHNI43LYGfbAyxm.2Sx7FkzSI9u",
+    "name": "yash nalawade",
+    "title": "New CareerPilot Student",
+    "targetRole": "Frontend Engineer",
+    "xp": 0,
+    "level": 2,
+    "streak": 1,
+    "readinessScore": 27,
+    "streakHistory": [
+      "2026-08-02"
+    ],
+    "skills": [],
+    "completedQuests": [],
+    "achievements": [],
+    "scores": {
+      "resume": 40,
+      "dsa": 25,
+      "projects": 30,
+      "communication": 20,
+      "interview": 20
+    },
+    "onboarded": true,
+    "college": "mumbai ",
+    "branch": "it",
+    "graduationYear": "2026"
+  },
+  {
+    "id": "user-m6rl39mfl",
+    "email": "test12345@example.com",
+    "password": "$2a$10$PiONVSuVEnKlWNigwR7BHe0xl2fR6Nahwc9Xig2z3OjzotUMHhiRG",
+    "name": "test",
+    "title": "New CareerPilot Student",
+    "targetRole": "Full-Stack Developer",
+    "xp": 0,
+    "level": 1,
+    "streak": 1,
+    "readinessScore": 35,
+    "streakHistory": [
+      "2026-08-07"
+    ],
+    "skills": [],
+    "completedQuests": [],
+    "achievements": [],
+    "scores": {
+      "resume": 10,
+      "dsa": 10,
+      "projects": 10,
+      "communication": 10,
+      "interview": 10
+    },
+    "onboarded": false
+  },
+  {
+    "id": "user-49gjcaqer",
+    "email": "yashnalawade036@gmail.com",
+    "password": "$2a$10$iUAaRAHXUGkGl/ze1xcFfu0OvVGWt.lDRuKtMuZh8X4jEjpygBwrW",
+    "name": "yash nalawade",
+    "title": "New CareerPilot Student",
+    "targetRole": "Frontend Engineer",
+    "xp": 100,
+    "level": 1,
+    "streak": 1,
+    "readinessScore": 40,
+    "streakHistory": [
+      "2026-09-09"
+    ],
+    "skills": [],
+    "completedQuests": [],
+    "achievements": [],
+    "scores": {
+      "resume": 30,
+      "dsa": 25,
+      "projects": 30,
+      "communication": 20,
+      "interview": 20
+    },
+    "onboarded": true,
+    "college": "mumbai university",
+    "branch": "information technology",
+    "graduationYear": "2026"
   }
 ]

@@ -73,13 +73,11 @@ export async function processChat(userId, sessionId, message, explicitMode = nul
 
   // 2. Fetch User Memory & Context
   const memory = await aiMentorRepository.getUserMemory(userId);
-  const resumeDetails = await aiMentorRepository.getUserResumeDetails(userId);
   const codingHistory = await aiMentorRepository.getUserCodingHistory(userId);
 
   // Sync memory weaknesses
   const combinedWeaknesses = Array.from(new Set([
     ...(memory.weaknesses || []),
-    ...(resumeDetails.missingKeywords.slice(0, 3)),
     ...(codingHistory.failedLanguages || [])
   ]));
 
@@ -121,7 +119,7 @@ export async function processChat(userId, sessionId, message, explicitMode = nul
     weaknesses: combinedWeaknesses.join(', ') || "None recorded yet",
     strengths: combinedStrengths.join(', ') || "None recorded yet",
     topicsDiscussed: (memory.topicsDiscussed || []).slice(-5).join(', ') || "None yet",
-    lastAtsScore: resumeDetails.latestAtsScore || "Not analyzed yet",
+    lastAtsScore: memory.lastAtsScore || "Not analyzed yet",
     solvedCount: codingHistory.solvedCount || 0
   };
 
@@ -351,11 +349,10 @@ Conform to this schema:
  * Predict overall readiness score.
  */
 export async function predictPlacementReadiness(userId) {
-  const resumeDetails = await aiMentorRepository.getUserResumeDetails(userId);
   const codingHistory = await aiMentorRepository.getUserCodingHistory(userId);
   const memory = await aiMentorRepository.getUserMemory(userId);
 
-  const resumeScore = resumeDetails.latestAtsScore || memory.lastAtsScore || 70;
+  const resumeScore = memory.lastAtsScore || 70;
   
   const dsaCount = codingHistory.solvedCount || 0;
   const dsaScore = Math.min(100, Math.max(50, 50 + dsaCount * 5));
@@ -392,24 +389,20 @@ export async function predictPlacementReadiness(userId) {
  */
 export async function getDailyMissions(userId) {
   const memory = await aiMentorRepository.getUserMemory(userId);
-  const resumeDetails = await aiMentorRepository.getUserResumeDetails(userId);
   const codingHistory = await aiMentorRepository.getUserCodingHistory(userId);
 
   if (!memory.dailyMissions || memory.dailyMissions.length === 0) {
     memory.dailyMissions = [
       { id: "mission-dsa", title: "Solve 1 Array or String problem in Coding Arena", type: "dsa", completed: false, claimed: false, xpReward: 50 },
-      { id: "mission-resume", title: "Optimize 1 bullet point or scan resume", type: "resume", completed: false, claimed: false, xpReward: 50 },
       { id: "mission-mock", title: "Run 1 Mock Interview in interview mode", type: "interview", completed: false, claimed: false, xpReward: 50 }
     ];
   }
 
   const dsaComplete = (codingHistory.solvedCount || 0) > 0;
-  const resumeComplete = resumeDetails.hasResume || (resumeDetails.latestAtsScore !== null);
   const mockComplete = (memory.lastInterviewScore !== null) || (memory.topicsDiscussed.length > 0);
 
   memory.dailyMissions.forEach(m => {
     if (m.id === 'mission-dsa' && dsaComplete) m.completed = true;
-    if (m.id === 'mission-resume' && resumeComplete) m.completed = true;
     if (m.id === 'mission-mock' && mockComplete) m.completed = true;
   });
 
@@ -437,14 +430,11 @@ export async function claimDailyMission(userId, missionId) {
     return { success: false, message: "Mission reward already claimed." };
   }
 
-  const resumeDetails = await aiMentorRepository.getUserResumeDetails(userId);
   const codingHistory = await aiMentorRepository.getUserCodingHistory(userId);
   const dsaComplete = (codingHistory.solvedCount || 0) > 0;
-  const resumeComplete = resumeDetails.hasResume || (resumeDetails.latestAtsScore !== null);
   const mockComplete = (memory.lastInterviewScore !== null) || (memory.topicsDiscussed.length > 0);
 
   if (mission.id === 'mission-dsa' && dsaComplete) mission.completed = true;
-  if (mission.id === 'mission-resume' && resumeComplete) mission.completed = true;
   if (mission.id === 'mission-mock' && mockComplete) mission.completed = true;
 
   if (!mission.completed) {

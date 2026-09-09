@@ -1,5 +1,48 @@
 [
   {
+    "id": "notif-3la5quiie",
+    "userId": "demo-user-123",
+    "title": "Solved DSA Problem",
+    "message": "You solved problem \"Find Duplicate in System\" using javascript. Result: FAILED.",
+    "time": "Just now",
+    "createdAt": "2026-08-02T16:30:54.715Z",
+    "read": false
+  },
+  {
+    "id": "notif-1",
+    "userId": "demo-user-123",
+    "title": "Welcome Pilot",
+    "message": "Successfully log in and setup your profile.",
+    "time": "1 hour ago",
+    "read": false
+  },
+  {
+    "id": "notif-2",
+    "userId": "demo-user-123",
+    "title": "ATS Checkup complete",
+    "message": "AI Resume Analyzer recommendation computed.",
+    "time": "2 hours ago",
+    "read": true
+  },
+  {
+    "id": "notif-w5d78mb9p",
+    "userId": "user-7phmdqywx",
+    "title": "Resume ATS Scan",
+    "message": "ATS Resume optimization completed. Current score: 23/100. Grade Tier: C.",
+    "time": "Just now",
+    "createdAt": "2026-08-02T15:32:09.634Z",
+    "read": false
+  },
+  {
+    "id": "notif-c1wgnsj8r",
+    "userId": "user-7phmdqywx",
+    "title": "Resume ATS Scan",
+    "message": "ATS Resume optimization completed. Current score: 23/100. Grade Tier: C.",
+    "time": "Just now",
+    "createdAt": "2026-08-02T15:28:40.563Z",
+    "read": false
+  },
+  {
     "id": "notif-0nfy9ogqs",
     "userId": "user-ercu5f2r3",
     "title": "Resume ATS Scan",
@@ -61,21 +104,5 @@
     "time": "Just now",
     "createdAt": "2026-06-15T14:37:04.178Z",
     "read": false
-  },
-  {
-    "id": "notif-1",
-    "userId": "demo-user-123",
-    "title": "Welcome Pilot",
-    "message": "Successfully log in and setup your profile.",
-    "time": "1 hour ago",
-    "read": false
-  },
-  {
-    "id": "notif-2",
-    "userId": "demo-user-123",
-    "title": "ATS Checkup complete",
-    "message": "AI Resume Analyzer recommendation computed.",
-    "time": "2 hours ago",
-    "read": true
   }
 ]

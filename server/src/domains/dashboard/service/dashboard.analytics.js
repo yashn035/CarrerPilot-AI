@@ -19,7 +19,6 @@ export async function compileDashboardStats(userId) {
   // Filter history logs
   const submissions = (db.submissions || []).filter(s => s.userId === userId);
   const interviews = (db.interviews || []).filter(i => i.userId === userId && i.status === 'completed');
-  const resumes = (db.resumes || []).filter(r => r.userId === userId);
   const applications = (db.jobApplications || []).filter(a => a.userId === userId);
   const projects = (db.projects || []).filter(p => p.userId === userId);
   const notifications = (db.notifications || []).filter(n => n.userId === userId).slice(0, 10);
@@ -45,7 +44,7 @@ export async function compileDashboardStats(userId) {
       averageInterviewScore: interviews.length > 0
         ? Math.round(interviews.reduce((acc, curr) => acc + (curr.feedback?.overallScore || 0), 0) / interviews.length)
         : user.scores?.interview || 74,
-      resumeScore: user.scores?.resume || 85,
+
       projectsCount: projects.length,
       applicationsCount: applications.length,
       applicationsResponses: applications.filter(a => ['OA', 'Interview', 'Offer'].includes(a.stage)).length

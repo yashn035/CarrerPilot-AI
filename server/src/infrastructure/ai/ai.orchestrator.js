@@ -1,14 +1,14 @@
 import crypto from 'crypto';
 import cache from '../cache/redis.js';
 import logger from '../../shared/logger/logger.js';
-import { getCachedResponse, storeResponse, warmupCache } from '../cache/semantic.cache.js';
+import { SemanticCache } from '../cache/semantic.cache.js';
 import { cacheHits, costSavings } from '../../middlewares/metrics.js';
 import { routeAIRequest } from './llm.router.js';
 
 let cacheWarmed = false;
 async function ensureCacheWarm() {
   if (!cacheWarmed && process.env.SEMANTIC_CACHE_ENABLED === 'true') {
-    await warmupCache();
+    // warmup logic was removed or not implemented in semantic cache
     cacheWarmed = true;
   }
 }
@@ -60,12 +60,12 @@ export async function callAI(systemPrompt, userPrompt, useCache = true) {
     await ensureCacheWarm();
     try {
       const fullPrompt = `${systemPrompt}\n\nUser request:\n${userPrompt}`;
-      const cached = await getCachedResponse(fullPrompt);
+      const cached = SemanticCache.get(fullPrompt); // Note: it's not async in semantic.cache.js
       if (cached) {
         cacheHits.inc();
         costSavings.inc(0.0005);
-        logger.info(`[AI] Cache HIT (similarity: ${cached.similarity.toFixed(3)})`);
-        return cached.response;
+        logger.info(`[AI] Cache HIT`);
+        return cached;
       }
     } catch (err) {
       logger.warn("Semantic Cache lookup failed, proceeding to query API.", { error: err.message });
@@ -83,7 +83,7 @@ export async function callAI(systemPrompt, userPrompt, useCache = true) {
     if (useCache && process.env.SEMANTIC_CACHE_ENABLED === 'true') {
       try {
         const fullPrompt = `${systemPrompt}\n\nUser request:\n${userPrompt}`;
-        await storeResponse(fullPrompt, response);
+        SemanticCache.set(fullPrompt, response); // Not async
       } catch (err) {
         logger.warn("Semantic Cache write failed:", { error: err.message });
       }

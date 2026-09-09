@@ -76,6 +76,35 @@ export const UserProvider = ({ children }) => {
       if (!res.ok) {
         throw new Error(data.message || 'Login failed');
       }
+      
+      if (data.requiresOTP) {
+        addToast("OTP sent to your email.", 'info');
+        return { success: true, requiresOTP: true };
+      }
+
+      localStorage.setItem('token', data.token);
+      setToken(data.token);
+      setUser(data.user);
+      addToast(`Welcome back, ${data.user.name}!`, 'success');
+      return { success: true };
+    } catch (err) {
+      addToast(err.message, 'error');
+      return { success: false, error: err.message };
+    }
+  };
+
+  // Verify OTP action
+  const verifyOTPLogin = async (email, otp) => {
+    try {
+      const res = await fetch('/api/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, otp })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message || 'OTP Verification failed');
+      }
       localStorage.setItem('token', data.token);
       setToken(data.token);
       setUser(data.user);
@@ -189,6 +218,7 @@ export const UserProvider = ({ children }) => {
       setShowLevelUp,
       addToast,
       login,
+      verifyOTPLogin,
       register,
       logout,
       completeOnboarding,

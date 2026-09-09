@@ -51,7 +51,7 @@ export async function getUserMemory(userId) {
       lastInterviewScore: null,
       dailyMissions: [
         { id: "mission-dsa", title: "Solve 1 Array or String problem in Coding Arena", type: "dsa", completed: false, claimed: false, xpReward: 50 },
-        { id: "mission-resume", title: "Optimize 1 bullet point or scan resume", type: "resume", completed: false, claimed: false, xpReward: 50 },
+
         { id: "mission-mock", title: "Run 1 Mock Interview in interview mode", type: "interview", completed: false, claimed: false, xpReward: 50 }
       ],
       updatedAt: new Date().toISOString()
@@ -69,7 +69,7 @@ export async function getUserMemory(userId) {
   if (!mem.dailyMissions || mem.dailyMissions.length === 0) {
     mem.dailyMissions = [
       { id: "mission-dsa", title: "Solve 1 Array or String problem in Coding Arena", type: "dsa", completed: false, claimed: false, xpReward: 50 },
-      { id: "mission-resume", title: "Optimize 1 bullet point or scan resume", type: "resume", completed: false, claimed: false, xpReward: 50 },
+
       { id: "mission-mock", title: "Run 1 Mock Interview in interview mode", type: "interview", completed: false, claimed: false, xpReward: 50 }
     ];
   }
@@ -113,7 +113,7 @@ export async function saveUserMemory(userId, memoryUpdates) {
       lastInterviewScore: memoryUpdates.lastInterviewScore || null,
       dailyMissions: memoryUpdates.dailyMissions || [
         { id: "mission-dsa", title: "Solve 1 Array or String problem in Coding Arena", type: "dsa", completed: false, claimed: false, xpReward: 50 },
-        { id: "mission-resume", title: "Optimize 1 bullet point or scan resume", type: "resume", completed: false, claimed: false, xpReward: 50 },
+
         { id: "mission-mock", title: "Run 1 Mock Interview in interview mode", type: "interview", completed: false, claimed: false, xpReward: 50 }
       ],
       updatedAt: now
@@ -124,24 +124,7 @@ export async function saveUserMemory(userId, memoryUpdates) {
   }
 }
 
-export async function getUserResumeDetails(userId) {
-  const db = await getDb();
-  const resumes = db.resumes ? db.resumes.filter(r => r.userId === userId) : [];
-  const resumeIds = resumes.map(r => r.id);
-  const reports = db.atsReports ? db.atsReports.filter(r => resumeIds.includes(r.resumeId) || r.userId === userId) : [];
-  
-  const latestReport = reports.length > 0 
-    ? reports.reduce((prev, current) => (prev.score > current.score ? prev : current), reports[0])
-    : null;
 
-  return {
-    hasResume: resumes.length > 0,
-    resumeCount: resumes.length,
-    latestAtsScore: latestReport ? latestReport.score : null,
-    latestGrade: latestReport ? latestReport.grade : null,
-    missingKeywords: latestReport ? latestReport.keywords?.missing || [] : []
-  };
-}
 
 export async function getUserCodingHistory(userId) {
   const db = await getDb();
@@ -169,6 +152,6 @@ export default {
   updateSession,
   getUserMemory,
   saveUserMemory,
-  getUserResumeDetails,
+
   getUserCodingHistory
 };

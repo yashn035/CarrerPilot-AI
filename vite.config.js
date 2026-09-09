@@ -25,6 +25,19 @@ export default defineConfig({
     loader: 'jsx',
     include: /src[\\/].*\.[j]sx?$/,
     exclude: [],
+  },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom'],
+          monaco: ['@monaco-editor/react'],
+          recharts: ['recharts'],
+          framer: ['framer-motion']
+        }
+      }
+    }
   }
 })
 

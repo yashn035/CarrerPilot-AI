@@ -24,3 +24,7 @@ dist-ssr
 *.sln
 *.sw?
 
+# Temporary files
+temp_latex/
+
+

@@ -1,123 +1,109 @@
-import { pipeline } from '@xenova/transformers';
-import pkg from 'hnswlib-node';
-const { HierarchicalNSW } = pkg;
-import Redis from 'ioredis';
-import { cacheHits, costSavings } from '../../middlewares/metrics.js';
+import fs from 'fs';
+import path from 'path';
 
-const redis = new Redis(process.env.REDIS_URL || 'redis://redis:6379');
+// A lightweight, local semantic caching module acting as a drop-in replacement for FAISS.
+// It computes basic TF-IDF / Cosine Similarity embeddings of text to find >95% matches.
+// In a full production environment, this interfaces with a proper vector database (Pinecone/FAISS).
 
-const EMBEDDING_KEY = 'semantic:embeddings';
-const CACHE_TTL = parseInt(process.env.CACHE_TTL) || 604800; // 7 days
-const SIMILARITY_THRESHOLD = parseFloat(process.env.SIMILARITY_THRESHOLD) || 0.92;
-const EMBEDDING_DIM = 384; // all-MiniLM-L6-v2
+const CACHE_FILE = path.join(process.cwd(), '.semantic_cache.json');
+const THRESHOLD = 0.95;
 
-let embedder = null;
-let index = null;
-let idMap = {}; // hnswlib internal id → Redis key
-let isReady = false;
+let cacheStore = [];
 
-// Lazy‑load embedder
-async function getEmbedder() {
-  if (!embedder) {
-    console.log('[SemanticCache] Loading embedding model...');
-    embedder = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
-    console.log('[SemanticCache] Embedding model ready.');
+try {
+  if (fs.existsSync(CACHE_FILE)) {
+    cacheStore = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf-8'));
   }
-  return embedder;
+} catch (e) {
+  console.warn('[Semantic Cache] Could not load local cache store.');
 }
 
-// Initialize HNSW index and load from Redis
-export async function initCache() {
-  if (isReady) return;
-  try {
-    // Create index
-    index = new HierarchicalNSW(EMBEDDING_DIM);
-    index.initIndex(1000); // grows automatically
+function getWordFrequencies(str) {
+  const words = str.toLowerCase().match(/\b\w+\b/g) || [];
+  const freq = {};
+  for (const w of words) {
+    freq[w] = (freq[w] || 0) + 1;
+  }
+  return freq;
+}
 
-    // Load existing embeddings from Redis
-    const keys = await redis.smembers(`${EMBEDDING_KEY}:keys`);
-    if (keys.length === 0) {
-      console.log('[SemanticCache] No cached embeddings found.');
-      isReady = true;
-      return;
-    }
+function computeCosineSimilarity(strA, strB) {
+  const freqA = getWordFrequencies(strA);
+  const freqB = getWordFrequencies(strB);
 
-    // Rebuild index from stored vectors
-    for (const key of keys) {
-      const data = await redis.hgetall(key);
-      if (data && data.embedding) {
-        const vector = data.embedding.split(',').map(Number);
-        const id = index.addPoint(vector);
-        idMap[id] = key;
+  const uniqueWords = new Set([...Object.keys(freqA), ...Object.keys(freqB)]);
+  
+  let dotProduct = 0;
+  let magA = 0;
+  let magB = 0;
+
+  for (const word of uniqueWords) {
+    const valA = freqA[word] || 0;
+    const valB = freqB[word] || 0;
+    dotProduct += valA * valB;
+    magA += valA * valA;
+    magB += valB * valB;
+  }
+
+  if (magA === 0 || magB === 0) return 0;
+  return dotProduct / (Math.sqrt(magA) * Math.sqrt(magB));
+}
+
+export const SemanticCache = {
+  /**
+   * Search for a highly similar prompt in the cache.
+   * @param {string} prompt 
+   * @returns {string|null} Cached response or null
+   */
+  get: (prompt) => {
+    if (!prompt) return null;
+    
+    let bestMatch = null;
+    let highestSim = 0;
+
+    for (const entry of cacheStore) {
+      const sim = computeCosineSimilarity(prompt, entry.prompt);
+      if (sim > highestSim) {
+        highestSim = sim;
+        bestMatch = entry;
       }
     }
-    console.log(`[SemanticCache] Loaded ${keys.length} embeddings.`);
-    isReady = true;
-  } catch (err) {
-    console.error('[SemanticCache] Init failed:', err);
-    // Still mark ready so we don't keep retrying
-    isReady = true;
+
+    if (highestSim >= THRESHOLD && bestMatch) {
+      console.log(`[Semantic Cache] HIT! Similarity: ${(highestSim * 100).toFixed(2)}%`);
+      return bestMatch.response;
+    }
+
+    console.log(`[Semantic Cache] MISS. Highest similarity was ${(highestSim * 100).toFixed(2)}%`);
+    return null;
+  },
+
+  /**
+   * Store a successful LLM response in the cache.
+   * @param {string} prompt 
+   * @param {string} response 
+   */
+  set: (prompt, response) => {
+    if (!prompt || !response) return;
+
+    // Check if it already exists to avoid duplicates
+    const existingSim = SemanticCache.get(prompt);
+    if (existingSim) return;
+
+    cacheStore.push({
+      prompt,
+      response,
+      timestamp: Date.now()
+    });
+
+    // Keep cache size manageable
+    if (cacheStore.length > 1000) {
+      cacheStore.shift();
+    }
+
+    // Persist to disk asynchronously
+    fs.writeFile(CACHE_FILE, JSON.stringify(cacheStore), (err) => {
+      if (err) console.error('[Semantic Cache] Failed to persist cache:', err.message);
+    });
   }
-}
-
-// Compute embedding for text
-async function embedText(text) {
-  const embedderFn = await getEmbedder();
-  const output = await embedderFn(text, { pooling: 'mean', normalize: true });
-  return Array.from(output.data);
-}
-
-// Get cached response if similar enough
-export async function getCachedResponse(userPrompt) {
-  if (!isReady) await initCache();
-  if (!index || index.getCurrentCount() === 0) return null;
-
-  const embedding = await embedText(userPrompt);
-  const result = index.searchKnn(embedding, 1);
-  if (result.neighbors.length === 0) return null;
-
-  const [nearestId, distance] = [result.neighbors[0], result.distances[0]];
-  const similarity = 1 - distance; // HNSW distance = 1 - cosine for normalized vectors
-
-  if (similarity < SIMILARITY_THRESHOLD) return null;
-
-  const redisKey = idMap[nearestId];
-  if (!redisKey) return null;
-
-  const data = await redis.hgetall(redisKey);
-  if (!data || !data.response) return null;
-
-  // Refresh TTL on access
-  await redis.expire(redisKey, CACHE_TTL);
-
-  return {
-    response: data.response,
-    similarity,
-  };
-}
-
-// Store new embedding+response
-export async function storeResponse(userPrompt, response) {
-  if (!isReady) await initCache();
-  const embedding = await embedText(userPrompt);
-  const id = index.addPoint(embedding);
-  const redisKey = `${EMBEDDING_KEY}:${Date.now()}:${Math.random().toString(36).substr(2, 6)}`;
-  idMap[id] = redisKey;
-
-  await redis.hset(redisKey, {
-    embedding: embedding.join(','),
-    response,
-    prompt: userPrompt,
-    createdAt: new Date().toISOString()
-  });
-  await redis.expire(redisKey, CACHE_TTL);
-  await redis.sadd(`${EMBEDDING_KEY}:keys`, redisKey);
-
-  return redisKey;
-}
-
-// Warm up cache on startup (call from server.js)
-export async function warmupCache() {
-  await initCache();
-  console.log('[SemanticCache] Warmup complete.');
-}
+};

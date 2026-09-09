@@ -2,23 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useUser } from './context/UserContext';
 import AuthPage from './components/AuthPage';
 import Onboarding from './components/Onboarding';
+import LandingPage from './components/LandingPage';
 
 // Modules imports
 import Dashboard from './modules/Dashboard';
-import ResumeBuilder from './modules/ResumeBuilder';
+
 import CodingArena from './modules/CodingArena.js';
 import MockInterview from './modules/MockInterview';
 import SkillGap from './modules/SkillGap';
 import Settings from './modules/Settings';
 import AIMentor from './modules/AIMentor';
 import JobTracker from './modules/JobTracker';
+import ResumeBuilder from './modules/ResumeBuilder';
 
 import { 
   Home, FileText, BarChart3, Code, Cpu, 
   Layers, Award, Mic, AlertTriangle, Brain, 
   Trophy, Globe, MessageSquare, Settings as SettingsIcon,
   ChevronLeft, ChevronRight, Bell, Search, LogOut, Sparkles, X,
-  Shield, Briefcase
+  Shield, Briefcase, FileCheck
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -33,6 +35,17 @@ export default function App() {
   const [showGlobalSearch, setShowGlobalSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [notifications, setNotifications] = useState([]);
+  const [showAuth, setShowAuth] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const oauthToken = params.get('token');
+    if (oauthToken) {
+      localStorage.setItem('token', oauthToken);
+      window.history.replaceState({}, document.title, window.location.pathname);
+      window.location.reload();
+    }
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -90,7 +103,10 @@ export default function App() {
 
   // Auth & Onboarding checks
   if (!user) {
-    return <AuthPage />;
+    if (showAuth) {
+      return <AuthPage />;
+    }
+    return <LandingPage onLoginClick={() => setShowAuth(true)} />;
   }
 
   if (!user.onboarded) {
@@ -101,8 +117,9 @@ export default function App() {
   const navigationItems = [
     { id: 'Dashboard', label: 'Dashboard', icon: Home, component: Dashboard },
     { id: 'AIMentor', label: 'AI Mentor', icon: MessageSquare, component: AIMentor },
-    { id: 'ResumeBuilder', label: 'Resume Builder', icon: FileText, component: ResumeBuilder },
+
     { id: 'CodingArena', label: 'Coding Arena', icon: Code, component: CodingArena },
+    { id: 'ResumeBuilder', label: 'Resume Builder', icon: FileCheck, component: ResumeBuilder },
     { id: 'MockInterview', label: 'Mock Interviews', icon: Mic, component: MockInterview },
     { id: 'JobTracker', label: 'Job Tracker', icon: Briefcase, component: JobTracker },
     { id: 'SkillGap', label: 'Skill Gap', icon: AlertTriangle, component: SkillGap },

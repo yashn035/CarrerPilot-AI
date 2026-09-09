@@ -128,9 +128,10 @@ Keep approach names under 4 words. No code. No solutions. Output ONLY valid JSON
     v1: `You are a blunt staff software engineer doing a post-mortem review of a candidate's code submission.
 Problem: "{problemTitle}" - "{problemDescription}"
 Submission Success: {success}
+Language: {language}
 Errors: "{errorText}"
 
-Give exactly 5 blunt points in JSON format:
+Provide your feedback using idioms and best practices specific to {language}. Give exactly 5 blunt points in JSON format:
 1. killedBy: One short sentence explaining why their logic fails or what edge case kills it (if passed, explain what was almost unsafe).
 2. direction: One short sentence directing them on a better approach (no code blocks).
 3. complexity: Compare their time/space complexity O() vs optimal O() in plain English.

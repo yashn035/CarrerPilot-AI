@@ -3,5 +3,249 @@
     "id": "res-1",
     "userId": "demo-user-123",
     "title": "Alex CS Resume"
+  },
+  {
+    "id": "res-30zpqk0ig",
+    "userId": "user-fh1vykm21",
+    "version": 1,
+    "title": "My Placement Resume",
+    "layout": "chronological",
+    "template": "classic",
+    "updatedAt": "2026-08-02T15:26:13.876Z",
+    "personalInfo": {
+      "name": "Alex Mercer",
+      "email": "alex.mercer@gmail.com",
+      "phone": "+1 (555) 019-2834",
+      "linkedin": "linkedin.com/in/alexmercer",
+      "github": "github.com/alexmercer",
+      "portfolio": "alexmercer.dev",
+      "summary": "Full-Stack Developer with experience building responsive web applications and AI-driven platforms. Highly skilled in React, Node.js, and Python."
+    },
+    "education": [
+      {
+        "id": "edu-1",
+        "school": "Tech Institute of Technology",
+        "degree": "B.S. in Computer Science",
+        "location": "San Francisco, CA",
+        "date": "2022 - 2026",
+        "gpa": "3.8/4.0"
+      }
+    ],
+    "experience": [
+      {
+        "id": "exp-1",
+        "company": "ByteCraft Solutions",
+        "role": "Frontend Developer Intern",
+        "location": "Remote",
+        "date": "Summer 2025",
+        "description": "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "title": "DevRank - Developer Portfolio Engine",
+        "date": "Fall 2025",
+        "technologies": "React, Express, Tailwind CSS",
+        "description": "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
+      }
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Node.js",
+      "Express",
+      "Tailwind CSS",
+      "Git"
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner",
+      "Meta Front-End Developer Certificate"
+    ]
+  },
+  {
+    "id": "res-yk409i5w6",
+    "userId": "user-fh1vykm21",
+    "version": 1,
+    "title": "My Placement Resume",
+    "layout": "chronological",
+    "template": "classic",
+    "updatedAt": "2026-08-02T15:26:13.973Z",
+    "personalInfo": {
+      "name": "Alex Mercer",
+      "email": "alex.mercer@gmail.com",
+      "phone": "+1 (555) 019-2834",
+      "linkedin": "linkedin.com/in/alexmercer",
+      "github": "github.com/alexmercer",
+      "portfolio": "alexmercer.dev",
+      "summary": "Full-Stack Developer with experience building responsive web applications and AI-driven platforms. Highly skilled in React, Node.js, and Python."
+    },
+    "education": [
+      {
+        "id": "edu-1",
+        "school": "Tech Institute of Technology",
+        "degree": "B.S. in Computer Science",
+        "location": "San Francisco, CA",
+        "date": "2022 - 2026",
+        "gpa": "3.8/4.0"
+      }
+    ],
+    "experience": [
+      {
+        "id": "exp-1",
+        "company": "ByteCraft Solutions",
+        "role": "Frontend Developer Intern",
+        "location": "Remote",
+        "date": "Summer 2025",
+        "description": "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "title": "DevRank - Developer Portfolio Engine",
+        "date": "Fall 2025",
+        "technologies": "React, Express, Tailwind CSS",
+        "description": "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
+      }
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Node.js",
+      "Express",
+      "Tailwind CSS",
+      "Git"
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner",
+      "Meta Front-End Developer Certificate"
+    ]
+  },
+  {
+    "id": "res-tym5qp0vy",
+    "userId": "user-7phmdqywx",
+    "version": 1,
+    "title": "My Placement Resume",
+    "layout": "chronological",
+    "template": "classic",
+    "updatedAt": "2026-08-02T15:27:41.476Z",
+    "personalInfo": {
+      "name": "Alex Mercer",
+      "email": "alex.mercer@gmail.com",
+      "phone": "+1 (555) 019-2834",
+      "linkedin": "linkedin.com/in/alexmercer",
+      "github": "github.com/alexmercer",
+      "portfolio": "alexmercer.dev",
+      "summary": "Full-Stack Developer with experience building responsive web applications and AI-driven platforms. Highly skilled in React, Node.js, and Python."
+    },
+    "education": [
+      {
+        "id": "edu-1",
+        "school": "Tech Institute of Technology",
+        "degree": "B.S. in Computer Science",
+        "location": "San Francisco, CA",
+        "date": "2022 - 2026",
+        "gpa": "3.8/4.0"
+      }
+    ],
+    "experience": [
+      {
+        "id": "exp-1",
+        "company": "ByteCraft Solutions",
+        "role": "Frontend Developer Intern",
+        "location": "Remote",
+        "date": "Summer 2025",
+        "description": "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "title": "DevRank - Developer Portfolio Engine",
+        "date": "Fall 2025",
+        "technologies": "React, Express, Tailwind CSS",
+        "description": "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
+      }
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Node.js",
+      "Express",
+      "Tailwind CSS",
+      "Git"
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner",
+      "Meta Front-End Developer Certificate"
+    ]
+  },
+  {
+    "id": "res-qw9pxvxv4",
+    "userId": "user-7phmdqywx",
+    "version": 1,
+    "title": "My Placement Resume",
+    "layout": "chronological",
+    "template": "classic",
+    "updatedAt": "2026-08-02T15:27:41.511Z",
+    "personalInfo": {
+      "name": "Alex Mercer",
+      "email": "alex.mercer@gmail.com",
+      "phone": "+1 (555) 019-2834",
+      "linkedin": "linkedin.com/in/alexmercer",
+      "github": "github.com/alexmercer",
+      "portfolio": "alexmercer.dev",
+      "summary": "Full-Stack Developer with experience building responsive web applications and AI-driven platforms. Highly skilled in React, Node.js, and Python."
+    },
+    "education": [
+      {
+        "id": "edu-1",
+        "school": "Tech Institute of Technology",
+        "degree": "B.S. in Computer Science",
+        "location": "San Francisco, CA",
+        "date": "2022 - 2026",
+        "gpa": "3.8/4.0"
+      }
+    ],
+    "experience": [
+      {
+        "id": "exp-1",
+        "company": "ByteCraft Solutions",
+        "role": "Frontend Developer Intern",
+        "location": "Remote",
+        "date": "Summer 2025",
+        "description": "Worked in a team to build UI elements.\nFixed responsiveness bugs across 15+ pages.\nCollaborated on REST API integration using React."
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "title": "DevRank - Developer Portfolio Engine",
+        "date": "Fall 2025",
+        "technologies": "React, Express, Tailwind CSS",
+        "description": "Created an open-source tool for developer statistics.\nIntegrated GitHub GraphQL API to fetch user profile data.\nBuilt dynamic charts and graphs displaying language distributions."
+      }
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Node.js",
+      "Express",
+      "Tailwind CSS",
+      "Git"
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner",
+      "Meta Front-End Developer Certificate"
+    ]
   }
 ]

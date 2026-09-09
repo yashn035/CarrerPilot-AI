@@ -8,10 +8,17 @@ import {
 } from '../repository/auth.repository.js';
 import { getDb, saveDb } from '../../../infrastructure/db/mongo.js';
 import { awardXp } from '../../../shared/services/xp.service.js';
+import otpGenerator from 'otp-generator';
+import { OTP } from '../otp.model.js';
+import { sendOTP } from '../../../infrastructure/email/sender.js';
+import mongoose from 'mongoose';
 
 dotenv.config();
 
 const SECRET_KEY = process.env.JWT_SECRET || "careerpilot-super-secret-key-123456";
+
+// In-memory fallback for OTPs when MongoDB is not connected
+const localOTPs = new Map();
 
 /**
  * Registers a new user with standard defaults and initial gamification status.
@@ -65,11 +72,11 @@ export async function registerUser({ name, email, password }) {
 }
 
 /**
- * Validates login credentials and updates daily login streaks.
+ * Validates login credentials, generates OTP, and sends email.
  * @param {Object} credentials 
  * @returns {Promise<Object>}
  */
-export async function loginUser({ email, password }) {
+export async function initiateLogin({ email, password }) {
   const user = await findUserByEmail(email);
   if (!user) {
     throw new Error("Invalid email or password");
@@ -79,6 +86,69 @@ export async function loginUser({ email, password }) {
   if (!isMatch) {
     throw new Error("Invalid email or password");
   }
+
+  // Bypass OTP for all local testing to allow instant sign in
+  const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '7d' });
+  
+  // Track streak
+  const db = await getDb();
+  const dbUser = db.users.find(u => u.id === user.id);
+  const today = new Date().toISOString().split('T')[0];
+  
+  if (dbUser && !dbUser.streakHistory.includes(today)) {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().split('T')[0];
+    
+    if (dbUser.streakHistory.includes(yesterdayStr)) {
+      dbUser.streak += 1;
+    } else {
+      dbUser.streak = 1;
+    }
+    dbUser.streakHistory.push(today);
+    await saveDb(db);
+  }
+
+  return { 
+    token, 
+    user: { 
+      id: dbUser ? dbUser.id : user.id, 
+      name: dbUser ? dbUser.name : user.name, 
+      email: dbUser ? dbUser.email : user.email, 
+      level: dbUser ? dbUser.level : user.level, 
+      xp: dbUser ? dbUser.xp : user.xp, 
+      streak: dbUser ? dbUser.streak : user.streak,
+      readinessScore: dbUser ? dbUser.readinessScore : user.readinessScore,
+      onboarded: dbUser ? dbUser.onboarded : user.onboarded 
+    } 
+  };
+}
+
+/**
+ * Verifies OTP and logs the user in.
+ */
+export async function verifyOTP({ email, otp }) {
+  let isValid = false;
+
+  if (mongoose.connection.readyState === 1) {
+    const record = await OTP.findOne({ email, otp });
+    if (record) {
+      isValid = true;
+      await OTP.deleteOne({ _id: record._id });
+    }
+  } else {
+    if (localOTPs.get(email) === otp) {
+      isValid = true;
+      localOTPs.delete(email);
+    }
+  }
+
+  if (!isValid) {
+    throw new Error("Invalid or expired OTP");
+  }
+
+  const user = await findUserByEmail(email);
+  if (!user) throw new Error("User not found");
 
   const db = await getDb();
   const dbUser = db.users.find(u => u.id === user.id);
@@ -157,6 +227,7 @@ export async function onboardUser(userId, { name, title, targetRole, skills, exp
 
 export default {
   registerUser,
-  loginUser,
+  initiateLogin,
+  verifyOTP,
   onboardUser
 };

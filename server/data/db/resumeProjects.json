@@ -1,0 +1,53 @@
+[
+  {
+    "id": "proj_024bf7897ce861df",
+    "userId": "demo-user-123",
+    "name": "My First Resume",
+    "creationMethod": "BUILDER",
+    "templateId": "modern_ats",
+    "resumeData": {
+      "personal": {
+        "name": "Yash Nalawade",
+        "phone": "09867102370",
+        "email": "yashnalawade035@gmail.com"
+      },
+      "education": [
+        {
+          "school": "",
+          "degree": "",
+          "date": ""
+        }
+      ],
+      "experience": [
+        {
+          "company": "",
+          "role": "",
+          "date": "",
+          "description": ""
+        },
+        {
+          "company": "",
+          "role": "",
+          "date": "",
+          "description": ""
+        },
+        {
+          "company": "",
+          "role": "",
+          "date": "",
+          "description": ""
+        }
+      ],
+      "projects": [
+        {
+          "title": "",
+          "date": "",
+          "description": ""
+        }
+      ]
+    },
+    "latexSource": "%-------------------------\n% Resume in Latex\n% Author : Harshibar\n% Based off of: https://github.com/jakeryang/resume\n% License : MIT\n%------------------------\n\n\\documentclass[letterpaper,11pt]{article}\n\n\\usepackage{latexsym}\n\\usepackage[empty]{fullpage}\n\\usepackage{titlesec}\n\\usepackage{marvosym}\n\\usepackage[usenames,dvipsnames]{color}\n\\usepackage{verbatim}\n\\usepackage{enumitem}\n\\usepackage[hidelinks]{hyperref}\n\\usepackage{fancyhdr}\n\\usepackage[english]{babel}\n\\usepackage{tabularx}\n\\usepackage{fontawesome5}\n\\usepackage[scale=0.90,lf]{FiraMono}\n\n% Colors\n\\definecolor{light-grey}{gray}{0.83}\n\\definecolor{dark-grey}{gray}{0.3}\n\\definecolor{text-grey}{gray}{0.08}\n\n% Font series\n\\DeclareRobustCommand{\\ebseries}{\\fontseries{eb}\\selectfont}\n\\DeclareTextFontCommand{\\texteb}{\\ebseries}\n\n% Custom underline\n\\usepackage{contour}\n\\usepackage[normalem]{ulem}\n\n\\renewcommand{\\ULdepth}{1.8pt}\n\\contourlength{0.8pt}\n\n\\newcommand{\\myuline}[1]{%\n  \\uline{\\phantom{#1}}%\n  \\llap{\\contour{white}{#1}}%\n}\n\n% Sans-serif font\n\\usepackage{tgheros}\n\\renewcommand{\\familydefault}{\\sfdefault}\n\\usepackage[T1]{fontenc}\n\n% Page style\n\\pagestyle{fancy}\n\\fancyhf{}\n\\fancyfoot{}\n\\renewcommand{\\headrulewidth}{0pt}\n\\renewcommand{\\footrulewidth}{0pt}\n\n% Margins\n\\addtolength{\\oddsidemargin}{-0.5in}\n\\addtolength{\\evensidemargin}{0in}\n\\addtolength{\\textwidth}{1in}\n\\addtolength{\\topmargin}{-0.5in}\n\\addtolength{\\textheight}{1.0in}\n\n\\urlstyle{same}\n\n\\raggedbottom\n\\raggedright\n\\setlength{\\tabcolsep}{0in}\n\n% Section formatting\n\\titleformat{\\section}{\n  \\bfseries\n  \\vspace{2pt}\n  \\raggedright\n  \\large\n}{}{0em}{}[\n  \\color{light-grey}\n  {\\titlerule[2pt]}\n  \\vspace{-4pt}\n]\n\n%-------------------------\n% Custom commands\n\n\\newcommand{\\resumeItem}[1]{\n  \\item\\small{\n    {#1 \\vspace{-1pt}}\n  }\n}\n\n\\newcommand{\\resumeSubheading}[4]{\n  \\vspace{-1pt}\n  \\item\n  \\begin{tabular*}{\\textwidth}[t]{l@{\\extracolsep{\\fill}}r}\n    \\textbf{#1} & {\\color{dark-grey}\\small #2} \\\\\n    \\textit{#3} & {\\color{dark-grey}\\small #4} \\\\\n  \\end{tabular*}\n  \\vspace{-4pt}\n}\n\n\\newcommand{\\resumeSubSubheading}[2]{\n  \\item\n  \\begin{tabular*}{\\textwidth}{l@{\\extracolsep{\\fill}}r}\n    \\textit{\\small #1} & \\textit{\\small #2} \\\\\n  \\end{tabular*}\n  \\vspace{-7pt}\n}\n\n\\newcommand{\\resumeProjectHeading}[2]{\n  \\item\n  \\begin{tabular*}{\\textwidth}{l@{\\extracolsep{\\fill}}r}\n    \\textbf{#1} & {\\color{dark-grey}\\small #2} \\\\\n  \\end{tabular*}\n  \\vspace{-4pt}\n}\n\n\\newcommand{\\resumeSubItem}[1]{\n  \\resumeItem{#1}\n  \\vspace{-4pt}\n}\n\n\\renewcommand\\labelitemii{\n  $\\vcenter{\\hbox{\\tiny$\\bullet$}}$\n}\n\n\\newcommand{\\resumeSubHeadingListStart}{\n  \\begin{itemize}[leftmargin=0in, label={}]\n}\n\n\\newcommand{\\resumeSubHeadingListEnd}{\n  \\end{itemize}\n}\n\n\\newcommand{\\resumeItemListStart}{\n  \\begin{itemize}\n}\n\n\\newcommand{\\resumeItemListEnd}{\n  \\end{itemize}\n  \\vspace{0pt}\n}\n\n\\color{text-grey}\n\n%-------------------------------------------\n%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%\n%-------------------------------------------\n\n\\begin{document}\n\n%----------HEADING----------\n\\begin{center}\n    \\textbf{\\Huge Harshibar} \\\\[5pt]\n    \n    \\small\n    \\faPhone\\ 555.555.5555\n    \\hspace{1pt} $|$\n    \\hspace{1pt}\n    \\faEnvelope\\ \n    \\href{mailto:hello@email.com}{hello@email.com}\n    \\hspace{1pt} $|$\n    \\hspace{1pt}\n    \\faYoutube\\ \n    \\href{https://www.youtube.com/c/harshibar}{harshibar}\n    \\hspace{1pt} $|$\n    \\hspace{1pt}\n    \\faMapMarker*\\ \n    U.S. Citizen\n    \n    \\\\[-3pt]\n\\end{center}\n\n%-----------EXPERIENCE-----------\n\\section{EXPERIENCE}\n\n\\resumeSubHeadingListStart\n\n% YouTube\n\\resumeSubheading\n  {YouTube}{Aug. 2019 -- Present}\n  {Creator (\\href{https://www.youtube.com/c/harshibar}{\\myuline{@harshibar}})}\n  {San Francisco, CA}\n\n\\resumeItemListStart\n\n    \\resumeItem{\n      Grew channel to \\textbf{60k subscribers in 1.5 years};\n      created 80+ videos on tech and productivity\n    }\n\n    \\resumeItem{\n      Conducted A/B testing on titles and thumbnails;\n      \\textbf{increased video impressions by 2.5M} in 3 months\n    }\n\n    \\resumeItem{\n      Designed a Notion workflow to streamline video production and\n      roadmapping; boosted productivity by 20\\%\n    }\n\n    \\resumeItem{\n      \\textbf{Partnered with brands like Skillshare and Squarespace}\n      to expand their outreach via sponsorships\n    }\n\n    \\resumeItem{\n      \\textbf{Highlights}:\n      \\href{https://www.youtube.com/watch?v=HhWUjp5pD0g}\n      {\\myuline{The Problem with Productivity Apps}},\n      \\href{https://www.youtube.com/watch?v=ms4cWMsOITs}\n      {\\myuline{Obsidian App Review}},\n      \\href{https://www.youtube.com/watch?v=PkDbkyIR44w}\n      {\\myuline{Not-So-Minimal Desk Setup}}\n    }\n\n\\resumeItemListEnd\n\n% Google Verily\n\\resumeSubheading\n  {Google Verily}{Aug. 2018 -- Sept. 2019}\n  {Software Engineer}\n  {San Francisco, CA}\n\n\\resumeItemListStart\n\n    \\resumeItem{\n      \\textbf{Led front-end development} of a dashboard to process\n      50k blood samples and detect early-stage cancer\n    }\n\n    \\resumeItem{\n      Rebuilt a Quality Control product with input from 20\n      cross-functional stakeholders, \\textbf{saving \\$1M annually}\n    }\n\n    \\resumeItem{\n      Spearheaded product development of a new lab workflow tool,\n      leading to a 40\\% increase in efficiency; shadowed 10 core users,\n      iterated on design docs, and implemented the solution with one engineer\n    }\n\n\\resumeItemListEnd\n\n% Amazon\n\\resumeSubheading\n  {Amazon}{May 2017 -- Aug. 2017}\n  {Software Engineering Intern}\n  {Seattle, WA}\n\n\\resumeItemListStart\n\n    \\resumeItem{\n      Worked on the Search Customer Experience Team;\n      \\textbf{received a return offer} for a full-time position\n    }\n\n    \\resumeItem{\n      \\textbf{Shipped a new feature to 2M+ users}\n      to improve the search experience for movie series-related queries\n    }\n\n    \\resumeItem{\n      Built a back-end database service in Java and implemented\n      a front-end UI to support future changes\n    }\n\n\\resumeItemListEnd\n\n\\resumeSubHeadingListEnd\n\n%-----------PROJECTS-----------\n\\section{PROJECTS}\n\n\\resumeSubHeadingListStart\n\n% Hyku Consulting\n\\resumeProjectHeading\n  {\\textbf{Hyku Consulting}}\n  {Sept. 2019 -- Mar. 2021}\n\n\\resumeItemListStart\n\n    \\resumeItem{\n      Mentored 15 students towards acceptance at top US boarding schools;\n      achieved \\textbf{100\\% success rate}\n    }\n\n    \\resumeItem{\n      Designed a \\textbf{collaborative learning ecosystem}\n      for students and parents with Trello, Miro, and Google Suite\n    }\n\n\\resumeItemListEnd\n\n% Minimal Icon Pack\n\\resumeProjectHeading\n  {\\textbf{Minimal Icon Pack}}\n  {Sept. 2020 -- Nov. 2020}\n\n\\resumeItemListStart\n\n    \\resumeItem{\n      Designed and released 100+ minimal iOS and Android icons\n      from scratch using Procreate and Figma\n    }\n\n    \\resumeItem{\n      Marketed the product and design process on\n      \\href{https://www.youtube.com/watch?v=Ju32r7QJCzk}\n      {\\myuline{YouTube}};\n      accumulated over \\textbf{\\$250 in sales} on\n      \\href{https://gumroad.com/l/icons-by-harshibar}\n      {\\myuline{Gumroad}}\n    }\n\n\\resumeItemListEnd\n\n% CommonIntern\n\\resumeProjectHeading\n  {\\textbf{CommonIntern}}\n  {Sept. 2019 -- May 2020}\n\n\\resumeItemListStart\n\n    \\resumeItem{\n      Built a Python script to automatically apply to jobs on Glassdoor\n      using BeautifulSoup and Selenium\n    }\n\n    \\resumeItem{\n      \\textbf{500 stars on\n      \\href{https://github.com/harshibar/common-intern}\n      {\\myuline{GitHub}}};\n      featured on\n      \\href{https://hackaday.com/2020/05/30/job-application-script-automates-the-boring-stuff-with-python}\n      {\\myuline{Hackaday}};\n      made the front page of\n      \\href{https://www.reddit.com/r/Python/comments/gpaegj/i_was_tired_of_opening_100s_of_tabs_for/?utm_source=share}\n      {\\myuline{r/python}}\n      and\n      \\href{https://www.reddit.com/r/programming/comments/dcmbzx/i_was_tired_of_opening_100s_of_tabs_for/}\n      {\\myuline{r/programming}}\n    }\n\n\\resumeItemListEnd\n\n\\resumeSubHeadingListEnd\n\n%-----------EDUCATION-----------\n\\section{EDUCATION}\n\n\\resumeSubHeadingListStart\n\n\\resumeSubheading\n  {Wellesley College}{Aug. 2014 -- May 2018}\n  {Bachelor of Arts in Computer Science and Pre-Med}\n  {Wellesley, MA}\n\n\\resumeItemListStart\n\n    \\resumeItem{\n      \\textbf{Coursework}: Data Structures, Algorithms, Databases,\n      Computer Systems, Machine Learning\n    }\n\n    \\resumeItem{\n      \\textbf{Research}: MIT Graybiel Lab (published author),\n      MIT Media Lab (analyzed urban microbe spread)\n    }\n\n\\resumeItemListEnd\n\n\\resumeSubHeadingListEnd\n\n%-----------PROGRAMMING SKILLS-----------\n\\section{SKILLS}\n\n\\begin{itemize}[leftmargin=0in, label={}]\n\\small{\n\\item{\n    \\textbf{Languages}: Python, JavaScript (React.js), HTML/CSS,\n    SQL (PostgreSQL, MySQL)\n    \\vspace{2pt}\n    \\\\\n    \\textbf{Tools}: Figma, Notion, Jira, Trello, Miro,\n    Google Analytics, GitHub, DaVinci Resolve, OBS\n}\n}\n\\end{itemize}\n\n%-------------------------------------------\n\\end{document}",
+    "pdfUrl": "",
+    "updatedAt": "2026-08-10T08:49:27.024Z"
+  }
+]

@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "id": "sub-rmkommx7v",
+    "userId": "demo-user-123",
+    "problemId": "find-duplicate-in-system",
+    "code": "function findDuplicate(nums) {\n    let seen = new Set();\n\n    for (let num of nums) {\n        if (seen.has(num)) {\n            return num;\n        }\n        seen.add(num);\n    }\n\n    return -1;\n}",
+    "language": "javascript",
+    "success": false,
+    "chosenApproach": "Brute Force Iteration",
+    "blindMode": false,
+    "peeksUsed": 0,
+    "timeSpentSeconds": 41,
+    "recallScore": 0,
+    "runtimePct": 50,
+    "memoryPct": 10,
+    "autopsy": {
+      "killedBy": "Runtime exception errors.",
+      "direction": "Recheck loops boundaries.",
+      "complexity": "Complexity runs in O(N).",
+      "interviewRisk": "Standard bounds check.",
+      "edgeCases": [
+        "Empty input array",
+        "Null inputs"
+      ]
+    },
+    "followUpQuestions": [],
+    "followUpAnswers": [],
+    "submittedAt": "2026-08-02T16:30:54.570Z"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Two Sum",
+    "titleSlug": "two-sum",
+    "difficulty": "Easy",
+    "category": "Array",
+    "tags": ["Array", "Hash Table"],
+    "description": "<p>Given an array of integers <code>nums</code>&nbsp;and an integer <code>target</code>, return <em>indices of the two numbers such that they add up to <code>target</code></em>.</p>",
+    "acceptance": 50.1,
+    "starterCode": {
+      "javascript": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number[]}\n */\nvar twoSum = function(nums, target) {\n    \n};"
+    },
+    "testCases": [
+      { "input": "[2,7,11,15]\n9", "expectedOutput": "[0,1]", "isHidden": false }
+    ]
+  },
+  {
+    "title": "Valid Parentheses",
+    "titleSlug": "valid-parentheses",
+    "difficulty": "Easy",
+    "category": "String",
+    "tags": ["String", "Stack"],
+    "description": "<p>Given a string <code>s</code> containing just the characters <code>'('</code>, <code>')'</code>, <code>'{'</code>, <code>'}'</code>, <code>'['</code> and <code>']'</code>, determine if the input string is valid.</p>",
+    "acceptance": 40.2,
+    "starterCode": {
+      "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar isValid = function(s) {\n    \n};"
+    },
+    "testCases": [
+      { "input": "\"()\"", "expectedOutput": "true", "isHidden": false }
+    ]
+  }
+]

@@ -1,4 +1,4 @@
-import { registerUser, loginUser, onboardUser } from '../service/auth.service.js';
+import { registerUser, initiateLogin, verifyOTP, onboardUser } from '../service/auth.service.js';
 
 export async function handleRegister(req, res) {
   const { email, password, name } = req.body;
@@ -21,7 +21,21 @@ export async function handleLogin(req, res) {
   }
 
   try {
-    const result = await loginUser({ email, password });
+    const result = await initiateLogin({ email, password });
+    return res.json(result);
+  } catch (err) {
+    return res.status(400).json({ message: err.message });
+  }
+}
+
+export async function handleVerifyOTP(req, res) {
+  const { email, otp } = req.body;
+  if (!email || !otp) {
+    return res.status(400).json({ message: "Email and OTP are required" });
+  }
+
+  try {
+    const result = await verifyOTP({ email, otp });
     return res.json(result);
   } catch (err) {
     return res.status(400).json({ message: err.message });
