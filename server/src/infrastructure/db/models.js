@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   title: { type: String, default: 'New CareerPilot Student' },
   targetRole: { type: String, default: 'Full-Stack Developer' },
+  selectedCompanies: { type: [String], default: [] },
   xp: { type: Number, default: 0 },
   level: { type: Number, default: 1 },
   streak: { type: Number, default: 1 },

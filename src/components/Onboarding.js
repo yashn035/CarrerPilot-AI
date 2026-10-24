@@ -76,7 +76,7 @@ export default function Onboarding() {
         setSimulatedScore(targetScore);
         
         setTimeout(async () => {
-          await completeOnboarding(targetRole, skills, experienceLevel, college, branch, graduationYear);
+          await completeOnboarding(targetRole, skills, experienceLevel, college, branch, graduationYear, '', selectedCompanies);
         }, 1000);
       } else {
         setSimulatedScore(current);
