@@ -190,7 +190,7 @@ export async function verifyOTP({ email, otp }) {
  * @param {Object} onboardingDetails 
  * @returns {Promise<Object>}
  */
-export async function onboardUser(userId, { name, title, targetRole, skills, experienceLevel, college, branch, graduationYear }) {
+export async function onboardUser(userId, { name, title, targetRole, skills, experienceLevel, college, branch, graduationYear, selectedCompanies }) {
   const db = await getDb();
   const user = db.users.find(u => u.id === userId);
 
@@ -201,6 +201,7 @@ export async function onboardUser(userId, { name, title, targetRole, skills, exp
   user.name = name || user.name;
   user.title = title !== undefined ? title : (user.title || "");
   user.targetRole = targetRole || user.targetRole;
+  user.selectedCompanies = Array.isArray(selectedCompanies) ? selectedCompanies : (user.selectedCompanies || []);
   user.college = college || user.college || "";
   user.branch = branch || user.branch || "";
   user.graduationYear = graduationYear || user.graduationYear || "";

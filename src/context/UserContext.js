@@ -149,12 +149,12 @@ export const UserProvider = ({ children }) => {
   };
 
   // Complete onboarding
-  const completeOnboarding = async (targetRole, skills, experienceLevel, college = '', branch = '', graduationYear = '', name = '') => {
+  const completeOnboarding = async (targetRole, skills, experienceLevel, college = '', branch = '', graduationYear = '', name = '', selectedCompanies = []) => {
     try {
       const res = await fetch('/api/auth/onboarding', {
         method: 'POST',
         headers: getAuthHeaders(),
-        body: JSON.stringify({ targetRole, skills, experienceLevel, college, branch, graduationYear, name })
+        body: JSON.stringify({ targetRole, skills, experienceLevel, college, branch, graduationYear, name, selectedCompanies })
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Onboarding failed');
