@@ -9,10 +9,49 @@ import { generateSummaryAI, polishBulletAI } from '../services/resume.service.js
 const require = createRequire(import.meta.url);
 const pdfParse = require('pdf-parse');
 
+const MAX_RESUME_SIZE = 10 * 1024 * 1024;
+
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 } // 10MB
+  limits: { fileSize: MAX_RESUME_SIZE },
+  fileFilter: (req, file, cb) => {
+    if (!/\.pdf$/i.test(file.originalname)) {
+      const err = new Error('Unsupported file type. Please upload a PDF file.');
+      err.code = 'UNSUPPORTED_FILE_TYPE';
+      return cb(err);
+    }
+    cb(null, true);
+  }
 });
+
+function handleResumeUpload(req, res, next) {
+  upload.single('resumeFile')(req, res, (err) => {
+    if (!err) return next();
+
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      return res.status(413).json({
+        status: 'fail',
+        message: 'Resume file is too large. Maximum allowed size is 10 MB.'
+      });
+    }
+
+    if (err.code === 'UNSUPPORTED_FILE_TYPE') {
+      return res.status(400).json({
+        status: 'fail',
+        message: err.message
+      });
+    }
+
+    if (err instanceof multer.MulterError) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Resume upload failed. Please check the uploaded file and try again.'
+      });
+    }
+
+    next(err);
+  });
+}
 
 const router = Router();
 router.use(authenticateToken);
@@ -109,7 +148,7 @@ Perform a comprehensive analysis and respond STRICTLY in JSON format without mar
 }
 
 // 1. Analyze PDF or Text Resume for ATS Score
-router.post('/analyze-ats', upload.single('resumeFile'), async (req, res, next) => {
+router.post('/analyze-ats', handleResumeUpload, async (req, res, next) => {
   try {
     let resumeText = req.body.resumeText || '';
     const jobDescription = req.body.jobDescription || '';
@@ -117,8 +156,25 @@ router.post('/analyze-ats', upload.single('resumeFile'), async (req, res, next) 
     const resumeId = req.body.resumeId || null;
 
     if (req.file) {
-      const parsedPdf = await pdfParse(req.file.buffer);
-      resumeText = parsedPdf.text;
+      let parsedPdf;
+
+      try {
+        parsedPdf = await pdfParse(req.file.buffer);
+      } catch {
+        return res.status(400).json({
+          status: 'fail',
+          message: 'Could not read this PDF. Please upload a valid, readable PDF file.'
+        });
+      }
+
+      resumeText = parsedPdf.text || '';
+
+      if (!resumeText.trim()) {
+        return res.status(400).json({
+          status: 'fail',
+          message: 'No extractable text found in this PDF. It may be scanned or image-only; please upload a text-based PDF or paste your resume text.'
+        });
+      }
     }
 
     if (!resumeText.trim()) {
