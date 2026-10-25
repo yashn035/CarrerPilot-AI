@@ -9,16 +9,80 @@ import { generateSummaryAI, polishBulletAI } from '../services/resume.service.js
 const require = createRequire(import.meta.url);
 const pdfParse = require('pdf-parse');
 
+const MAX_RESUME_SIZE = 10 * 1024 * 1024;
+
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 } // 10MB
+  limits: { fileSize: MAX_RESUME_SIZE },
+  fileFilter: (req, file, cb) => {
+    if (!/\.pdf$/i.test(file.originalname)) {
+      const err = new Error(
+        'Unsupported file type. Please upload a PDF file.'
+      );
+      err.code = 'UNSUPPORTED_FILE_TYPE';
+      return cb(err);
+    }
+
+    cb(null, true);
+  }
 });
+
+function handleResumeUpload(req, res, next) {
+  upload.single('resumeFile')(req, res, (err) => {
+    if (!err) {
+      if (req.file) {
+        const pdfHeader = req.file.buffer
+          .subarray(0, 1024)
+          .toString('latin1');
+
+        if (!pdfHeader.includes('%PDF-')) {
+          return res.status(400).json({
+            status: 'fail',
+            message:
+              'Invalid PDF file content. Please upload a valid PDF file.'
+          });
+        }
+      }
+
+      return next();
+    }
+
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      return res.status(413).json({
+        status: 'fail',
+        message:
+          'Resume file is too large. Maximum allowed size is 10 MB.'
+      });
+    }
+
+    if (err.code === 'UNSUPPORTED_FILE_TYPE') {
+      return res.status(400).json({
+        status: 'fail',
+        message: err.message
+      });
+    }
+
+    if (err instanceof multer.MulterError) {
+      return res.status(400).json({
+        status: 'fail',
+        message:
+          'Resume upload failed. Please check the uploaded file and try again.'
+      });
+    }
+
+    return next(err);
+  });
+}
 
 const router = Router();
 router.use(authenticateToken);
 
 // Helper for Groq / LLM ATS scoring
-async function performATSAnalysis(resumeText, jobDescription, jobTitle = 'Software Engineer') {
+async function performATSAnalysis(
+  resumeText,
+  jobDescription,
+  jobTitle = 'Software Engineer'
+) {
   const prompt = `Analyze this resume text against the provided job description and evaluate its Applicant Tracking System (ATS) compatibility.
 
 JOB TITLE: ${jobTitle}
@@ -55,25 +119,52 @@ Perform a comprehensive analysis and respond STRICTLY in JSON format without mar
 }`;
 
   try {
-    const aiRes = await LLMRouter.route(prompt, 'fast', false, 'You are a veteran ATS recruiting engine evaluator.');
+    const aiRes = await LLMRouter.route(
+      prompt,
+      'fast',
+      false,
+      'You are a veteran ATS recruiting engine evaluator.'
+    );
+
     const text = aiRes.text || '';
     const jsonMatch = text.match(/\{[\s\S]*\}/);
+
     if (jsonMatch) {
       return JSON.parse(jsonMatch[0]);
     }
   } catch (err) {
-    console.error('LLM ATS Analysis failed, falling back to heuristic engine:', err.message);
+    console.error(
+      'LLM ATS Analysis failed, falling back to heuristic engine:',
+      err.message
+    );
   }
 
-  // Robust Heuristic Engine Fallback if LLM API is unavailable
-  const commonTech = ['React', 'Node.js', 'Express', 'JavaScript', 'Python', 'SQL', 'MongoDB', 'Git', 'AWS', 'Docker', 'REST API', 'CSS', 'HTML', 'TypeScript', 'Agile'];
+  // Fallback heuristic engine if the LLM API is unavailable.
+  const commonTech = [
+    'React',
+    'Node.js',
+    'Express',
+    'JavaScript',
+    'Python',
+    'SQL',
+    'MongoDB',
+    'Git',
+    'AWS',
+    'Docker',
+    'REST API',
+    'CSS',
+    'HTML',
+    'TypeScript',
+    'Agile'
+  ];
+
   const jdUpper = (jobDescription || '').toUpperCase();
   const resUpper = resumeText.toUpperCase();
 
   const foundKeywords = [];
   const missingKeywords = [];
 
-  commonTech.forEach(tech => {
+  commonTech.forEach((tech) => {
     if (resUpper.includes(tech.toUpperCase())) {
       foundKeywords.push(tech);
     } else if (jdUpper.includes(tech.toUpperCase())) {
@@ -81,35 +172,63 @@ Perform a comprehensive analysis and respond STRICTLY in JSON format without mar
     }
   });
 
-  const keywordScore = Math.min(100, Math.max(45, Math.round((foundKeywords.length / (foundKeywords.length + missingKeywords.length || 1)) * 100)));
+  const keywordScore = Math.min(
+    100,
+    Math.max(
+      45,
+      Math.round(
+        (foundKeywords.length /
+          (foundKeywords.length + missingKeywords.length || 1)) *
+          100
+      )
+    )
+  );
+
   const formattingScore = resumeText.length > 500 ? 88 : 65;
-  const contentScore = resumeText.includes('•') || resumeText.includes('-') ? 85 : 70;
+
+  const contentScore =
+    resumeText.includes('•') || resumeText.includes('-') ? 85 : 70;
+
   const impactScore = /\d+%|\$\d+|\d+k/i.test(resumeText) ? 88 : 68;
-  const overallScore = Math.round((formattingScore * 0.2) + (keywordScore * 0.4) + (contentScore * 0.2) + (impactScore * 0.2));
+
+  const overallScore = Math.round(
+    formattingScore * 0.2 +
+      keywordScore * 0.4 +
+      contentScore * 0.2 +
+      impactScore * 0.2
+  );
 
   return {
     overallScore,
-    breakdown: { formattingScore, keywordScore, contentScore, impactScore },
+    breakdown: {
+      formattingScore,
+      keywordScore,
+      contentScore,
+      impactScore
+    },
     foundKeywords,
-    missingKeywords: missingKeywords.length ? missingKeywords : ['Docker', 'TypeScript', 'Kubernetes', 'CI/CD'],
+    missingKeywords: missingKeywords.length
+      ? missingKeywords
+      : ['Docker', 'TypeScript', 'Kubernetes', 'CI/CD'],
     bulletSuggestions: [
       {
-        original: "Worked on frontend features",
-        improved: "Engineered responsive React web interfaces improving page load speed by 35%",
-        reason: "Added quantified metrics and performance impact."
+        original: 'Worked on frontend features',
+        improved:
+          'Engineered responsive React web interfaces improving page load speed by 35%',
+        reason: 'Added quantified metrics and performance impact.'
       }
     ],
     sectionFeedback: {
-      summary: "Add specific domain target keywords matching job description.",
-      experience: "Include quantified metrics (%, $, scale) for achievements.",
-      skills: "Highlight primary backend/frontend frameworks prominently.",
-      education: "Format degree and dates clearly."
+      summary: 'Add specific domain target keywords matching job description.',
+      experience: 'Include quantified metrics (%, $, scale) for achievements.',
+      skills: 'Highlight primary backend/frontend frameworks prominently.',
+      education: 'Format degree and dates clearly.'
     }
   };
 }
 
 // 1. Analyze PDF or Text Resume for ATS Score
-router.post('/analyze-ats', upload.single('resumeFile'), async (req, res, next) => {
+router.post('/analyze-ats', handleResumeUpload, async (req, res, next) => {
   try {
     let resumeText = req.body.resumeText || '';
     const jobDescription = req.body.jobDescription || '';
@@ -117,20 +236,45 @@ router.post('/analyze-ats', upload.single('resumeFile'), async (req, res, next) 
     const resumeId = req.body.resumeId || null;
 
     if (req.file) {
-      const parsedPdf = await pdfParse(req.file.buffer);
-      resumeText = parsedPdf.text;
+      let parsedPdf;
+
+      try {
+        parsedPdf = await pdfParse(req.file.buffer);
+      } catch {
+        return res.status(400).json({
+          status: 'fail',
+          message:
+            'Could not read this PDF. Please upload a valid, readable PDF file.'
+        });
+      }
+
+      resumeText = parsedPdf.text || '';
+
+      if (!resumeText.trim()) {
+        return res.status(400).json({
+          status: 'fail',
+          message:
+            'No extractable text found in this PDF. It may be scanned or image-only; please upload a text-based PDF or paste your resume text.'
+        });
+      }
     }
 
     if (!resumeText.trim()) {
       return res.status(400).json({
         status: 'fail',
-        message: 'Please provide resume text or upload a valid PDF resume file.'
+        message:
+          'Please provide resume text or upload a valid PDF resume file.'
       });
     }
 
-    const analysis = await performATSAnalysis(resumeText, jobDescription, jobTitle);
+    const analysis = await performATSAnalysis(
+      resumeText,
+      jobDescription,
+      jobTitle
+    );
 
     const userId = req.userId || req.user?.id || req.user?._id;
+
     const savedResult = new ResumeResult({
       userId,
       resumeId: resumeId || undefined,
@@ -164,8 +308,12 @@ router.post('/analyze-ats', upload.single('resumeFile'), async (req, res, next) 
 router.post('/extract-keywords', async (req, res, next) => {
   try {
     const { jobDescription } = req.body;
+
     if (!jobDescription) {
-      return res.status(400).json({ status: 'fail', message: 'Job description is required.' });
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Job description is required.'
+      });
     }
 
     const prompt = `Extract top 15 technical skills, frameworks, tools, and soft skills from this job description:
@@ -178,20 +326,33 @@ Respond ONLY with JSON format:
 }`;
 
     let keywords = { technical: [], soft: [] };
+
     try {
       const aiRes = await LLMRouter.route(prompt, 'fast', false);
       const jsonMatch = (aiRes.text || '').match(/\{[\s\S]*\}/);
+
       if (jsonMatch) {
         keywords = JSON.parse(jsonMatch[0]);
       }
-    } catch (e) {
+    } catch {
       keywords = {
-        technical: ["JavaScript", "React", "Node.js", "Express", "REST APIs", "SQL", "Git"],
-        soft: ["Problem Solving", "Teamwork", "Agile Development"]
+        technical: [
+          'JavaScript',
+          'React',
+          'Node.js',
+          'Express',
+          'REST APIs',
+          'SQL',
+          'Git'
+        ],
+        soft: ['Problem Solving', 'Teamwork', 'Agile Development']
       };
     }
 
-    return res.status(200).json({ status: 'success', data: keywords });
+    return res.status(200).json({
+      status: 'success',
+      data: keywords
+    });
   } catch (err) {
     next(err);
   }
@@ -201,12 +362,20 @@ Respond ONLY with JSON format:
 router.post('/polish-bullet', async (req, res, next) => {
   try {
     const { bulletText, targetRole } = req.body;
+
     if (!bulletText) {
-      return res.status(400).json({ status: 'fail', message: 'Bullet text is required.' });
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Bullet text is required.'
+      });
     }
 
     const result = await polishBulletAI(bulletText, targetRole);
-    return res.status(200).json({ status: 'success', data: result });
+
+    return res.status(200).json({
+      status: 'success',
+      data: result
+    });
   } catch (err) {
     next(err);
   }
@@ -216,8 +385,18 @@ router.post('/polish-bullet', async (req, res, next) => {
 router.post('/generate-summary', async (req, res, next) => {
   try {
     const { personalInfo, targetRole, skills, experience } = req.body;
-    const summary = await generateSummaryAI(personalInfo, targetRole, skills, experience);
-    return res.status(200).json({ status: 'success', data: { summary } });
+
+    const summary = await generateSummaryAI(
+      personalInfo,
+      targetRole,
+      skills,
+      experience
+    );
+
+    return res.status(200).json({
+      status: 'success',
+      data: { summary }
+    });
   } catch (err) {
     next(err);
   }
